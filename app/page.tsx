@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/ui/navbar";
 import BlurText from "@/components/ui/BlurText/BlurText";
 import CountUp from "@/components/ui/CountUp/CountUp";
 import { VideoDemo } from "@/components/ui/videoDemo";
@@ -9,7 +8,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="bg-white py-20 pt-[15vh] md:pt-[25vh] md:pb-20 h-[95  vh]">
