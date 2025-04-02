@@ -163,8 +163,8 @@ export default function Home() {
       {/* CTA Section */}
       <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6 text-center">
+          <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Boost your workspace's organisation</p>  
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-6 text-gray-700">
-            <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Boost your workspace's organisation</p>
             <h2 className="text-3xl md:text-4xl font-bold">Ready to start reserving</h2>
             <RotatingText
               texts={['Rooms', 'Offices', 'Equipment', 'Everything!']}
