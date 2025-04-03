@@ -10,25 +10,21 @@ export const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mouseNearTop, setMouseNearTop] = useState(false);
 
-  // Handle scroll behavior
+  // navbar hider
   useEffect(() => {
     const controlNavbar = () => {
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > lastScrollY && currentScrollY > 100 && !mouseNearTop) {
-        // Scrolling down & not near top & mouse not near top
         setVisible(false);
       } else {
-        // Scrolling up or at top
         setVisible(true);
       }
       
       setLastScrollY(currentScrollY);
     };
 
-    // Mouse position detection
     const handleMouseMove = (e: any) => {
-      // Show navbar when mouse is near the top (within 80px)
       if (e.clientY <= 80) {
         setMouseNearTop(true);
         setVisible(true);

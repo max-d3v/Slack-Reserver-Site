@@ -25,6 +25,9 @@ const Pricing = () => {
                             <h2 className="text-xl font-semibold text-gray-800">Team</h2>
                             <p className="mt-2 text-gray-600">For small teams that want to reserve a limited amount of rooms</p>
                             <h1 className="text-3xl font-bold mt-4 text-gray-800">$10 <span className="text-gray-500 text-lg font-normal">/month</span></h1>
+                            <div className="mt-2 inline-flex items-center">
+                                <span className="text-sm font-medium text-green-600">✓ 7-day free trial</span>
+                            </div>
                         </div>
                         <div className="mt-8 -mx-8">
                             <div className="px-8 py-2 border-t border-gray-200"></div>
@@ -56,13 +59,18 @@ const Pricing = () => {
                             <p className="mt-2 text-gray-600">Transform your workspace to be more professional</p>
                             <p className="text-gray-600">No more excel sheets and one sided reservations</p>
                             <h1 className="text-3xl font-bold mt-4 text-gray-800">$20 <span className="text-gray-500 text-lg font-normal">/month</span></h1>
+                            <div className="mt-2 inline-flex items-center">
+                                <span className="text-sm font-medium text-green-600">✓ 7-day free trial</span>
+                            </div>
                         </div>
                         <div className="mt-8 -mx-8">
                             <div className="px-8 py-2 border-t border-gray-200"></div>
                             <div className="px-8 py-4">
+                                <a href="https://slack.com/oauth/v2/authorize?scope=&amp;user_scope=&amp;redirect_uri=https%3A%2F%2Fexample.com&amp;client_id=8320946706706.8320960407410">
                                 <button className="w-full py-3 px-4 bg-[#4A154B] text-white font-medium rounded-md hover:bg-[#3e1240] transition-colors focus:outline-none focus:ring-2 focus:ring-[#4A154B] focus:ring-opacity-50 shadow-sm">
                                     Get Started
                                 </button>
+                                </a>
                             </div>
                             <div className="px-8 py-2 border-b border-gray-200"></div>
                         </div>

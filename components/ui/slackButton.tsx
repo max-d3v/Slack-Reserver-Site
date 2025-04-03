@@ -1,28 +1,29 @@
+
 import React from 'react'
 
 export const SlackButton = () => {
   return (
     <div className="mb-12">
             <a
-              href="https://slack.com/oauth/v2/authorize?scope=&amp;user_scope=&amp;redirect_uri=https%3A%2F%2Fexample.com&amp;client_id=8320946706706.8320960407410"
-              className="add-to-slack-btn group relative inline-flex items-center justify-center overflow-hidden"
-              target="_blank"
-              style={{
-                alignItems: "center",
-                backgroundColor: "#4A154B",
-                border: 0,
-                borderRadius: "4px",
-                color: "#fff",
-                display: "inline-flex",
-                fontFamily: "Lato, sans-serif",
-                fontSize: "18px",
-                fontWeight: 600,
-                height: "56px",
-                justifyContent: "center",
-                textDecoration: "none",
-                width: "276px",
-                transition: "all 0.3s ease",
-                position: "relative",
+                href="https://slack.com/oauth/v2/authorize?scope=app_mentions%3Aread%2Ccanvases%3Aread%2Ccanvases%3Awrite%2Cchannels%3Ahistory%2Cchat%3Awrite%2Ccommands%2Cemoji%3Aread%2Ctriggers%3Aread&amp;user_scope=&amp;redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fapi%2Fslack-auth&amp;client_id=8320946706706.8320960407410"              
+                className="add-to-slack-btn group relative inline-flex items-center justify-center overflow-hidden"
+                target="_blank"
+                style={{
+                  alignItems: "center",
+                  backgroundColor: "#4A154B",
+                  border: 0,
+                  borderRadius: "4px",
+                  color: "#fff",
+                  display: "inline-flex",
+                  fontFamily: "Lato, sans-serif",
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  height: "56px",
+                  justifyContent: "center",
+                  textDecoration: "none",
+                  width: "276px",
+                  transition: "all 0.3s ease",
+                  position: "relative",
               }}
             >
               {/* Animated background */}
