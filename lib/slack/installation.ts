@@ -1,7 +1,5 @@
-// lib/slack/installation.ts
 import { prisma } from '@/db/db';
 import { SlackInstallation } from '@/types/types';
-import { AppInstalledEvent } from '@slack/types';
 
 export async function storeInstallation(installation: SlackInstallation) {
   try {
