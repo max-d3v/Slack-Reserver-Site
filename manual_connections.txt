@@ -1,0 +1,3 @@
+stripe plans and db plans.
+
+plans in pricing and db plans. (features, monthly and annual prices etc)

@@ -1,0 +1,186 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model audit_logs {
+  id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tenant_id     String   @db.Uuid
+  user_id       String?  @db.Uuid
+  entity_type   String   @db.VarChar(50)
+  entity_id     String   @db.Uuid
+  action        String   @db.VarChar(50)
+  changes       Json?
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+  slack_user_id String?  @db.VarChar(255)
+  tenants       tenants  @relation(fields: [tenant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user          users?   @relation("UserAuditLogs", fields: [user_id], references: [id], onUpdate: NoAction)
+
+  @@index([slack_user_id], map: "idx_audit_logs_slack_user")
+  @@index([tenant_id], map: "idx_audit_logs_tenant")
+}
+
+model plans {
+  id                   String                 @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name                 String                 @db.VarChar(100)
+  description          String?
+  price                Decimal                @db.Decimal(10, 2)
+  billing_interval     String                 @default("monthly") @db.VarChar(20)
+  features             Json?
+  created_at           DateTime               @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime               @updatedAt @db.Timestamptz(6)
+  stripe_product_id    String                 @unique @db.VarChar(255)
+  tenant_subscriptions tenant_subscriptions[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model reservations {
+  id                         String                       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tenant_id                  String                       @db.Uuid
+  title                      String                       @db.VarChar(255)
+  description                String?
+  start_date                 DateTime                     @db.Date
+  end_date                   DateTime                     @db.Date
+  start_time                 DateTime                     @db.Time(6)
+  end_time                   DateTime                     @db.Time(6)
+  resource_id                String                       @db.Uuid
+  status                     String                       @default("confirmed") @db.VarChar(50)
+  created_at                 DateTime                     @default(now()) @db.Timestamptz(6)
+  updated_at                 DateTime                     @updatedAt @db.Timestamptz(6)
+  slack_organizer_id         String                       @db.VarChar(50)
+  reservation_participations reservation_participations[]
+  resources                  resources                    @relation(fields: [resource_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  tenants                    tenants                      @relation(fields: [tenant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([start_date, end_date], map: "idx_reservations_date_range")
+  @@index([resource_id], map: "idx_reservations_resource")
+  @@index([slack_organizer_id], map: "idx_reservations_slack_organizer")
+}
+
+model resource_groups {
+  id               String      @id(map: "resource_types_pkey") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tenant_id        String      @db.Uuid
+  name             String      @db.VarChar(255)
+  description      String?
+  created_at       DateTime    @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime    @updatedAt @db.Timestamptz(6)
+  has_seats        Boolean
+  active           Boolean?    @default(true)
+  slack_created_by String?     @db.VarChar(50)
+  icon             Json?
+  tenants          tenants     @relation(fields: [tenant_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "resource_types_tenant_id_fkey")
+  resources        resources[]
+}
+
+model resources {
+  id                 String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tenant_id          String          @db.Uuid
+  resource_group_id  String          @db.Uuid
+  name               String          @db.VarChar(255)
+  description        String?
+  status             String          @default("available") @db.VarChar(50)
+  seats              Int?
+  location           String?         @db.VarChar(255)
+  metadata           Json?
+  created_at         DateTime        @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime        @updatedAt @db.Timestamptz(6)
+  next_reservation   DateTime?       @db.Timestamp(6)
+  status_description String?
+  active             Boolean?        @default(true)
+  slack_created_by   String          @db.VarChar(50)
+  reservations       reservations[]
+  resource_groups    resource_groups @relation(fields: [resource_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "resources_resource_type_id_fkey")
+  tenants            tenants         @relation(fields: [tenant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([tenant_id], map: "idx_resources_tenant")
+}
+
+model tenant_subscriptions {
+  id                     String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tenant_id              String   @db.Uuid
+  plan_id                String   @db.Uuid
+  status                 String   @default("active") @db.VarChar(20)
+  created_at             DateTime @default(now()) @db.Timestamptz(6)
+  updated_at             DateTime @updatedAt @db.Timestamptz(6)
+  stripe_subscription_id String?  @db.VarChar(255)
+  plans                  plans    @relation(fields: [plan_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  tenants                tenants  @relation(fields: [tenant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model tenants {
+  id                   String                 @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  subdomain            String                 @unique @db.VarChar(63)
+  status               String                 @default("active") @db.VarChar(20)
+  created_at           DateTime               @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime               @updatedAt @db.Timestamptz(6)
+  workspace_team_id    String                 @unique
+  timezone             String                 @default("UTC") @db.VarChar(50)
+  audit_logs           audit_logs[]
+  reservations         reservations[]
+  resource_groups      resource_groups[]
+  resources            resources[]
+  slack_workspace      slack_workspace?
+  tenant_subscriptions tenant_subscriptions[]
+  users                users[]
+}
+
+model slack_workspace {
+  scope        String
+  app_id       String
+  bot_token    String
+  bot_user_id  String
+  installed_at DateTime @default(now()) @db.Timestamptz(6)
+  last_updated DateTime @updatedAt @db.Timestamptz(6)
+  team_id      String   @id @unique
+  team_name    String
+  access_token String
+  tenant       tenants  @relation(fields: [team_id], references: [workspace_team_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([team_id])
+}
+
+model user_checkout_sessions {
+  id         String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id    String   @db.Uuid
+  session_id String   @db.VarChar(255)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @updatedAt @db.Timestamptz(6)
+  users      users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([user_id], map: "idx_user_checkout_sessions_user")
+}
+
+model users {
+  id                     String                   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tenant_id              String?                  @db.Uuid
+  email                  String                   @unique
+  role                   String                   @default("user") @db.VarChar(20)
+  last_login             DateTime?                @db.Timestamptz(6)
+  created_at             DateTime                 @default(now()) @db.Timestamptz(6)
+  updated_at             DateTime                 @updatedAt @db.Timestamptz(6)
+  google_id              String                   @unique
+  imageUrl               String?
+  name                   String
+  stripe_customer_id     String?                  @db.VarChar(255)
+  password               String?                  @db.VarChar(255)
+  audit_logs             audit_logs[]             @relation("UserAuditLogs")
+  user_checkout_sessions user_checkout_sessions[]
+  tenant                 tenants?                 @relation(fields: [tenant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([tenant_id], map: "idx_users_tenant")
+  @@index([email], map: "idx_users_email")
+}
+
+model reservation_participations {
+  id             String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  reservation_id String       @db.Uuid
+  status         String       @default("pending") @db.VarChar(50)
+  created_at     DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime     @updatedAt @db.Timestamptz(6)
+  user_slack_id  String       @db.VarChar(50)
+  reservations   reservations @relation(fields: [reservation_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

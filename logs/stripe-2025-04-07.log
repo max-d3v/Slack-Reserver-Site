@@ -1,0 +1,428 @@
+{"timestamp":"2025-04-07T12:53:21.841Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:21.845Z","level":"debug","service":"stripe-webhook","message":"Event verified: customer.created","metadata":{"id":"evt_1RBFB1Bbs0yCLzPIk5YBMvAh"}}
+{"timestamp":"2025-04-07T12:53:21.845Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBFB1Bbs0yCLzPIk5YBMvAh"}}
+{"timestamp":"2025-04-07T12:53:21.846Z","level":"error","service":"stripe","message":"Nenhum ID de usuário encontrado nos metadados do cliente","metadata":{"customer":{"id":"cus_S5Q1ZaOg8bhfbh","object":"customer","address":{"city":null,"country":"BR","line1":null,"line2":null,"postal_code":null,"state":null},"balance":0,"created":1744030400,"currency":null,"default_source":null,"delinquent":false,"description":null,"discount":null,"email":"maxbuzzarello@gmail.com","invoice_prefix":"7A63B0EF","invoice_settings":{"custom_fields":null,"default_payment_method":null,"footer":null,"rendering_options":null},"livemode":false,"metadata":{},"name":"qs","next_invoice_sequence":2,"phone":null,"preferred_locales":["pt-BR"],"shipping":null,"tax_exempt":"none","test_clock":null}}}
+{"timestamp":"2025-04-07T12:53:21.846Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:21.862Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:21.864Z","level":"debug","service":"stripe-webhook","message":"Event verified: checkout.session.completed","metadata":{"id":"evt_1RBFB1Bbs0yCLzPILo53wiN1"}}
+{"timestamp":"2025-04-07T12:53:21.864Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBFB1Bbs0yCLzPILo53wiN1"}}
+{"timestamp":"2025-04-07T12:53:21.865Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:21.877Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:21.878Z","level":"debug","service":"stripe-webhook","message":"Event verified: customer.subscription.created","metadata":{"id":"evt_1RBFB1Bbs0yCLzPIvrsHtaGB"}}
+{"timestamp":"2025-04-07T12:53:21.878Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBFB1Bbs0yCLzPIvrsHtaGB"}}
+{"timestamp":"2025-04-07T12:53:21.878Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:21.888Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:21.890Z","level":"debug","service":"stripe-webhook","message":"Event verified: charge.succeeded","metadata":{"id":"evt_3RBFAzBbs0yCLzPI1OL49YSM"}}
+{"timestamp":"2025-04-07T12:53:21.890Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBFAzBbs0yCLzPI1OL49YSM"}}
+{"timestamp":"2025-04-07T12:53:21.890Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:21.898Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:21.900Z","level":"debug","service":"stripe-webhook","message":"Event verified: customer.updated","metadata":{"id":"evt_1RBFB1Bbs0yCLzPI2SM7RlN0"}}
+{"timestamp":"2025-04-07T12:53:21.900Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBFB1Bbs0yCLzPI2SM7RlN0"}}
+{"timestamp":"2025-04-07T12:53:21.900Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:21.914Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:21.916Z","level":"debug","service":"stripe-webhook","message":"Event verified: payment_method.attached","metadata":{"id":"evt_1RBFB1Bbs0yCLzPIjJU8eZKP"}}
+{"timestamp":"2025-04-07T12:53:21.917Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBFB1Bbs0yCLzPIjJU8eZKP"}}
+{"timestamp":"2025-04-07T12:53:21.917Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:22.296Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:22.298Z","level":"debug","service":"stripe-webhook","message":"Event verified: payment_intent.succeeded","metadata":{"id":"evt_3RBFAzBbs0yCLzPI1lwLanAb"}}
+{"timestamp":"2025-04-07T12:53:22.299Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBFAzBbs0yCLzPI1lwLanAb"}}
+{"timestamp":"2025-04-07T12:53:22.299Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:22.866Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:22.868Z","level":"debug","service":"stripe-webhook","message":"Event verified: payment_intent.created","metadata":{"id":"evt_3RBFAzBbs0yCLzPI1H2glIh7"}}
+{"timestamp":"2025-04-07T12:53:22.869Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBFAzBbs0yCLzPI1H2glIh7"}}
+{"timestamp":"2025-04-07T12:53:22.869Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:24.191Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:24.194Z","level":"debug","service":"stripe-webhook","message":"Event verified: invoice.created","metadata":{"id":"evt_1RBFB4Bbs0yCLzPIKuy0jC3m"}}
+{"timestamp":"2025-04-07T12:53:24.195Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBFB4Bbs0yCLzPIKuy0jC3m"}}
+{"timestamp":"2025-04-07T12:53:24.196Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:25.023Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:25.026Z","level":"debug","service":"stripe-webhook","message":"Event verified: invoice.finalized","metadata":{"id":"evt_1RBFB4Bbs0yCLzPInXPNS4EA"}}
+{"timestamp":"2025-04-07T12:53:25.031Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBFB4Bbs0yCLzPInXPNS4EA"}}
+{"timestamp":"2025-04-07T12:53:25.031Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:26.517Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:26.518Z","level":"debug","service":"stripe-webhook","message":"Event verified: invoice.paid","metadata":{"id":"evt_1RBFB6Bbs0yCLzPIgOfYOdbR"}}
+{"timestamp":"2025-04-07T12:53:26.519Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBFB6Bbs0yCLzPIgOfYOdbR"}}
+{"timestamp":"2025-04-07T12:53:26.520Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T12:53:26.830Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBFB0Bbs0yCLzPIBTWrk2P4"}}
+{"timestamp":"2025-04-07T12:53:26.830Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T12:53:27.320Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para o cliente do Stripe","metadata":{"customerId":"cus_S5Q1ZaOg8bhfbh","customerEmail":"maxbuzzarello@gmail.com"}}
+{"timestamp":"2025-04-07T12:53:27.321Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T12:53:28.016Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T12:53:28.017Z","level":"debug","service":"stripe-webhook","message":"Event verified: invoice.payment_succeeded","metadata":{"id":"evt_1RBFB7Bbs0yCLzPIZ0w7SP67"}}
+{"timestamp":"2025-04-07T12:53:28.018Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBFB7Bbs0yCLzPIZ0w7SP67"}}
+{"timestamp":"2025-04-07T12:53:28.018Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:42.175Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:42.178Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBGPnBbs0yCLzPIr1GrOEGx"}}
+{"timestamp":"2025-04-07T14:12:42.178Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:43.681Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:43.683Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBGPiBbs0yCLzPI1bsHfphy"}}
+{"timestamp":"2025-04-07T14:12:43.683Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:44.200Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:44.202Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBGPpBbs0yCLzPISKphk0ia"}}
+{"timestamp":"2025-04-07T14:12:44.203Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:45.211Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.212Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBGPqBbs0yCLzPI66KC10tL"}}
+{"timestamp":"2025-04-07T14:12:45.212Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5RI0QPe76SGQF"}}
+{"timestamp":"2025-04-07T14:12:45.545Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.546Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBGPrBbs0yCLzPIbW6hd7Qs"}}
+{"timestamp":"2025-04-07T14:12:45.546Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:45.630Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.631Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBGPrBbs0yCLzPI4Inkczkz"}}
+{"timestamp":"2025-04-07T14:12:45.632Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:45.687Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.688Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBGPiBbs0yCLzPI1PDLdsij"}}
+{"timestamp":"2025-04-07T14:12:45.689Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:45.756Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.757Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBGPiBbs0yCLzPI1L3cK88e"}}
+{"timestamp":"2025-04-07T14:12:45.757Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:45.917Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.920Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBGPrBbs0yCLzPImNdXqm4R"}}
+{"timestamp":"2025-04-07T14:12:45.920Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:45.990Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:45.991Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBGPrBbs0yCLzPI95oefLJU"}}
+{"timestamp":"2025-04-07T14:12:45.991Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:46.028Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a1JR77j2aFptn5oVA2CNMcQlk1grJUdqUDWQaR2TvS7TSBulLetNlVJBi2"}}
+{"timestamp":"2025-04-07T14:12:46.031Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para a sessão de checkout","metadata":{"sessionId":"cs_test_a1JR77j2aFptn5oVA2CNMcQlk1grJUdqUDWQaR2TvS7TSBulLetNlVJBi2"}}
+{"timestamp":"2025-04-07T14:12:46.031Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:46.057Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:46.058Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBGPrBbs0yCLzPI3xut4Pan"}}
+{"timestamp":"2025-04-07T14:12:46.058Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T14:12:46.119Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:12:46.120Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBGPsBbs0yCLzPI9hZiqaO2"}}
+{"timestamp":"2025-04-07T14:12:46.120Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:12:46.350Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBGPjBbs0yCLzPI0ViP36qF"}}
+{"timestamp":"2025-04-07T14:12:46.350Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T14:12:46.621Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para o cliente do Stripe","metadata":{"customerId":"cus_S5RI0QPe76SGQF","customerEmail":"maxbuzzarello@gmail.com"}}
+{"timestamp":"2025-04-07T14:12:46.621Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.062Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.065Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBGmIBbs0yCLzPI1laVRdAz"}}
+{"timestamp":"2025-04-07T14:35:59.065Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.151Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.155Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBGmKBbs0yCLzPIccv155HE"}}
+{"timestamp":"2025-04-07T14:35:59.155Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.212Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.214Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBGmKBbs0yCLzPIjglh38GJ"}}
+{"timestamp":"2025-04-07T14:35:59.214Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5RfPKgxwlXC2T"}}
+{"timestamp":"2025-04-07T14:35:59.225Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.226Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBGmKBbs0yCLzPIPkVbWBgB"}}
+{"timestamp":"2025-04-07T14:35:59.226Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.257Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.258Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBGmIBbs0yCLzPI1olDEBQF"}}
+{"timestamp":"2025-04-07T14:35:59.258Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.263Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.264Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBGmLBbs0yCLzPIiYwMPCBi"}}
+{"timestamp":"2025-04-07T14:35:59.264Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.290Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.291Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBGmIBbs0yCLzPI1YK9pRmO"}}
+{"timestamp":"2025-04-07T14:35:59.291Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.360Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.361Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBGmLBbs0yCLzPIPlnuRCia"}}
+{"timestamp":"2025-04-07T14:35:59.361Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.399Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.401Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBGmLBbs0yCLzPIIeOq28wZ"}}
+{"timestamp":"2025-04-07T14:35:59.402Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.474Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.477Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBGmLBbs0yCLzPIL6HJfuxX"}}
+{"timestamp":"2025-04-07T14:35:59.478Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T14:35:59.537Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.539Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBGmLBbs0yCLzPIY3jg1W0V"}}
+{"timestamp":"2025-04-07T14:35:59.539Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.583Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:35:59.584Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBGmLBbs0yCLzPIo9bSCirO"}}
+{"timestamp":"2025-04-07T14:35:59.584Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:35:59.867Z","level":"info","service":"stripe","message":"Sessoes encontradas: ","metadata":{"object":"list","data":[{"id":"cs_test_a1HpkUICkSQwxyxlkV3Buob0sXdxrpmIj2R37ZRT9vcfToAk5lRfEgRt8i","object":"checkout.session","adaptive_pricing":null,"after_expiration":null,"allow_promotion_codes":null,"amount_subtotal":500,"amount_total":500,"automatic_tax":{"enabled":false,"liability":null,"status":null},"billing_address_collection":"auto","cancel_url":"http://localhost:3000/pricing?canceled=true","client_reference_id":null,"client_secret":null,"collected_information":{"shipping_details":null},"consent":null,"consent_collection":null,"created":1744036538,"currency":"usd","currency_conversion":null,"custom_fields":[],"custom_text":{"after_submit":null,"shipping_address":null,"submit":null,"terms_of_service_acceptance":null},"customer":"cus_S5RfPKgxwlXC2T","customer_creation":"always","customer_details":{"address":{"city":null,"country":"BR","line1":null,"line2":null,"postal_code":null,"state":null},"email":"asd@gmail.com","name":"asdasd","phone":null,"tax_exempt":"none","tax_ids":[]},"customer_email":null,"discounts":[],"expires_at":1744122938,"invoice":"in_1RBGmJBbs0yCLzPIyjwugFSM","invoice_creation":null,"livemode":false,"locale":null,"metadata":{"user_id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a"},"mode":"subscription","payment_intent":null,"payment_link":null,"payment_method_collection":"always","payment_method_configuration_details":{"id":"pmc_1RAEVxBbs0yCLzPITtZA8EOz","parent":null},"payment_method_options":{"card":{"request_three_d_secure":"automatic"}},"payment_method_types":["card"],"payment_status":"paid","permissions":null,"phone_number_collection":{"enabled":false},"recovered_from":null,"saved_payment_method_options":{"allow_redisplay_filters":["always"],"payment_method_remove":null,"payment_method_save":null},"setup_intent":null,"shipping_address_collection":null,"shipping_cost":null,"shipping_options":[],"status":"complete","submit_type":null,"subscription":"sub_1RBGmJBbs0yCLzPIW38nusem","success_url":"http://localhost:3000/?success=true&session_id={CHECKOUT_SESSION_ID}","total_details":{"amount_discount":0,"amount_shipping":0,"amount_tax":0},"ui_mode":"hosted","url":null,"wallet_options":null}],"has_more":false,"url":"/v1/checkout/sessions"}}
+{"timestamp":"2025-04-07T14:35:59.868Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a1HpkUICkSQwxyxlkV3Buob0sXdxrpmIj2R37ZRT9vcfToAk5lRfEgRt8i"}}
+{"timestamp":"2025-04-07T14:35:59.877Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para a sessão de checkout","metadata":{"sessionId":"cs_test_a1HpkUICkSQwxyxlkV3Buob0sXdxrpmIj2R37ZRT9vcfToAk5lRfEgRt8i"}}
+{"timestamp":"2025-04-07T14:35:59.877Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:36:00.209Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBGmJBbs0yCLzPIW38nusem"}}
+{"timestamp":"2025-04-07T14:36:00.209Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T14:36:00.553Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para o cliente do Stripe","metadata":{"customerId":"cus_S5RfPKgxwlXC2T","customerEmail":"asd@gmail.com"}}
+{"timestamp":"2025-04-07T14:36:00.553Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:40.853Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:40.856Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBGouBbs0yCLzPI1GmayN1o"}}
+{"timestamp":"2025-04-07T14:38:40.856Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:40.975Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:40.977Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBGowBbs0yCLzPISWr22rXx"}}
+{"timestamp":"2025-04-07T14:38:40.978Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.007Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.008Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBGowBbs0yCLzPI77ZxMeIP"}}
+{"timestamp":"2025-04-07T14:38:41.009Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5RipUx5Ltl0S3"}}
+{"timestamp":"2025-04-07T14:38:41.022Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.024Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBGowBbs0yCLzPIo1W2zkW4"}}
+{"timestamp":"2025-04-07T14:38:41.024Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.034Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.035Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBGowBbs0yCLzPIz6qBYNnO"}}
+{"timestamp":"2025-04-07T14:38:41.036Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.055Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.058Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBGouBbs0yCLzPI1mwnPXzj"}}
+{"timestamp":"2025-04-07T14:38:41.059Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.092Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.093Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBGouBbs0yCLzPI1YZ6Gilz"}}
+{"timestamp":"2025-04-07T14:38:41.094Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.183Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.185Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBGoxBbs0yCLzPI3pmgnaBJ"}}
+{"timestamp":"2025-04-07T14:38:41.185Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.267Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.268Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBGoxBbs0yCLzPISTY5t3yl"}}
+{"timestamp":"2025-04-07T14:38:41.269Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.303Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.304Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBGoxBbs0yCLzPIVQnsuUeu"}}
+{"timestamp":"2025-04-07T14:38:41.305Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T14:38:41.322Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.324Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBGoxBbs0yCLzPI8qwQXCES"}}
+{"timestamp":"2025-04-07T14:38:41.324Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.353Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:38:41.354Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBGoxBbs0yCLzPIUvVVWpKn"}}
+{"timestamp":"2025-04-07T14:38:41.354Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.626Z","level":"info","service":"stripe","message":"Sessoes encontradas: ","metadata":{"object":"list","data":[{"id":"cs_test_a18n0Ab9WMXqvmquyfAyodJcDN6i8vGuRRCnLwRe6VdSnt91U3V9POvdk1","object":"checkout.session","adaptive_pricing":null,"after_expiration":null,"allow_promotion_codes":null,"amount_subtotal":500,"amount_total":500,"automatic_tax":{"enabled":false,"liability":null,"status":null},"billing_address_collection":"auto","cancel_url":"http://localhost:3000/pricing?canceled=true","client_reference_id":null,"client_secret":null,"collected_information":{"shipping_details":null},"consent":null,"consent_collection":null,"created":1744036706,"currency":"usd","currency_conversion":null,"custom_fields":[],"custom_text":{"after_submit":null,"shipping_address":null,"submit":null,"terms_of_service_acceptance":null},"customer":"cus_S5RipUx5Ltl0S3","customer_creation":"always","customer_details":{"address":{"city":null,"country":"BR","line1":null,"line2":null,"postal_code":null,"state":null},"email":"das@gmail.com","name":"asdasdas","phone":null,"tax_exempt":"none","tax_ids":[]},"customer_email":null,"discounts":[],"expires_at":1744123106,"invoice":"in_1RBGovBbs0yCLzPItuyLQbKo","invoice_creation":null,"livemode":false,"locale":null,"metadata":{"user_id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a"},"mode":"subscription","payment_intent":null,"payment_link":null,"payment_method_collection":"always","payment_method_configuration_details":{"id":"pmc_1RAEVxBbs0yCLzPITtZA8EOz","parent":null},"payment_method_options":{"card":{"request_three_d_secure":"automatic"}},"payment_method_types":["card"],"payment_status":"paid","permissions":null,"phone_number_collection":{"enabled":false},"recovered_from":null,"saved_payment_method_options":{"allow_redisplay_filters":["always"],"payment_method_remove":null,"payment_method_save":null},"setup_intent":null,"shipping_address_collection":null,"shipping_cost":null,"shipping_options":[],"status":"complete","submit_type":null,"subscription":"sub_1RBGovBbs0yCLzPIeAcmFPgo","success_url":"http://localhost:3000/?success=true&session_id={CHECKOUT_SESSION_ID}","total_details":{"amount_discount":0,"amount_shipping":0,"amount_tax":0},"ui_mode":"hosted","url":null,"wallet_options":null}],"has_more":false,"url":"/v1/checkout/sessions"}}
+{"timestamp":"2025-04-07T14:38:41.627Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a18n0Ab9WMXqvmquyfAyodJcDN6i8vGuRRCnLwRe6VdSnt91U3V9POvdk1"}}
+{"timestamp":"2025-04-07T14:38:41.672Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para a sessão de checkout","metadata":{"sessionId":"cs_test_a18n0Ab9WMXqvmquyfAyodJcDN6i8vGuRRCnLwRe6VdSnt91U3V9POvdk1"}}
+{"timestamp":"2025-04-07T14:38:41.673Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:38:41.911Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBGovBbs0yCLzPIeAcmFPgo"}}
+{"timestamp":"2025-04-07T14:38:41.911Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T14:38:42.199Z","level":"error","service":"stripe","message":"Nenhum usuário encontrado para o cliente do Stripe","metadata":{"customerId":"cus_S5RipUx5Ltl0S3","customerEmail":"das@gmail.com"}}
+{"timestamp":"2025-04-07T14:38:42.200Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.547Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.549Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBGqzBbs0yCLzPI0GpzbslK"}}
+{"timestamp":"2025-04-07T14:40:50.550Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.592Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.594Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBGr2Bbs0yCLzPIb7WeLQtf"}}
+{"timestamp":"2025-04-07T14:40:50.594Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.708Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.711Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBGr2Bbs0yCLzPIodp6iDBQ"}}
+{"timestamp":"2025-04-07T14:40:50.711Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5Rkdn11TBAMlK"}}
+{"timestamp":"2025-04-07T14:40:50.723Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.725Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBGr2Bbs0yCLzPIetbHmAix"}}
+{"timestamp":"2025-04-07T14:40:50.725Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.761Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.764Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBGr2Bbs0yCLzPINrkxVuJk"}}
+{"timestamp":"2025-04-07T14:40:50.764Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.769Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.770Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBGqzBbs0yCLzPI09sP1w6u"}}
+{"timestamp":"2025-04-07T14:40:50.770Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.816Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.819Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBGr2Bbs0yCLzPIlZNVN29S"}}
+{"timestamp":"2025-04-07T14:40:50.819Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.831Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.831Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBGqzBbs0yCLzPI0htkjyZj"}}
+{"timestamp":"2025-04-07T14:40:50.832Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.887Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.888Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBGr2Bbs0yCLzPIQPhNbswh"}}
+{"timestamp":"2025-04-07T14:40:50.889Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.920Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.922Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBGr2Bbs0yCLzPI8uwW0wm4"}}
+{"timestamp":"2025-04-07T14:40:50.922Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:50.977Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:50.978Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBGr2Bbs0yCLzPIGY2Gb3h3"}}
+{"timestamp":"2025-04-07T14:40:50.979Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T14:40:51.045Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T14:40:51.046Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBGr2Bbs0yCLzPI9gO7vlwc"}}
+{"timestamp":"2025-04-07T14:40:51.046Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:51.342Z","level":"info","service":"stripe","message":"Sessoes encontradas: ","metadata":{"object":"list","data":[{"id":"cs_test_a1DTvOjRyNheQjAclBJYVggnjqe0Zj3tK9I561hbzazktb1x8l8bSGMOor","object":"checkout.session","adaptive_pricing":null,"after_expiration":null,"allow_promotion_codes":null,"amount_subtotal":500,"amount_total":500,"automatic_tax":{"enabled":false,"liability":null,"status":null},"billing_address_collection":"auto","cancel_url":"http://localhost:3000/pricing?canceled=true","client_reference_id":null,"client_secret":null,"collected_information":{"shipping_details":null},"consent":null,"consent_collection":null,"created":1744036832,"currency":"usd","currency_conversion":null,"custom_fields":[],"custom_text":{"after_submit":null,"shipping_address":null,"submit":null,"terms_of_service_acceptance":null},"customer":"cus_S5Rkdn11TBAMlK","customer_creation":"always","customer_details":{"address":{"city":null,"country":"BR","line1":null,"line2":null,"postal_code":null,"state":null},"email":"asd@gmail.com","name":"asdasd","phone":null,"tax_exempt":"none","tax_ids":[]},"customer_email":null,"discounts":[],"expires_at":1744123232,"invoice":"in_1RBGr1Bbs0yCLzPIddw78kSn","invoice_creation":null,"livemode":false,"locale":null,"metadata":{"user_id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a"},"mode":"subscription","payment_intent":null,"payment_link":null,"payment_method_collection":"always","payment_method_configuration_details":{"id":"pmc_1RAEVxBbs0yCLzPITtZA8EOz","parent":null},"payment_method_options":{"card":{"request_three_d_secure":"automatic"}},"payment_method_types":["card"],"payment_status":"paid","permissions":null,"phone_number_collection":{"enabled":false},"recovered_from":null,"saved_payment_method_options":{"allow_redisplay_filters":["always"],"payment_method_remove":null,"payment_method_save":null},"setup_intent":null,"shipping_address_collection":null,"shipping_cost":null,"shipping_options":[],"status":"complete","submit_type":null,"subscription":"sub_1RBGr1Bbs0yCLzPIW3TZPXuv","success_url":"http://localhost:3000/?success=true&session_id={CHECKOUT_SESSION_ID}","total_details":{"amount_discount":0,"amount_shipping":0,"amount_tax":0},"ui_mode":"hosted","url":null,"wallet_options":null}],"has_more":false,"url":"/v1/checkout/sessions"}}
+{"timestamp":"2025-04-07T14:40:51.343Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a1DTvOjRyNheQjAclBJYVggnjqe0Zj3tK9I561hbzazktb1x8l8bSGMOor"}}
+{"timestamp":"2025-04-07T14:40:51.346Z","level":"info","service":"Sessão encontrada","message":{"id":"2fc39801-74df-4ac4-8dad-85cb1213ab3c","user_id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a","session_id":"cs_test_a1DTvOjRyNheQjAclBJYVggnjqe0Zj3tK9I561hbzazktb1x8l8bSGMOor","created_at":"2025-04-07T14:40:30.534Z","updated_at":"2025-04-07T14:40:30.534Z","users":{"id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a","google_id":"113806176137908668865","tenant_id":"33ac3b58-6a59-4bf3-b317-64d94d24d272","email":"maxbuzzarello@gmail.com","stripe_customer_id":null,"name":"max buzzarello maul","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJnGeo_BkAXFu4OsZBvBSGJwwxhMPAosojerjFVrWvL2DcuIokk=s96-c","role":"user","last_login":null,"created_at":"2025-04-03T19:54:54.746Z","updated_at":"2025-04-06T22:11:46.091Z"}}}
+{"timestamp":"2025-04-07T14:40:51.356Z","level":"info","service":"stripe","message":"Id do stripe associado á conta do usuário a4a3381c-de70-4d5b-83c7-6908027d6b7a: cus_S5Rkdn11TBAMlK"}
+{"timestamp":"2025-04-07T14:40:51.356Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T14:40:51.577Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBGr1Bbs0yCLzPIW3TZPXuv"}}
+{"timestamp":"2025-04-07T14:40:51.577Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T14:40:51.871Z","level":"debug","service":"stripe","message":"Processando item da fatura","metadata":{"lineItemId":"il_1RBGqzBbs0yCLzPItvCVs951","lineItemDescription":"1 × Slack Reserver - Team (at $5.00 / month)"}}
+{"timestamp":"2025-04-07T14:40:51.876Z","level":"error","service":"stripe","message":"Plano não encontrado para o produto","metadata":{"productId":"il_1RBGqzBbs0yCLzPItvCVs951"}}
+{"timestamp":"2025-04-07T14:40:51.876Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T15:54:58.739Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T15:54:58.742Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.expired","metadata":{"id":"evt_1RBI0mBbs0yCLzPIWDXnU8T1"}}
+{"timestamp":"2025-04-07T15:54:58.742Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T15:56:15.468Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T15:56:15.469Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.expired","metadata":{"id":"evt_1RBI21Bbs0yCLzPILAhfW74R"}}
+{"timestamp":"2025-04-07T15:56:15.470Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T15:56:48.364Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T15:56:48.366Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.expired","metadata":{"id":"evt_1RBI2YBbs0yCLzPIELUuciSn"}}
+{"timestamp":"2025-04-07T15:56:48.366Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T15:57:03.788Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T15:57:03.789Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.expired","metadata":{"id":"evt_1RBI2nBbs0yCLzPIAKbBy4zD"}}
+{"timestamp":"2025-04-07T15:57:03.789Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T15:58:09.523Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T15:58:09.524Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.expired","metadata":{"id":"evt_1RBI3rBbs0yCLzPIo24GEbcV"}}
+{"timestamp":"2025-04-07T15:58:09.524Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T15:58:35.474Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T15:58:35.475Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.expired","metadata":{"id":"evt_1RBI4HBbs0yCLzPIx0s3fZQF"}}
+{"timestamp":"2025-04-07T15:58:35.475Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.429Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.432Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBIagBbs0yCLzPI0e1kKJIT"}}
+{"timestamp":"2025-04-07T16:32:08.432Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.597Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.599Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBIakBbs0yCLzPITBBF2tqq"}}
+{"timestamp":"2025-04-07T16:32:08.600Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5TXcyDd2gSVnV"}}
+{"timestamp":"2025-04-07T16:32:08.614Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.617Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBIakBbs0yCLzPI7bsZEDAx"}}
+{"timestamp":"2025-04-07T16:32:08.617Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.627Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.630Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBIajBbs0yCLzPI0aU3LOab"}}
+{"timestamp":"2025-04-07T16:32:08.630Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.642Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.643Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBIakBbs0yCLzPIfvubT9jY"}}
+{"timestamp":"2025-04-07T16:32:08.643Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.701Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.703Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBIakBbs0yCLzPI7c2q0nmN"}}
+{"timestamp":"2025-04-07T16:32:08.703Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.709Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.710Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBIagBbs0yCLzPI0jqSjeao"}}
+{"timestamp":"2025-04-07T16:32:08.710Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.729Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.730Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBIagBbs0yCLzPI03KK3Ks0"}}
+{"timestamp":"2025-04-07T16:32:08.730Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.803Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.805Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBIakBbs0yCLzPIqxWQ0SnO"}}
+{"timestamp":"2025-04-07T16:32:08.805Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.869Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.871Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBIakBbs0yCLzPINVXhqpoD"}}
+{"timestamp":"2025-04-07T16:32:08.871Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:08.900Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.901Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBIakBbs0yCLzPIm1DVXA4j"}}
+{"timestamp":"2025-04-07T16:32:08.902Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T16:32:08.973Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:32:08.974Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBIakBbs0yCLzPI9nwb5Lnp"}}
+{"timestamp":"2025-04-07T16:32:08.974Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:09.231Z","level":"info","service":"stripe","message":"Sessoes encontradas: ","metadata":{"object":"list","data":[{"id":"cs_test_a14KLypeSqYs7KAIQOJJde5G7bI47vgfEoHXEnxrslHnmKUNrLXZJ5JdsA","object":"checkout.session","adaptive_pricing":null,"after_expiration":null,"allow_promotion_codes":null,"amount_subtotal":500,"amount_total":500,"automatic_tax":{"enabled":false,"liability":null,"status":null},"billing_address_collection":"auto","cancel_url":"http://localhost:3000/pricing?canceled=true","client_reference_id":null,"client_secret":null,"collected_information":{"shipping_details":null},"consent":null,"consent_collection":null,"created":1744043511,"currency":"usd","currency_conversion":null,"custom_fields":[],"custom_text":{"after_submit":null,"shipping_address":null,"submit":null,"terms_of_service_acceptance":null},"customer":"cus_S5TXcyDd2gSVnV","customer_creation":"always","customer_details":{"address":{"city":null,"country":"BR","line1":null,"line2":null,"postal_code":null,"state":null},"email":"sss@gmail.com","name":"asdsd","phone":null,"tax_exempt":"none","tax_ids":[]},"customer_email":null,"discounts":[],"expires_at":1744129911,"invoice":"in_1RBIaiBbs0yCLzPIQ9KvHKfx","invoice_creation":null,"livemode":false,"locale":null,"metadata":{"user_id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a"},"mode":"subscription","payment_intent":null,"payment_link":null,"payment_method_collection":"always","payment_method_configuration_details":{"id":"pmc_1RAEVxBbs0yCLzPITtZA8EOz","parent":null},"payment_method_options":{"card":{"request_three_d_secure":"automatic"}},"payment_method_types":["card"],"payment_status":"paid","permissions":null,"phone_number_collection":{"enabled":false},"recovered_from":null,"saved_payment_method_options":{"allow_redisplay_filters":["always"],"payment_method_remove":null,"payment_method_save":null},"setup_intent":null,"shipping_address_collection":null,"shipping_cost":null,"shipping_options":[],"status":"complete","submit_type":null,"subscription":"sub_1RBIaiBbs0yCLzPIJq8SwNzl","success_url":"http://localhost:3000/?success=true&session_id={CHECKOUT_SESSION_ID}","total_details":{"amount_discount":0,"amount_shipping":0,"amount_tax":0},"ui_mode":"hosted","url":null,"wallet_options":null}],"has_more":false,"url":"/v1/checkout/sessions"}}
+{"timestamp":"2025-04-07T16:32:09.231Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a14KLypeSqYs7KAIQOJJde5G7bI47vgfEoHXEnxrslHnmKUNrLXZJ5JdsA"}}
+{"timestamp":"2025-04-07T16:32:09.243Z","level":"info","service":"stripe","message":"Id do stripe associado á conta do usuário a4a3381c-de70-4d5b-83c7-6908027d6b7a: cus_S5TXcyDd2gSVnV"}
+{"timestamp":"2025-04-07T16:32:09.243Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:32:09.598Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBIaiBbs0yCLzPIJq8SwNzl"}}
+{"timestamp":"2025-04-07T16:32:09.599Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T16:32:10.222Z","level":"debug","service":"stripe","message":"Processando item da fatura","metadata":{"lineItemId":"il_1RBIagBbs0yCLzPIo8vijnbq","lineItemDescription":"1 × Slack Reserver - Team (at $5.00 / month)"}}
+{"timestamp":"2025-04-07T16:32:10.239Z","level":"error","service":"stripe","message":"Plano não encontrado para o produto","metadata":{"productId":"il_1RBIagBbs0yCLzPIo8vijnbq"}}
+{"timestamp":"2025-04-07T16:32:10.240Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.104Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.107Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBInHBbs0yCLzPI1W0LMxER"}}
+{"timestamp":"2025-04-07T16:45:09.108Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.227Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.230Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBInKBbs0yCLzPID8gQqH73"}}
+{"timestamp":"2025-04-07T16:45:09.230Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.315Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.317Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBInKBbs0yCLzPIWyHmJ9L0"}}
+{"timestamp":"2025-04-07T16:45:09.317Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.339Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.342Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBInHBbs0yCLzPI1ncq0JyQ"}}
+{"timestamp":"2025-04-07T16:45:09.342Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.355Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.356Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBInKBbs0yCLzPIZTeWcufP"}}
+{"timestamp":"2025-04-07T16:45:09.356Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.363Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.365Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBInKBbs0yCLzPIwAr2Q4Cj"}}
+{"timestamp":"2025-04-07T16:45:09.366Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5TkkqCKURJBhX"}}
+{"timestamp":"2025-04-07T16:45:09.406Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.407Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBInHBbs0yCLzPI1imuO9m1"}}
+{"timestamp":"2025-04-07T16:45:09.407Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.437Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.439Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBInKBbs0yCLzPIKlYNCJhp"}}
+{"timestamp":"2025-04-07T16:45:09.439Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.491Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.492Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBInLBbs0yCLzPI3MiQyhdo"}}
+{"timestamp":"2025-04-07T16:45:09.493Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.514Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.515Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBInLBbs0yCLzPIBPW9qi5d"}}
+{"timestamp":"2025-04-07T16:45:09.516Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:09.555Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.556Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBInLBbs0yCLzPIhu3av8jV"}}
+{"timestamp":"2025-04-07T16:45:09.557Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T16:45:09.603Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:45:09.604Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBInLBbs0yCLzPIMbPfETYL"}}
+{"timestamp":"2025-04-07T16:45:09.604Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:10.167Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBInJBbs0yCLzPI0RIgP10D"}}
+{"timestamp":"2025-04-07T16:45:10.168Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T16:45:10.170Z","level":"info","service":"stripe","message":"Sessoes encontradas: ","metadata":{"object":"list","data":[{"id":"cs_test_a18BQhVKQspX8g4cdIwIOz6LNBqWL0mFoIlzlA88299e4fWMKKO7YjtGPi","object":"checkout.session","adaptive_pricing":null,"after_expiration":null,"allow_promotion_codes":null,"amount_subtotal":500,"amount_total":500,"automatic_tax":{"enabled":false,"liability":null,"status":null},"billing_address_collection":"auto","cancel_url":"http://localhost:3000/pricing?canceled=true","client_reference_id":null,"client_secret":null,"collected_information":{"shipping_details":null},"consent":null,"consent_collection":null,"created":1744043990,"currency":"usd","currency_conversion":null,"custom_fields":[],"custom_text":{"after_submit":null,"shipping_address":null,"submit":null,"terms_of_service_acceptance":null},"customer":"cus_S5TkkqCKURJBhX","customer_creation":"always","customer_details":{"address":{"city":null,"country":"BR","line1":null,"line2":null,"postal_code":null,"state":null},"email":"Zx@gmail.com","name":"asd","phone":null,"tax_exempt":"none","tax_ids":[]},"customer_email":null,"discounts":[],"expires_at":1744130390,"invoice":"in_1RBInJBbs0yCLzPIybJHu6Ej","invoice_creation":null,"livemode":false,"locale":null,"metadata":{"user_id":"a4a3381c-de70-4d5b-83c7-6908027d6b7a"},"mode":"subscription","payment_intent":null,"payment_link":null,"payment_method_collection":"always","payment_method_configuration_details":{"id":"pmc_1RAEVxBbs0yCLzPITtZA8EOz","parent":null},"payment_method_options":{"card":{"request_three_d_secure":"automatic"}},"payment_method_types":["card"],"payment_status":"paid","permissions":null,"phone_number_collection":{"enabled":false},"recovered_from":null,"saved_payment_method_options":{"allow_redisplay_filters":["always"],"payment_method_remove":null,"payment_method_save":null},"setup_intent":null,"shipping_address_collection":null,"shipping_cost":null,"shipping_options":[],"status":"complete","submit_type":null,"subscription":"sub_1RBInJBbs0yCLzPI0RIgP10D","success_url":"http://localhost:3000/?success=true&session_id={CHECKOUT_SESSION_ID}","total_details":{"amount_discount":0,"amount_shipping":0,"amount_tax":0},"ui_mode":"hosted","url":null,"wallet_options":null}],"has_more":false,"url":"/v1/checkout/sessions"}}
+{"timestamp":"2025-04-07T16:45:10.170Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a18BQhVKQspX8g4cdIwIOz6LNBqWL0mFoIlzlA88299e4fWMKKO7YjtGPi"}}
+{"timestamp":"2025-04-07T16:45:10.229Z","level":"info","service":"stripe","message":"Id do stripe associado á conta do usuário a4a3381c-de70-4d5b-83c7-6908027d6b7a: cus_S5TkkqCKURJBhX"}
+{"timestamp":"2025-04-07T16:45:10.230Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:45:10.743Z","level":"info","service":"stripe","message":"Detalhes do produto/plano","metadata":{"object":"list","data":[{"id":"il_1RBInHBbs0yCLzPIgfFbpAm4","object":"line_item","amount":500,"currency":"usd","description":"1 × Slack Reserver - Team (at $5.00 / month)","discount_amounts":[],"discountable":true,"discounts":[],"invoice":"in_1RBInJBbs0yCLzPIybJHu6Ej","livemode":false,"metadata":{},"parent":{"invoice_item_details":null,"subscription_item_details":{"invoice_item":null,"proration":false,"proration_details":{"credited_items":null},"subscription":"sub_1RBInJBbs0yCLzPI0RIgP10D","subscription_item":"si_S5TkBv3benJdKZ"},"type":"subscription_item_details"},"period":{"end":1746636307,"start":1744044307},"pretax_credit_amounts":[],"pricing":{"price_details":{"price":"price_1RAGJNBbs0yCLzPIdySpakRq","product":"prod_S4P7FrJrgZvJwG"},"type":"price_details","unit_amount_decimal":"500"},"quantity":1,"taxes":[]}],"has_more":false,"total_count":1,"url":"/v1/invoices/in_1RBInJBbs0yCLzPIybJHu6Ej/lines"}}
+{"timestamp":"2025-04-07T16:45:10.744Z","level":"debug","service":"stripe","message":"Processando item da fatura","metadata":{"lineItemId":"il_1RBInHBbs0yCLzPIgfFbpAm4","lineItemDescription":"1 × Slack Reserver - Team (at $5.00 / month)"}}
+{"timestamp":"2025-04-07T16:45:10.750Z","level":"error","service":"stripe","message":"Plano não encontrado para o produto","metadata":{"productId":"il_1RBInHBbs0yCLzPIgfFbpAm4"}}
+{"timestamp":"2025-04-07T16:45:10.750Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.034Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.036Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBIrVBbs0yCLzPI1HVw6vAF"}}
+{"timestamp":"2025-04-07T16:49:30.037Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.182Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.184Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBIrXBbs0yCLzPI3eCtHMa0"}}
+{"timestamp":"2025-04-07T16:49:30.185Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.236Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.238Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBIrXBbs0yCLzPIviB3T2Mx"}}
+{"timestamp":"2025-04-07T16:49:30.238Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5TpxHk6Q1Ehjg"}}
+{"timestamp":"2025-04-07T16:49:30.275Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.275Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBIrXBbs0yCLzPIRxrj5DU5"}}
+{"timestamp":"2025-04-07T16:49:30.276Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.310Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.312Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBIrXBbs0yCLzPILX10svFG"}}
+{"timestamp":"2025-04-07T16:49:30.312Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.323Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.324Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBIrVBbs0yCLzPI12hgPuwf"}}
+{"timestamp":"2025-04-07T16:49:30.324Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.356Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.357Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBIrVBbs0yCLzPI11HVnGV3"}}
+{"timestamp":"2025-04-07T16:49:30.358Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.409Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.411Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBIrYBbs0yCLzPIurKPxFV9"}}
+{"timestamp":"2025-04-07T16:49:30.411Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.442Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.444Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBIrYBbs0yCLzPIsWT7gHcw"}}
+{"timestamp":"2025-04-07T16:49:30.444Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.488Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.489Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBIrYBbs0yCLzPIB2uXhbsP"}}
+{"timestamp":"2025-04-07T16:49:30.490Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T16:49:30.554Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.556Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBIrYBbs0yCLzPIH0Lj7xdH"}}
+{"timestamp":"2025-04-07T16:49:30.556Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.588Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:49:30.590Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBIrYBbs0yCLzPIiaFpAwJb"}}
+{"timestamp":"2025-04-07T16:49:30.590Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:30.838Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a15AjUng0ZQxz2F99a9qwTej91DhusRGiZPWr07RlbzrbP8pR3OkqJN1JH"}}
+{"timestamp":"2025-04-07T16:49:30.844Z","level":"info","service":"stripe","message":"Id do stripe associado á conta do usuário a4a3381c-de70-4d5b-83c7-6908027d6b7a: cus_S5TpxHk6Q1Ehjg"}
+{"timestamp":"2025-04-07T16:49:30.844Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:49:31.057Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBIrWBbs0yCLzPI1MvdESQT"}}
+{"timestamp":"2025-04-07T16:49:31.057Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T16:49:31.621Z","level":"debug","service":"stripe","message":"Processando item da fatura","metadata":{"lineItemId":"il_1RBIrUBbs0yCLzPIL4CzGN7w","lineItemDescription":"1 × Slack Reserver - Company (at $8.00 / month)"}}
+{"timestamp":"2025-04-07T16:49:31.624Z","level":"error","service":"stripe","message":"Plano não encontrado para o produto","metadata":{"productId":"prod_S4iuAaDkOrW6jx"}}
+{"timestamp":"2025-04-07T16:49:31.624Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:53:59.781Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:53:59.783Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type charge.succeeded","metadata":{"id":"evt_3RBIvrBbs0yCLzPI1a9yYasb"}}
+{"timestamp":"2025-04-07T16:53:59.783Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:53:59.826Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:53:59.827Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_method.attached","metadata":{"id":"evt_1RBIvtBbs0yCLzPIqZvFnktj"}}
+{"timestamp":"2025-04-07T16:53:59.827Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:53:59.917Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:53:59.918Z","level":"info","service":"stripe-webhook","message":"Processing customer.created event","metadata":{"id":"evt_1RBIvtBbs0yCLzPIxzPq5eq0"}}
+{"timestamp":"2025-04-07T16:53:59.918Z","level":"info","service":"stripe","message":"Cliente criado no Stripe","metadata":{"customerId":"cus_S5TtUGPGNh51lk"}}
+{"timestamp":"2025-04-07T16:53:59.933Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:53:59.934Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type customer.updated","metadata":{"id":"evt_1RBIvtBbs0yCLzPIxZWRx9Kt"}}
+{"timestamp":"2025-04-07T16:53:59.934Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.234Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.235Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.succeeded","metadata":{"id":"evt_3RBIvrBbs0yCLzPI1AH2994z"}}
+{"timestamp":"2025-04-07T16:54:00.235Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.244Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.245Z","level":"info","service":"stripe-webhook","message":"Processing subscription.created event","metadata":{"id":"evt_1RBIvtBbs0yCLzPIeYeM6VEn"}}
+{"timestamp":"2025-04-07T16:54:00.245Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.284Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.285Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type checkout.session.completed","metadata":{"id":"evt_1RBIvtBbs0yCLzPITlLAZ4hG"}}
+{"timestamp":"2025-04-07T16:54:00.287Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.301Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.303Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type payment_intent.created","metadata":{"id":"evt_3RBIvrBbs0yCLzPI1fqAZXXV"}}
+{"timestamp":"2025-04-07T16:54:00.304Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.399Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.400Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.created","metadata":{"id":"evt_1RBIvuBbs0yCLzPIcEQATeZs"}}
+{"timestamp":"2025-04-07T16:54:00.401Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.465Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.466Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.finalized","metadata":{"id":"evt_1RBIvuBbs0yCLzPI2seBcFpi"}}
+{"timestamp":"2025-04-07T16:54:00.466Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.529Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.529Z","level":"info","service":"stripe-webhook","message":"Processing invoice.paid event","metadata":{"id":"evt_1RBIvuBbs0yCLzPIKQ9km9wh"}}
+{"timestamp":"2025-04-07T16:54:00.530Z","level":"info","service":"stripe","message":"Invoice Paid! Processing payment and subscription"}
+{"timestamp":"2025-04-07T16:54:00.585Z","level":"info","service":"stripe-webhook","message":"Webhook called"}
+{"timestamp":"2025-04-07T16:54:00.587Z","level":"debug","service":"stripe-webhook","message":"Unhandled event type invoice.payment_succeeded","metadata":{"id":"evt_1RBIvuBbs0yCLzPI5l4gYvpN"}}
+{"timestamp":"2025-04-07T16:54:00.587Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:00.649Z","level":"debug","service":"stripe","message":"Sessão encontrada para o cliente","metadata":{"sessionId":"cs_test_a1kE4okMSyIiSGTfzkHjOdHkVDngPbR1CTkHgGOuaxdBz7zUD6Q399XzLi"}}
+{"timestamp":"2025-04-07T16:54:00.660Z","level":"info","service":"stripe","message":"Id do stripe associado á conta do usuário a4a3381c-de70-4d5b-83c7-6908027d6b7a: cus_S5TtUGPGNh51lk"}
+{"timestamp":"2025-04-07T16:54:00.660Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
+{"timestamp":"2025-04-07T16:54:01.134Z","level":"debug","service":"stripe","message":"Assinatura recuperada do Stripe","metadata":{"subscriptionId":"sub_1RBIvsBbs0yCLzPI4m925v12"}}
+{"timestamp":"2025-04-07T16:54:01.134Z","level":"info","service":"stripe","message":"Nova subscription! Criando entry no db..."}
+{"timestamp":"2025-04-07T16:54:01.706Z","level":"debug","service":"stripe","message":"Processando item da fatura","metadata":{"lineItemId":"il_1RBIvqBbs0yCLzPIEJ49tDKN","lineItemDescription":"1 × Slack Reserver - Company (at $8.00 / month)"}}
+{"timestamp":"2025-04-07T16:54:01.723Z","level":"info","service":"stripe","message":"Assinatura criada para tenant 33ac3b58-6a59-4bf3-b317-64d94d24d272 com plano 95d6cb8f-3566-43cb-b1db-fbd105a7134e","metadata":{"subscriptionId":"7a1e9bc0-808d-4549-8191-17688af2c377","tenantId":"33ac3b58-6a59-4bf3-b317-64d94d24d272","planId":"95d6cb8f-3566-43cb-b1db-fbd105a7134e"}}
+{"timestamp":"2025-04-07T16:54:01.724Z","level":"info","service":"stripe","message":"Pagamento processado com sucesso","metadata":{"invoiceId":"in_1RBIvsBbs0yCLzPIebezaG5R","subscriptionId":"sub_1RBIvsBbs0yCLzPI4m925v12"}}
+{"timestamp":"2025-04-07T16:54:01.724Z","level":"info","service":"stripe-webhook","message":"Webhook processed successfully"}
