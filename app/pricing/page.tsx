@@ -27,14 +27,14 @@ const pricingPlans = {
             productId: "prod_annual_company"
         },
     },
-    enterprise: {
+    free: {
         monthly: {
-            price: 39,
-            productId: "prod_S4P7FrJrgZvJwG"
+            price: 0,
+            productId: "123"
         },
         annual: {
-            price: 390, // $32.50/month when paid annually (2 months free)
-            productId: "prod_annual_enterprise"
+            price: 0, // 
+            productId: "123"
         },
     }
 }
@@ -70,19 +70,20 @@ const Pricing = () => {
 
                 {/* Rest of your pricing grid */}
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto'>
-                    {/* Team plan */}
+
+                    {/* Enterprise plan */}
                     <div className="border rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                         <div>
-                            <h2 className="text-xl font-semibold text-gray-800">Team</h2>
-                            <p className="mt-2 text-gray-600">For small teams that want to reserve a limited amount of rooms</p>
+                            <h2 className="text-xl font-semibold text-gray-800">Free</h2>
+                            <p className="mt-2 text-gray-600">For people who have 1 spare room they want to keep organized!</p>
                             <h1 className="text-3xl font-bold mt-4 text-gray-800">
-                                ${pricingPlans.team[billingCycle].price}
+                                ${pricingPlans.free[billingCycle].price}
                                 <span className="text-gray-500 text-lg font-normal">
                                     {billingCycle === 'monthly' ? '/month' : '/year'}
                                 </span>
                             </h1>
                             {billingCycle === 'annual' && (
-                                <p className="text-sm text-green-600 mt-1">$5/month, billed annually</p>
+                                <p className="text-sm text-green-600 mt-1">$32.50/month, billed annually</p>
                             )}
                             <div className="mt-2 inline-flex items-center">
                                 <span className="text-sm font-medium text-green-600">✓ 14-day free trial</span>
@@ -93,7 +94,7 @@ const Pricing = () => {
                             <div className="px-8 py-4 flex justify-center">
                                 {hasTenantId && !hasSubscription ?
                                     <form className="w-full" action="/api/create-checkout-session" method="POST" >
-                                        <input type="hidden" name="product_id" value={pricingPlans.team[billingCycle].productId} />
+                                        <input type="hidden" name="product_id" value={pricingPlans.free[billingCycle].productId} />
                                         <input type="hidden" name="billing_cycle" value={billingCycle} />
                                         <button
                                             id="checkout-and-portal-button"
@@ -143,19 +144,15 @@ const Pricing = () => {
                         <div className="mt-6 space-y-4 flex-grow text-gray-800">
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Up to 50 reservations per month</p>
+                                <p>Up to 5 reservations per month</p>
                             </div>
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Up to 5 resource groups</p>
+                                <p>One resource group</p>
                             </div>
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Up to 20 resources (total)</p>
-                            </div>
-                            <div className="flex items-center">
-                                <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Email notifications</p>
+                                <p>Up to 3 resources</p>
                             </div>
                         </div>
                     </div>
@@ -259,19 +256,19 @@ const Pricing = () => {
                         </div>
                     </div>
 
-                    {/* Enterprise plan */}
+                    {/* Team plan */}
                     <div className="border rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                         <div>
-                            <h2 className="text-xl font-semibold text-gray-800">Enterprise</h2>
-                            <p className="mt-2 text-gray-600">For large organizations with extensive room management needs</p>
+                            <h2 className="text-xl font-semibold text-gray-800">Team</h2>
+                            <p className="mt-2 text-gray-600">For small teams that want to reserve a limited amount of rooms</p>
                             <h1 className="text-3xl font-bold mt-4 text-gray-800">
-                                ${pricingPlans.enterprise[billingCycle].price}
+                                ${pricingPlans.team[billingCycle].price}
                                 <span className="text-gray-500 text-lg font-normal">
                                     {billingCycle === 'monthly' ? '/month' : '/year'}
                                 </span>
                             </h1>
                             {billingCycle === 'annual' && (
-                                <p className="text-sm text-green-600 mt-1">$32.50/month, billed annually</p>
+                                <p className="text-sm text-green-600 mt-1">$5/month, billed annually</p>
                             )}
                             <div className="mt-2 inline-flex items-center">
                                 <span className="text-sm font-medium text-green-600">✓ 14-day free trial</span>
@@ -282,7 +279,7 @@ const Pricing = () => {
                             <div className="px-8 py-4 flex justify-center">
                                 {hasTenantId && !hasSubscription ?
                                     <form className="w-full" action="/api/create-checkout-session" method="POST" >
-                                        <input type="hidden" name="product_id" value={pricingPlans.enterprise[billingCycle].productId} />
+                                        <input type="hidden" name="product_id" value={pricingPlans.team[billingCycle].productId} />
                                         <input type="hidden" name="billing_cycle" value={billingCycle} />
                                         <button
                                             id="checkout-and-portal-button"
@@ -332,22 +329,26 @@ const Pricing = () => {
                         <div className="mt-6 space-y-4 flex-grow text-gray-800">
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Everything from Company, plus:</p>
+                                <p>Up to 50 reservations per month</p>
                             </div>
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Unlimited reservations</p>
+                                <p>Up to 5 resource groups</p>
                             </div>
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Unlimited resource groups</p>
+                                <p>Up to 20 resources (total)</p>
                             </div>
                             <div className="flex items-center">
                                 <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                                <p>Unlimited resources</p>
+                                <p>Email notifications</p>
                             </div>
                         </div>
                     </div>
+
+
+
+
                 </div>
             </div>
         </main>
