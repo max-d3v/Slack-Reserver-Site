@@ -75,7 +75,7 @@ const Pricing = () => {
                     <div className="border rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                         <div>
                             <h2 className="text-xl font-semibold text-gray-800">Free</h2>
-                            <p className="mt-2 text-gray-600">For people who have 1 spare room they want to keep organized!</p>
+                            <p className="mt-2 text-gray-600">Perfect for small offices with minimal scheduling needs</p>
                             <h1 className="text-3xl font-bold mt-4 text-gray-800">
                                 ${pricingPlans.free[billingCycle].price}
                                 <span className="text-gray-500 text-lg font-normal">
@@ -83,10 +83,10 @@ const Pricing = () => {
                                 </span>
                             </h1>
                             {billingCycle === 'annual' && (
-                                <p className="text-sm text-green-600 mt-1">$32.50/month, billed annually</p>
+                                <p className="text-sm text-green-600 mt-1">$0/month, billed annually</p>
                             )}
                             <div className="mt-2 inline-flex items-center">
-                                <span className="text-sm font-medium text-green-600">✓ 14-day free trial</span>
+                            <span className="text-sm font-medium text-green-600">✓ No credit-card required</span>
                             </div>
                         </div>
                         <div className="mt-8 -mx-8">
