@@ -4,5 +4,6 @@ Website for the slack app Slack Reserver
 
 -- Pricing -- 
 
-![image](https://github.com/user-attachments/assets/c0917898-7b5a-476b-88c2-37738aa677a7)
+![image](https://github.com/user-attachments/assets/eac63c02-a181-484b-ab9c-cdd904b414bf)
+
 
