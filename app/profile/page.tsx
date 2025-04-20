@@ -70,9 +70,9 @@ const Page = async () => {
           <CardHeader>
             <CardTitle className="text-xl flex items-center gap-2">
               <CalendarIcon className="h-5 w-5 text-[#4A154B]" />
-              Your Reservations
+              Your Usage
             </CardTitle>
-            <CardDescription>Indicadors of your reservations</CardDescription>
+            <CardDescription>Information about your reservations</CardDescription>
             <Suspense fallback={<LoadingStats/>}>
               <ReservationStats tenantId={user.tenant.id} />
             </Suspense>

@@ -15,6 +15,12 @@ const Error = ({ error, reset }: ErrorProps) => {
     console.error('Uncaught application error:', error)
   }, [error])
 
+  const sanitizeError = (errorMessage: string) => {
+    // Sanitize error message to remove path and not let it be too long
+    const sanitizedMessage = errorMessage.replace(/\/[^/]+\/[^/]+/g, '')
+    return sanitizedMessage.length > 100 ? `${sanitizedMessage.slice(0, 100)}...` : sanitizedMessage
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
       <div className="max-w-max mx-auto">
@@ -43,7 +49,7 @@ const Error = ({ error, reset }: ErrorProps) => {
                   </Link>
                 </div>
                 <p className="mt-8 text-sm text-gray-500">
-                  Error details: {error.message || 'Unknown error'}
+                  Error details: {sanitizeError(error.message) || 'Unknown error'}
                 </p>
               </div>
             </div>

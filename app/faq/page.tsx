@@ -109,10 +109,9 @@ export default function FAQ() {
                         <div>
                             <h3 className="text-lg font-medium text-blue-600 mb-2">How do I get support if I encounter an issue?</h3>
                             <p className="text-gray-700">
-                                We offer multiple support channels: email support for all customers, live chat support
-                                for paid plans, and priority phone support for enterprise customers. You can reach our
-                                support team at <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a> or through
-                                the help button in the application.
+                                You can get in touch with us through our email support for all customers.
+                                <br />
+                                <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>
                             </p>
                         </div>
 
@@ -121,7 +120,7 @@ export default function FAQ() {
                             <h3 className="text-lg font-medium text-blue-600 mb-2">Can I request new features?</h3>
                             <p className="text-gray-700">
                                 Absolutely! We welcome feature requests from our users. You can submit feature requests
-                                through our in-app feedback form or by emailing <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>.
+                                through emailing <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>.
                             </p>
                         </div>
                     </div>

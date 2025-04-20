@@ -1,6 +1,13 @@
 import prisma from "@/lib/db/db";
 import { CalendarCheck, Clock, CalendarX, Building, Users, Calendar } from "lucide-react";
 
+export enum ReservationStatuses {
+    CREATED = "created",
+    ONGOING = "ongoing",
+    COMPLETED = "completed",
+    CANCELLED = "cancelled",
+}
+
 const getReservations = async (tenantId: string) => {
     const data = await prisma.reservations.findMany({
         where: {
@@ -16,27 +23,27 @@ const getReservations = async (tenantId: string) => {
 
 export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
     const reservations = await getReservations(tenantId);
-    
+
     // Get current date for comparisons
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    
+
     // Calculate upcoming reservations (start date is in the future)
-    const upcomingReservations = reservations.filter(r => 
+    const upcomingReservations = reservations.filter(r =>
         new Date(r.start_date) > today
     );
-    
+
     // Get popular resources (most reserved)
     const resourceCounts = reservations.reduce((acc, res) => {
         const resourceId = res.resource_id;
         acc[resourceId] = (acc[resourceId] || 0) + 1;
         return acc;
     }, {} as Record<string, number>);
-    
+
     // Find most reserved resource
     let mostReservedResource = null;
     let maxReservations = 0;
-    
+
     for (const [resourceId, count] of Object.entries(resourceCounts)) {
         if (count > maxReservations) {
             maxReservations = count;
@@ -61,7 +68,7 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
         <div className="space-y-6">
 
             <br />
-            
+
             <div className="grid grid-cols-1 gap-4">
                 {/* Large card on top */}
                 <div className="bg-white p-6 rounded-lg border shadow-sm">
@@ -71,14 +78,14 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
                     </div>
                     <p className="text-3xl font-bold">{totalReservations}</p>
                     <div className="mt-3 h-3 w-full bg-gray-100 rounded-full">
-                        <div 
+                        <div
                             className={`h-3 rounded-full ${utilizationPercentage > 80 ? 'bg-amber-500' : 'bg-blue-500'}`}
                             style={{ width: `${Math.min(utilizationPercentage, 100)}%` }}
                         ></div>
                     </div>
                     <p className="text-sm text-gray-500 mt-2">{utilizationPercentage}% of plan limit</p>
                 </div>
-                
+
                 {/* Grid for smaller cards below */}
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                     <div className="bg-white p-4 rounded-lg border shadow-sm">
@@ -86,10 +93,10 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
                             <h3 className="text-sm font-medium text-gray-500">Active</h3>
                             <Clock className="h-5 w-5 text-green-500" />
                         </div>
-                        <p className="text-2xl font-bold mt-2">{reservations.filter(r => r.status === 'active').length}</p>
-                        <p className="text-xs text-gray-500 mt-1">Current reservations</p>
+                        <p className="text-2xl font-bold mt-2">{reservations.filter(r => r.status === ReservationStatuses.COMPLETED ).length}</p>
+                        <p className="text-xs text-gray-500 mt-1">Passed reservations</p>
                     </div>
-                    
+
                     <div className="bg-white p-4 rounded-lg border shadow-sm">
                         <div className="flex items-center justify-between">
                             <h3 className="text-sm font-medium text-gray-500">Upcoming</h3>
@@ -98,7 +105,7 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
                         <p className="text-2xl font-bold mt-2">{upcomingReservations.length}</p>
                         <p className="text-xs text-gray-500 mt-1">Future reservations</p>
                     </div>
-                    
+
                     <div className="bg-white p-4 rounded-lg border shadow-sm">
                         <div className="flex items-center justify-between">
                             <h3 className="text-sm font-medium text-gray-500">Top Resource</h3>

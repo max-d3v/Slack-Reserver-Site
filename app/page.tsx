@@ -60,61 +60,87 @@ export default function Home() {
           <div className="w-full mb-12 mt-4">
             <div className="overflow-hidden relative">
               <div className="flex animate-marquee gap-8">
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="flex items-center justify-center py-2 px-4 bg-gray-100 rounded-lg shadow-sm min-w-[200px]">
+                  <span className="text-gray-500 font-medium">★ Reviews ★</span>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Real Time-Saver</h3>
                   <p className="text-sm text-gray-500 mb-1">Sarah T. - Office Manager at Brightline</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After implementing Slack Reserver, we reduced meeting setup time by 30%. No more double-bookings or confusion about room availability."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Streamlined Our Process</h3>
                   <p className="text-sm text-gray-500 mb-1">Mike L. - Engineering Team Lead</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ☆</div>
                   <p className="mt-3 text-gray-600">"Our standups run more smoothly now that everyone knows exactly which room is available. Would love calendar sync in the next update."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Perfect Integration</h3>
                   <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager at Cortex</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"We've been using it daily for 3 months now. The Slack commands are intuitive and the whole team adopted it without any training."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Highly Recommend</h3>
                   <p className="text-sm text-gray-500 mb-1">Jamie R. - HR Director</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"We manage 12 conference rooms across 3 floors with this tool. The status updates and notification features alone are worth the subscription."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Game Changer</h3>
                   <p className="text-sm text-gray-500 mb-1">David K. - CTO at Nimbus</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">No More Conflicts</h3>
                   <p className="text-sm text-gray-500 mb-1">Priya M. - Operations Director</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"Room double-booking disputes have completely disappeared. The notifications ensure everyone knows exactly where they need to be."</p>
                 </div>
-
+                <div className="flex items-center justify-center py-2 px-4 bg-gray-100 rounded-lg shadow-sm min-w-[200px]">
+                  <span className="text-gray-500 font-medium">★ Reviews ★</span>
+                </div>
                 {/* Duplicate the first set exactly for smooth infinite scrolling */}
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Real Time-Saver</h3>
                   <p className="text-sm text-gray-500 mb-1">Sarah T. - Office Manager at Brightline</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After implementing Slack Reserver, we reduced meeting setup time by 30%. No more double-bookings or confusion about room availability."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Streamlined Our Process</h3>
                   <p className="text-sm text-gray-500 mb-1">Mike L. - Engineering Team Lead</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ☆</div>
                   <p className="mt-3 text-gray-600">"Our standups run more smoothly now that everyone knows exactly which room is available. Would love calendar sync in the next update."</p>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[320px]">
-                  <h3 className="text-xl text-gray-700 font-bold mb-2">Perfect Integration</h3>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
+                  <h3 className="text-xl text-gray-700 font-bold mb-2">Smooth Integration</h3>
                   <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager at Cortex</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"We've been using it daily for 3 months now. The Slack commands are intuitive and the whole team adopted it without any training."</p>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
+                  <h3 className="text-xl text-gray-700 font-bold mb-2">Highly Recommend</h3>
+                  <p className="text-sm text-gray-500 mb-1">Jamie R. - HR Director</p>
+                  <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
+                  <p className="mt-3 text-gray-600">"We manage 12 conference rooms across 3 floors with this tool. The status updates and notification features alone are worth the subscription."</p>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
+                  <h3 className="text-xl text-gray-700 font-bold mb-2">Game Changer</h3>
+                  <p className="text-sm text-gray-500 mb-1">David K. - CTO at Nimbus</p>
+                  <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
+                  <p className="mt-3 text-gray-600">"After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."</p>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
+                  <h3 className="text-xl text-gray-700 font-bold mb-2">No More Conflicts</h3>
+                  <p className="text-sm text-gray-500 mb-1">Priya M. - Operations Director</p>
+                  <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
+                  <p className="mt-3 text-gray-600">"Room double-booking disputes have completely disappeared. The notifications ensure everyone knows exactly where they need to be."</p>
+                </div>
+                <div className="flex items-center justify-center py-2 px-4 bg-gray-100 rounded-lg shadow-sm min-w-[200px]">
+                  <span className="text-gray-500 font-medium">★ Reviews ★</span>
                 </div>
               </div>
             </div>
