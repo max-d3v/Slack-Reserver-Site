@@ -76,7 +76,7 @@ export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string |
         if (inputEl instanceof HTMLInputElement || inputEl instanceof HTMLTextAreaElement) {
           inputEl.select();
         }
-      }, 800);
+      }, 100);
     }
   }, [inputHighlight, animate, scope]);
 
