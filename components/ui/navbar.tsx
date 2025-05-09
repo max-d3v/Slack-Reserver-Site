@@ -71,6 +71,12 @@ export const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-8">
+            <Link
+                href="/roadmap"
+                className="text-gray-600 hover:text-black transition-colors px-2 py-1 text-sm font-medium"
+              >
+                Roadmap
+              </Link>
               <Link
                 href="/pricing"
                 className="text-gray-600 hover:text-black transition-colors px-2 py-1 text-sm font-medium"
@@ -119,6 +125,13 @@ export const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white p-4 border-t border-gray-100">
           <div className="flex flex-col space-y-4 pt-2 pb-3">
+          <Link
+              href="/roadmap"
+              className="text-gray-600 hover:text-[#4A154B] block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Roadmap
+            </Link>
             <Link
               href="/pricing"
               className="text-gray-600 hover:text-[#4A154B] block px-3 py-2 rounded-md text-base font-medium"
