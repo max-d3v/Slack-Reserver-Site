@@ -19,3 +19,10 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+export function capitalizedFirstName(name: string | undefined | null) {
+  if (typeof name !== 'string') {
+    return name;
+  }
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}

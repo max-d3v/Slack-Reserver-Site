@@ -1,14 +1,22 @@
 import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/constants';
 import { ContactForm } from '@/components/ui/contactForm'; 
+import { auth } from '../auth';
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const { flavor, inputHighlight } = (await searchParams);
+  const user = await auth();
+
   return (
     <div className="container mx-auto px-4 py-[12vh] max-w-6xl">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Have questions about our services? Want to schedule a demo?
+          Have questions/suggestions about our services? Want to schedule a demo?
           We'd love to hear from you!
         </p>
       </div>
@@ -16,7 +24,7 @@ export default function ContactPage() {
       <div className="grid md:grid-cols-2 gap-12">
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h2 className="text-2xl font-semibold mb-6">Send us a message</h2>
-          <ContactForm />
+          <ContactForm flavor={flavor} user={user.user} />
         </div>
 
         <div className="bg-white rounded-lg shadow-xl p-8">

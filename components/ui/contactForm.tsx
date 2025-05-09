@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import * as utils from '@/lib/utils/functions';
 
-export const ContactForm = () => {
+export const ContactForm = ({ flavor, user }: {flavor: string | string[] | undefined, user: any}) => {
+  console.log(user);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
+    name: utils.capitalizedFirstName(user?.name) ?? '',
+    email: user?.email ?? '',
+    subject: flavor == "featureRequest" ? "Feature Request" : "",
     message: '',
   });
 
@@ -97,6 +99,7 @@ export const ContactForm = () => {
             type="text"
             id="subject"
             name="subject"
+            disabled={flavor == "featureRequest" ? true : false}
             value={formData.subject}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
