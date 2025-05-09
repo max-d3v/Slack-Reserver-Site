@@ -1,17 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useAnimate } from 'framer-motion';
 import * as utils from '@/lib/utils/functions';
 
-export const ContactForm = ({ flavor, user }: {flavor: string | string[] | undefined, user: any}) => {
-  console.log(user);
+export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string | string[] | undefined, user: any, inputHighlight: string | string[] | undefined }) => {
   const [formData, setFormData] = useState({
     name: utils.capitalizedFirstName(user?.name) ?? '',
     email: user?.email ?? '',
     subject: flavor == "featureRequest" ? "Feature Request" : "",
     message: '',
   });
+
+  const formRef = useRef<HTMLDivElement>(null);
+  const [scope, animate] = useAnimate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -54,13 +56,37 @@ export const ContactForm = ({ flavor, user }: {flavor: string | string[] | undef
     }
   };
 
+  useEffect(() => {
+    if (inputHighlight && typeof inputHighlight === "string" && formRef.current) {
+      // Scroll
+      formRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+
+
+      setTimeout(async () => {
+        const inputEl = document.getElementById(inputHighlight);
+        if (!inputEl) return;
+
+        inputEl.focus();
+
+        // If it's an input element, we can also select its content
+        if (inputEl instanceof HTMLInputElement || inputEl instanceof HTMLTextAreaElement) {
+          inputEl.select();
+        }
+      }, 800);
+    }
+  }, [inputHighlight, animate, scope]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef as any}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Your Name

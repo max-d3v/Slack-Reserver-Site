@@ -24,7 +24,7 @@ export default async function ContactPage({
       <div className="grid md:grid-cols-2 gap-12">
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h2 className="text-2xl font-semibold mb-6">Send us a message</h2>
-          <ContactForm flavor={flavor} user={user.user} />
+          <ContactForm flavor={flavor} user={user.user} inputHighlight={inputHighlight} />
         </div>
 
         <div className="bg-white rounded-lg shadow-xl p-8">
