@@ -1,10 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { CredentialsProvider } from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 import db from "@/lib/db/db";
-
-const prisma = new PrismaClient();
 
 export const authOptions = {
   providers: [
@@ -20,8 +17,6 @@ export const authOptions = {
       if (!id || !email) {
         return false;
       }
-
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
       await db.users.upsert({
         where: { google_id: id },

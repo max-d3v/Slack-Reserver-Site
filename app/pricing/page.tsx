@@ -72,7 +72,7 @@ const Pricing = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto'>
 
                     {/* Enterprise plan */}
-                    <div className="border rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
+                    <div className="border border-slate-200 rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                         <div>
                             <h2 className="text-xl font-semibold text-gray-800">Free</h2>
                             <p className="mt-2 text-gray-600">Perfect for small offices with minimal scheduling needs</p>
@@ -257,7 +257,7 @@ const Pricing = () => {
                     </div>
 
                     {/* Team plan */}
-                    <div className="border rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
+                    <div className="border border-slate-200 rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                         <div>
                             <h2 className="text-xl font-semibold text-gray-800">Team</h2>
                             <p className="mt-2 text-gray-600">For small teams that want to reserve a limited amount of rooms</p>

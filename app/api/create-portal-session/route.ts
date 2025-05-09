@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import stripe from '@/lib/stripe/stripe';
 
-const YOUR_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000';
+const YOUR_DOMAIN = process.env.SITE_URL;
 
 export async function POST(request: Request) {
   try {

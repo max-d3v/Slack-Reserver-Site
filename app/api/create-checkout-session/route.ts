@@ -4,7 +4,7 @@ import { auth } from '@/app/auth';
 import prisma from '@/lib/db/db';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const YOUR_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'http://localhost:3000';
+const YOUR_DOMAIN = process.env.SITE_URL;
 
 export async function POST(request: Request) {
   try {

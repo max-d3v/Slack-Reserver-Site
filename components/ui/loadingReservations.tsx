@@ -44,7 +44,7 @@ export const LoadingStats = () => (
         </div>
       </div>
       
-      {/* Lista de reservas */}
+      {/* Lista de reservas 
       <div className="bg-gray-50 p-4 rounded-lg border shadow-sm">
         <Skeleton width={160} height={24} className="mb-4" />
         <div className="space-y-3">
@@ -60,6 +60,9 @@ export const LoadingStats = () => (
           ))}
         </div>
       </div>
+*/}
+
+
     </div>
   </SkeletonTheme>
 );

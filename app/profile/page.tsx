@@ -9,18 +9,18 @@ import {
 } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, CreditCard, Settings, Clock, Users, Building, CheckCircle, AlertCircle } from "lucide-react"
+import { CalendarIcon, CreditCard, Clock, Users, CheckCircle } from "lucide-react"
 import { auth } from '../auth'
 import * as utils from "@/lib/utils/functions";
 import { ReservationStats } from '@/components/ui/reservations'
 import { LoadingStats } from '@/components/ui/loadingReservations'
+import prisma from "@/lib/db/db";
+
 
 
 
 const Page = async () => {
   const { user } = await auth();
-
-
   const activeSubscription = user.tenant.tenant_subscriptions[0]; // Assuming the first subscription is the active one
   const subscriptionPlan = activeSubscription?.plans;
 
@@ -73,10 +73,10 @@ const Page = async () => {
               Your Usage
             </CardTitle>
             <CardDescription>Information about your reservations</CardDescription>
-            <Suspense fallback={<LoadingStats/>}>
+            <Suspense fallback={<LoadingStats />}>
               <ReservationStats tenantId={user.tenant.id} />
             </Suspense>
-            </CardHeader>
+          </CardHeader>
         </Card>
       </div>
 
@@ -127,14 +127,14 @@ const Page = async () => {
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row gap-4 sm:justify-between">
           <form action="/api/create-customer-portal-session" method="POST">
-          <button className="bg-green-600 text-white hover:bg-green-700 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium sm:order-2">
-            <CreditCard className="h-4 w-4" /> Manage Subscription
-          </button>
+            <button className="bg-green-600 text-white hover:bg-green-700 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium sm:order-2">
+              <CreditCard className="h-4 w-4" /> Manage Subscription
+            </button>
           </form>
           <form action="/api/create-customer-portal-session" method="POST">
-          <button className="border border-gray-300 hover:bg-gray-50 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium w-full sm:w-auto sm:order-1">
-            View Billing History
-          </button>
+            <button className="border border-gray-300 hover:bg-gray-50 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium w-full sm:w-auto sm:order-1">
+              View Billing History
+            </button>
           </form>
         </CardFooter>
       </Card>
