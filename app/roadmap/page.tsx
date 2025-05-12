@@ -33,14 +33,6 @@ export default function Roadmap() {
       icon: <MessageCircle className="h-10 w-10 text-[#4A154B]" />,
     },
     {
-      id: 3,
-      title: "Online Meeting Support",
-      description: "Support for virtual meetings with optional meeting links. Simplified sharing of meeting details with participants.",
-      status: "upcoming",
-      timeEstimate: TIME_ESTIMATE.MEDIUM,
-      icon: <Link className="h-10 w-10 text-[#4A154B]" />,
-    },
-    {
       id: 4,
       title: "Google Calendar Integration",
       description: "Seamless synchronization with Google Calendar. Import and export reservations between Slack Reserver and Google Calendar.",
