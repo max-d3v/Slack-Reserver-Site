@@ -1,9 +1,7 @@
 "use client";
-
 import { useState } from "react";
 import { ArrowRight, Calendar, MessageCircle, Link, Check, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 // Time estimation constants
 const TIME_ESTIMATE = {
@@ -50,7 +48,17 @@ export default function Roadmap() {
       timeEstimate: TIME_ESTIMATE.LONG,
       icon: <Calendar className="h-10 w-10 text-[#4A154B]" />,
     },
+    {
+      id: 5,
+      title: "Confirm attendance",
+      description: "Support for confirming participation in meetings. Automatic reminders for participants to confirm their attendance.",
+      status: "upcoming",
+      timeEstimate: TIME_ESTIMATE.SHORT,
+      icon: <Check className="h-10 w-10 text-[#4A154B]" />,
+    }
   ];
+
+
 
   const filteredItems = roadmapItems.filter((item) => {
     if (activeTab === "all") return true;
@@ -75,41 +83,37 @@ export default function Roadmap() {
         <div className="flex flex-wrap justify-center mb-12 gap-2">
           <button
             onClick={() => setActiveTab("all")}
-            className={`px-6 py-2 rounded-full font-medium ${
-              activeTab === "all"
+            className={`px-6 py-2 rounded-full font-medium ${activeTab === "all"
                 ? "bg-[#4A154B] text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            } transition duration-300`}
+              } transition duration-300`}
           >
             All Features
           </button>
           <button
             onClick={() => setActiveTab("in-progress")}
-            className={`px-6 py-2 rounded-full font-medium ${
-              activeTab === "in-progress"
+            className={`px-6 py-2 rounded-full font-medium ${activeTab === "in-progress"
                 ? "bg-[#4A154B] text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            } transition duration-300`}
+              } transition duration-300`}
           >
             In Progress
           </button>
           <button
             onClick={() => setActiveTab("upcoming")}
-            className={`px-6 py-2 rounded-full font-medium ${
-              activeTab === "upcoming"
+            className={`px-6 py-2 rounded-full font-medium ${activeTab === "upcoming"
                 ? "bg-[#4A154B] text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            } transition duration-300`}
+              } transition duration-300`}
           >
             Upcoming
           </button>
           <button
             onClick={() => setActiveTab("planned")}
-            className={`px-6 py-2 rounded-full font-medium ${
-              activeTab === "planned"
+            className={`px-6 py-2 rounded-full font-medium ${activeTab === "planned"
                 ? "bg-[#4A154B] text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            } transition duration-300`}
+              } transition duration-300`}
           >
             Planned
           </button>
@@ -124,37 +128,34 @@ export default function Roadmap() {
             {filteredItems.map((item, index) => (
               <div key={item.id} className={`relative z-10`}>
                 <div
-                  className={`flex flex-col md:flex-row ${
-                    index % 2 === 0 ? "md:flex-row-reverse" : ""
-                  } items-center`}
+                  className={`flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                    } items-center`}
                 >
                   <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-white shadow-md bg-[#4A154B]"></div>
 
                   <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
                     <div
-                      className={`p-6 bg-white rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300 ${
-                        item.status === "in-progress"
+                      className={`p-6 bg-white rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300 ${item.status === "in-progress"
                           ? "border-l-4 border-l-[#4A154B]"
                           : ""
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between mb-4">
                         <div className="bg-gray-50 p-3 rounded-lg">{item.icon}</div>
                         <div className="flex items-center">
                           <span
-                            className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                              item.status === "in-progress"
+                            className={`px-3 py-1 text-xs font-semibold rounded-full ${item.status === "in-progress"
                                 ? "bg-purple-100 text-purple-800"
                                 : item.status === "upcoming"
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-amber-100 text-amber-800"
-                            }`}
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-amber-100 text-amber-800"
+                              }`}
                           >
                             {item.status === "in-progress"
                               ? "In Progress"
                               : item.status === "upcoming"
-                              ? "Coming Soon"
-                              : "Planned"}
+                                ? "Coming Soon"
+                                : "Planned"}
                           </span>
                         </div>
                       </div>
