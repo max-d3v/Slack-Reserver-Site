@@ -1,7 +1,9 @@
 import React from 'react';
-import { CONTACT_EMAIL } from '@/lib/constants';
+import { CONSTANTS } from '@/lib/constants';
 import { ContactForm } from '@/components/ui/contactForm'; 
 import { auth } from '../auth';
+
+const CONTACT_EMAIL = CONSTANTS.CONTACT_EMAIL;
 
 export default async function ContactPage({
   searchParams,

@@ -1,3 +1,5 @@
 stripe plans and db plans.
 
 plans in pricing and db plans. (features, monthly and annual prices etc)
+
+JSONld data and page data! (example pricing)

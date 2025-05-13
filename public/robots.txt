@@ -1,0 +1,16 @@
+//robots.txt
+ 
+# Allow Most!
+User-agent: *
+Allow: /
+
+
+# Disallow sensitive or utility pages
+Disallow: /api/
+Disallow: /auth-result/
+Disallow: /checkout/
+Disallow: /signIn
+Disallow: /.next/
+Disallow: /profile/
+
+Crawl-delay: 10

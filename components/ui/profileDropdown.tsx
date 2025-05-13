@@ -53,7 +53,7 @@ export const Profile = ({ session_data }: ProfileDropdownProps) => {
                     <Link href="/profile" className="block">
                         <DropdownMenuItem className="rounded-md cursor-pointer hover:bg-gray-100 transition-colors py-1.5">
                             <ContactRound className="mr-2 h-4 w-4" />
-                            <span>Profile</span>
+                            <span>Profile</span>    
                         </DropdownMenuItem>
                     </Link>
                     <Link href="/profile/billing" className="block">

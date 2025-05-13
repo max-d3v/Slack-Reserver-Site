@@ -1,5 +1,7 @@
 import React from 'react';
-import { CONTACT_EMAIL } from '@/lib/constants';
+import { CONSTANTS } from '@/lib/constants';
+const CONTACT_EMAIL = CONSTANTS.CONTACT_EMAIL;
+
 export default function FAQ() {
     return (
         <div className="container mx-auto py-[12vh] px-4 max-w-4xl">
