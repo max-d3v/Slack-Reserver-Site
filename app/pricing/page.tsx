@@ -1,7 +1,7 @@
-import PricingPlans from "@/components/ui/pricingPlans";
 import { Metadata } from "next";
-import Head from 'next/head';
 import Script from "next/script";
+import PricingPlans from "@/components/ui/pricingPlans";
+import { getPlans } from "@/lib/stripe/stripe";
 
 export const metadata: Metadata = {
     title: 'Pricing - Simple Plans for Teams of All Sizes',
@@ -69,7 +69,7 @@ const getPricingPlans = async (): Promise<PricingPlansType> => {
                 productId: "prod_S4P7FrJrgZvJwG"
             },
             annual: {
-                price: 60, // $5/month when paid annually (2 months free)
+                price: 40, // $5/month when paid annually (2 months free)
                 productId: "prod_annual_team"
             },
         },
@@ -79,8 +79,18 @@ const getPricingPlans = async (): Promise<PricingPlansType> => {
                 productId: "prod_S4iuAaDkOrW6jx"
             },
             annual: {
-                price: 120, // $10/month when paid annually (2 months free)
+                price: 80, // $10/month when paid annually (2 months free)
                 productId: "prod_annual_company"
+            },
+        },
+        enterprise: {
+            monthly: {
+                price: 20,
+                productId: "prod_enterprise_monthly"
+            },
+            annual: {
+                price: 200, // $20/month when paid annually (2 months free)
+                productId: "prod_enterprise_annual"
             },
         },
         free: {
@@ -117,7 +127,7 @@ const Page = async () => {
                 "itemOffered": {
                     "@type": "Service",
                     "name": "Free Slack Reserver Plan",
-                    "description": "Up to 5 reservations per month, one resource group, up to 3 resources"
+                    "description": "Up to 30 reservations per month, up to 3 resource groups, up to 10 resources"
                 }
             },
             {
@@ -140,14 +150,14 @@ const Page = async () => {
                 "itemOffered": {
                     "@type": "Service",
                     "name": "Team Slack Reserver Plan (Monthly)",
-                    "description": "Up to 50 reservations per month, up to 5 resource groups, up to 20 resources (total), email notifications"
+                    "description": "Up to 120 reservations per month, up to 20 resource groups, up to 60 resources, email notifications"
                 }
             },
             {
                 "@type": "Offer",
                 "name": "Team Plan (Annual)",
                 "description": "For small teams that want to reserve a limited amount of rooms",
-                "price": "60",
+                "price": "40",
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/InStock",
                 "url": `${process.env.SITE_URL}/pricing#team-annual`,
@@ -163,7 +173,7 @@ const Page = async () => {
                 "itemOffered": {
                     "@type": "Service",
                     "name": "Team Slack Reserver Plan (Annual)",
-                    "description": "Up to 50 reservations per month, up to 5 resource groups, up to 20 resources (total), email notifications"
+                    "description": "Up to 120 reservations per month, up to 20 resource groups, up to 60 resources, email notifications"
                 }
             },
             {
@@ -186,14 +196,14 @@ const Page = async () => {
                 "itemOffered": {
                     "@type": "Service",
                     "name": "Company Slack Reserver Plan (Monthly)",
-                    "description": "Up to 250 reservations per month, up to 25 resource groups, up to 100 resources, email notifications, daily personal reservations and usage info"
+                    "description": "Up to 360 reservations per month, up to 50 resource groups, up to 180 resources, email notifications, daily personal reservations and usage info"
                 }
             },
             {
                 "@type": "Offer",
                 "name": "Company Plan (Annual)",
                 "description": "Transform your workspace with comprehensive resource management",
-                "price": "120",
+                "price": "80",
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/InStock",
                 "url": `${process.env.SITE_URL}/pricing#company-annual`,
@@ -209,7 +219,53 @@ const Page = async () => {
                 "itemOffered": {
                     "@type": "Service",
                     "name": "Company Slack Reserver Plan (Annual)",
-                    "description": "Up to 250 reservations per month, up to 25 resource groups, up to 100 resources, email notifications, daily personal reservations and usage info"
+                    "description": "Up to 360 reservations per month, up to 50 resource groups, up to 180 resources, email notifications, daily personal reservations and usage info"
+                }
+            },
+            {
+                "@type": "Offer",
+                "name": "Enterprise Plan (Monthly)",
+                "description": "For large organizations with extensive scheduling requirements",
+                "price": "20",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": `${process.env.SITE_URL}/pricing#enterprise-monthly`,
+                "priceValidUntil": "2025-12-31",
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "US",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                    "merchantReturnDays": 14,
+                    "returnMethod": "https://schema.org/ReturnByMail",
+                    "returnFees": "https://schema.org/FreeReturn"
+                },
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Enterprise Slack Reserver Plan (Monthly)",
+                    "description": "Up to 1000 reservations per month, up to 100 resource groups, unlimited resources, priority support"
+                }
+            },
+            {
+                "@type": "Offer",
+                "name": "Enterprise Plan (Annual)",
+                "description": "For large organizations with extensive scheduling requirements",
+                "price": "200",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "url": `${process.env.SITE_URL}/pricing#enterprise-annual`,
+                "priceValidUntil": "2025-12-31",
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "US",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                    "merchantReturnDays": 14,
+                    "returnMethod": "https://schema.org/ReturnByMail",
+                    "returnFees": "https://schema.org/FreeReturn"
+                },
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Enterprise Slack Reserver Plan (Annual)",
+                    "description": "Up to 1000 reservations per month, up to 100 resource groups, unlimited resources, priority support"
                 }
             }
         ],
@@ -222,7 +278,10 @@ const Page = async () => {
         }
     };
 
-    const pricingPlans = await getPricingPlans();
+
+    //const pricingPlans = await getPricingPlans();
+    const stripePricingPlans = getPlans();
+
 
     return (
         <>
@@ -232,7 +291,20 @@ const Page = async () => {
                 strategy="beforeInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }}
             />
-            <PricingPlans pricingPlans={pricingPlans} ></PricingPlans>
+            <main className="min-h-screen w-full bg-gray-100"
+                style={{
+                    //Noise implementation!
+                    background: `#f3f3f3 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    borderTop: "1px solid #e5e5e5",
+                    borderBottom: "1px solid #e5e5e5",
+                    boxShadow: "inset 0 0 30px rgba(0,0,0,0.03)"
+                }}>
+                <div className='container mt-12 mx-auto px-4 py-16'>
+
+                    <PricingPlans pricingPlans={stripePricingPlans} ></PricingPlans>
+
+                </div>
+            </main>
         </>
     )
 };

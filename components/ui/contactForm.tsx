@@ -4,11 +4,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimate } from 'framer-motion';
 import * as utils from '@/lib/utils/functions';
 
+const handleFlavor = (flavor: string | string[] | undefined) => {
+  let subject = '';
+  switch (flavor) {
+    case 'featureRequest':
+      subject = 'Feature Request';
+      break;
+    case 'planRequest':
+      subject = 'Plan Request';
+      break;
+    case 'needMoreReservations':
+      subject = 'I Want more!';
+      break;
+    default:
+      subject = '';
+  }
+
+  return subject;
+}
+
 export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string | string[] | undefined, user: any, inputHighlight: string | string[] | undefined }) => {
   const [formData, setFormData] = useState({
     name: utils.capitalizedFirstName(user?.name) ?? '',
     email: user?.email ?? '',
-    subject: flavor == "featureRequest" ? "Feature Request" : "",
+    subject: handleFlavor(flavor),
     message: '',
   });
 
@@ -26,6 +45,7 @@ export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string |
       [name]: value,
     });
   };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,7 +145,7 @@ export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string |
             type="text"
             id="subject"
             name="subject"
-            disabled={flavor == "featureRequest" ? true : false}
+            disabled={formData.subject ? true : false}
             value={formData.subject}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

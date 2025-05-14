@@ -7,10 +7,11 @@ import { useSession } from 'next-auth/react';
 
 import { PricingPlansType } from '@/app/pricing/page';
 import { BillingToggle } from './billingToggle';
+import { useRouter } from 'next/navigation';
+import Stripe from 'stripe';
 
-const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
+const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
     const { data: session } = useSession();
-    const isLogged = session?.user;
     const hasTenantId = (session?.user as any)?.tenant_id;
     const hasSubscription = (session?.user as any)?.tenant?.tenant_subscriptions?.length > 0;
     const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
@@ -19,18 +20,10 @@ const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
         setBillingCycle(isAnnual ? 'annual' : 'monthly');
     };
 
+    const router = useRouter();
 
-  return (
-    <main className="min-h-screen w-full bg-gray-100"
-        style={{
-            //Noise implementation!
-            background: `#f3f3f3 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            borderTop: "1px solid #e5e5e5",
-            borderBottom: "1px solid #e5e5e5",
-            boxShadow: "inset 0 0 30px rgba(0,0,0,0.03)"
-        }}>
-
-        <div className='container mt-12 mx-auto px-4 py-16'>
+    return (
+        <>
             <div className='text-center max-w-3xl mx-auto mb-10'>
                 <h1 className="text-6xl text-gray-700 font-bold mb-4">Pricing</h1>
                 <p className="text-gray-600 text-lg mb-8">
@@ -46,7 +39,7 @@ const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
                 <div className="border border-slate-200 rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                     <div>
                         <h2 className="text-xl font-semibold text-gray-800">Free</h2>
-                        <p className="mt-2 text-gray-600">Perfect for small offices with minimal scheduling needs</p>
+                        <p className="mt-2 text-gray-600">Perfect for individuals with minimal scheduling needs</p>
                         <h1 className="text-3xl font-bold mt-4 text-gray-800">
                             ${pricingPlans.free[billingCycle].price}
                             <span className="text-gray-500 text-lg font-normal">
@@ -54,7 +47,7 @@ const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
                             </span>
                         </h1>
                         {billingCycle === 'annual' && (
-                            <p className="text-sm text-green-600 mt-1">$0/month, billed annually</p>
+                            <p className="text-sm text-green-600 mt-1">$0/month, billed never</p>
                         )}
                         <div className="mt-2 inline-flex items-center">
                             <span className="text-sm font-medium text-green-600">✓ No credit-card required</span>
@@ -115,18 +108,19 @@ const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
                     <div className="mt-6 space-y-4 flex-grow text-gray-800">
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 5 reservations per month</p>
+                            <p>Up to 30 reservations per month</p>
                         </div>
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>One resource group</p>
+                            <p>Up to 3 resource groups</p>
                         </div>
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 3 resources</p>
+                            <p>Up to 10 resources</p>
                         </div>
                     </div>
                 </div>
+
 
                 {/* Company plan */}
                 <div className="border-2 border-[#4A154B] rounded-xl p-8 shadow-lg bg-white md:scale-103 z-10 relative">
@@ -136,7 +130,7 @@ const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800">Company</h2>
                         <p className="mt-2 text-gray-600">Transform your workspace.</p>
-                        <p className="text-gray-600">No more excel sheets and one sided reservations</p>
+                        <p className="text-gray-600">No more asking around and unexpected guests</p>
                         <h1 className="text-3xl font-bold mt-4 text-gray-800">
                             ${pricingPlans.company[billingCycle].price}
                             <span className="text-gray-500 text-lg font-normal">
@@ -206,124 +200,131 @@ const PricingPlans = ({pricingPlans}: {pricingPlans: PricingPlansType}) => {
                         {/* Feature list continues as before */}
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 250 reservations per month</p>
+                            <p>Up to 360 reservations per month (appr. 10/day)</p>
                         </div>
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 25 resource groups</p>
+                            <p>Up to 50 resource groups</p>
                         </div>
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 100 resources</p>
-                        </div>
-                        <div className="flex items-center">
-                            <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Email notifications</p>
-                        </div>
-                        <div className="flex items-center">
-                            <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Daily personal reservations and usage info</p>
+                            <p>Up to 180 resources</p>
                         </div>
                     </div>
                 </div>
 
-                {/* Team plan */}
                 <div className="border border-slate-200 rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
                     <div>
-                        <h2 className="text-xl font-semibold text-gray-800">Team</h2>
-                        <p className="mt-2 text-gray-600">For small teams that want to reserve a limited amount of rooms</p>
+                        <h2 className="text-xl font-semibold text-gray-800">Enterprise</h2>
+                        <p className="mt-2 text-gray-600">For large organizations with extensive scheduling requirements</p>
                         <h1 className="text-3xl font-bold mt-4 text-gray-800">
-                            ${pricingPlans.team[billingCycle].price}
+                            ${pricingPlans.enterprise[billingCycle].price}
                             <span className="text-gray-500 text-lg font-normal">
                                 {billingCycle === 'monthly' ? '/month' : '/year'}
                             </span>
                         </h1>
-                        {billingCycle === 'annual' && (
-                            <p className="text-sm text-green-600 mt-1">$5/month, billed annually</p>
-                        )}
                         <div className="mt-2 inline-flex items-center">
                             <span className="text-sm font-medium text-green-600">✓ 14-day free trial</span>
                         </div>
-                    </div>
-                    <div className="mt-8 -mx-8">
-                        <div className="px-8 py-2 border-t border-gray-200"></div>
-                        <div className="px-8 py-4 flex justify-center">
-                            {hasTenantId && !hasSubscription ?
-                                <form className="w-full" action="/api/create-checkout-session" method="POST" >
-                                    <input type="hidden" name="product_id" value={pricingPlans.team[billingCycle].productId} />
-                                    <input type="hidden" name="billing_cycle" value={billingCycle} />
-                                    <button
-                                        id="checkout-and-portal-button"
-                                        type="submit"
-                                        className="w-full py-3 px-5 bg-gradient-to-r from-[#4A154B] via-[#5F1B61] to-[#4A154B] text-white font-bold rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A154B] focus:ring-opacity-50 shadow-md relative overflow-hidden group"
-                                    >
-                                        <span className="relative z-10 flex items-center justify-center">
-                                            Start Reserving
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                            </svg>
-                                        </span>
-                                        <span className="absolute inset-0 bg-gradient-to-r from-[#611f64] via-[#7a2a7d] to-[#611f64] bg-[length:200%_100%] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                                    </button>
-                                </form>
-                                :
-                                hasTenantId ?
-                                    <button
-                                        className="w-full py-3 px-5 bg-gradient-to-r from-[#4A154B] via-[#5F1B61] to-[#4A154B] text-white font-bold rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A154B] focus:ring-opacity-50 shadow-md relative overflow-hidden group"
-                                    >
-                                        <span className="relative z-10 flex items-center justify-center">
-                                            Upgrade Plan
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                            </svg>
-                                        </span>
-                                        <span className="absolute inset-0 bg-gradient-to-r from-[#611f64] via-[#7a2a7d] to-[#611f64] bg-[length:200%_100%] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                                    </button>
+                        <div className="mt-8 -mx-8">
+                            <div className="px-8 py-2 border-t border-gray-200"></div>
+                            <div className="px-8 py-4 flex justify-center">
+                                {hasTenantId && !hasSubscription ?
+                                    <form className='w-full' action="/api/create-checkout-session" method="POST">
+                                        <input type="hidden" name="product_id" value={pricingPlans.company[billingCycle].productId} />
+                                        <input type="hidden" name="billing_cycle" value={billingCycle} />
+                                        <button
+                                            id="checkout-and-portal-button"
+                                            type="submit"
+                                            className="w-full py-3 px-5 bg-gradient-to-r from-[#4A154B] via-[#5F1B61] to-[#4A154B] text-white font-bold rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A154B] focus:ring-opacity-50 shadow-md relative overflow-hidden group"
+                                        >
+                                            <span className="relative z-10 flex items-center justify-center">
+                                                Start Reserving
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </span>
+                                            <span className="absolute inset-0 bg-gradient-to-r from-[#611f64] via-[#7a2a7d] to-[#611f64] bg-[length:200%_100%] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                                        </button>
+                                    </form>
                                     :
-                                    <SlackButton />
-                            }
+                                    hasTenantId ?
+                                        <button
+                                            className="w-full py-3 px-5 bg-gradient-to-r from-[#4A154B] via-[#5F1B61] to-[#4A154B] text-white font-bold rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A154B] focus:ring-opacity-50 shadow-md relative overflow-hidden group"
+                                        >
+                                            <span className="relative z-10 flex items-center justify-center">
+                                                Upgrade Plan
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </span>
+                                            <span className="absolute inset-0 bg-gradient-to-r from-[#611f64] via-[#7a2a7d] to-[#611f64] bg-[length:200%_100%] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                                        </button>
+                                        :
+                                        <SlackButton />
+                                }
+                            </div>
+                            <div className="px-8 py-2 border-b border-gray-200"></div>
                         </div>
-                        <div className="px-8 py-2 border-b border-gray-200"></div>
                     </div>
                     <div className="mt-6 space-y-4 flex-grow text-gray-800">
-                        <div className="flex items-center">
+                        <div className="flex items-center group relative">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 50 reservations per month</p>
+                            <p>Up to 1000 reservations per month!<span className="text-blue-600 cursor-help">*</span></p>
+
+                            <div className="absolute left-16 bottom-full pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-800 text-white text-xs rounded py-1 px-2 w-64 pointer-events-none">
+                                Need more reservations?
+                                <span
+                                    className="font-medium text-blue-300 cursor-pointer ml-1 pointer-events-auto"
+                                    onClick={() => router.push("/contact?flavor=needMoreReservations&inputHighlight=message")}
+                                >
+                                    Contact us for custom enterprise solutions
+                                </span>
+                            </div>
                         </div>
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 5 resource groups</p>
+                            <p>Up to 100 resource groups</p>
                         </div>
                         <div className="flex items-center">
                             <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 20 resources (total)</p>
-                        </div>
-                        <div className="flex items-center">
-                            <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Email notifications</p>
+                            <p>Unlimited resources</p>
                         </div>
                     </div>
                 </div>
 
-
-
-
             </div>
-        </div>
-    </main>
-);
+            <div className="mt-16 text-center">
+                <button
+                    className="inline-flex items-center px-6 py-3 bg-white border-2 border-[#4A154B] text-[#4A154B] font-medium rounded-md shadow-sm hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4A154B]"
+                    onClick={() => router.push("/contact?flavor=planRequest&inputHighlight=message")}
+                >
+                    <span>Did not find a plan suitable for you? Let me know!</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 ml-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                </button>
+            </div>
+        </>
+    );
 }
 
 export default PricingPlans
