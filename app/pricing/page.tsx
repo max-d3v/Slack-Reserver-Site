@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import Script from "next/script";
 import PricingPlans from "@/components/ui/pricingPlans";
-import { getPlans } from "@/lib/stripe/stripe";
+import { getPlanFeatures, getPlans } from "@/lib/stripe/stripeServices";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
     title: 'Pricing - Simple Plans for Teams of All Sizes',
@@ -44,68 +45,6 @@ export const metadata: Metadata = {
         },
     },
 };
-
-
-export type PricingPlansType = {
-    [key: string]: {
-        monthly: {
-            price: number;
-            productId: string;
-        };
-        annual: {
-            price: number;
-            productId: string;
-        };
-    };
-}
-
-const getPricingPlans = async (): Promise<PricingPlansType> => {
-    //Manual for now
-    let pricingPlans: any = {}
-    return pricingPlans = {
-        team: {
-            monthly: {
-                price: 6,
-                productId: "prod_S4P7FrJrgZvJwG"
-            },
-            annual: {
-                price: 40, // $5/month when paid annually (2 months free)
-                productId: "prod_annual_team"
-            },
-        },
-        company: {
-            monthly: {
-                price: 12,
-                productId: "prod_S4iuAaDkOrW6jx"
-            },
-            annual: {
-                price: 80, // $10/month when paid annually (2 months free)
-                productId: "prod_annual_company"
-            },
-        },
-        enterprise: {
-            monthly: {
-                price: 20,
-                productId: "prod_enterprise_monthly"
-            },
-            annual: {
-                price: 200, // $20/month when paid annually (2 months free)
-                productId: "prod_enterprise_annual"
-            },
-        },
-        free: {
-            monthly: {
-                price: 0,
-                productId: "123"
-            },
-            annual: {
-                price: 0, // 
-                productId: "123"
-            },
-        }
-    };
-}
-
 
 
 const Page = async () => {
@@ -278,9 +217,9 @@ const Page = async () => {
         }
     };
 
+    const stripePricingPlans = await getPlanFeatures(await getPlans());
 
-    //const pricingPlans = await getPricingPlans();
-    const stripePricingPlans = getPlans();
+    
 
 
     return (
@@ -301,8 +240,7 @@ const Page = async () => {
                 }}>
                 <div className='container mt-12 mx-auto px-4 py-16'>
 
-                    <PricingPlans pricingPlans={stripePricingPlans} ></PricingPlans>
-
+                    <Suspense><PricingPlans pricingPlans={stripePricingPlans} ></PricingPlans></Suspense>
                 </div>
             </main>
         </>

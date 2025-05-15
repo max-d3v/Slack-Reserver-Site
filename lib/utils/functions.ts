@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx"
+import Stripe from "stripe";
 import { twMerge } from "tailwind-merge"
 
 export function capitalizeFirstLetter(val: string) {
@@ -25,4 +26,12 @@ export function capitalizedFirstName(name: string | undefined | null) {
     return name;
   }
   return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+export function isStripeProduct(product: any): product is Stripe.Product {
+  return product &&
+    typeof product === 'object' &&
+    'id' in product &&
+    'name' in product &&
+    typeof product.name === 'string';
 }

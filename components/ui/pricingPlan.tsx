@@ -1,4 +1,4 @@
-import { isStripeProduct } from '@/lib/stripe/stripe';
+import { isStripeProduct } from '@/lib/utils/functions';
 import React from 'react'
 import Stripe from 'stripe'
 import { SlackButton } from './slackButton';
@@ -20,7 +20,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
         <h2 className="text-xl font-semibold text-gray-800">{product.name}</h2>
         <p className="mt-2 text-gray-600">{product.description}</p>
         <h1 className="text-3xl font-bold mt-4 text-gray-800">
-          ${price.unit_amount_decimal}
+          ${Number(price.unit_amount_decimal) / 100}
           <span className="text-gray-500 text-lg font-normal">
             {`/${price.recurring?.interval}`}
           </span>
