@@ -1,6 +1,10 @@
 
 
 export const CONSTANTS = {
+    PRICING: {
+        HIGHLIGHTED_PLAN: "company",
+        FIXED_PLAN: "free"
+    },
     UI: {
         NAVBAR_ROUTES: [
             { name: "Roadmap", path: "/roadmap" },

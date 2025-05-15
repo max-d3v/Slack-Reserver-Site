@@ -59,10 +59,7 @@ export const authOptions = {
                   plans: {
                     select: {
                       id: true,
-                      name: true,
-                      description: true,
-                      price: true,
-                      billing_interval: true,
+                      stripe_product_id: true,
                       features: true
                     },
                   },

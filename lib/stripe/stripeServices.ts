@@ -1,18 +1,17 @@
 'use server'
+
 import Stripe from "stripe";
 import stripe from "./stripe"
 import prisma from "../db/db";
 import { isStripeProduct } from "../utils/functions";
-import { activeAnimations } from "framer-motion";
+import { PriceWithFeatures } from "@/app/pricing/page";
 
 export const getPlans = async () => {
     const plans = await stripe.prices.list({
         active: true,
         expand: ['data.product'],
     });
-
     const { data } = plans;
-
     return data
 }
 
@@ -21,13 +20,11 @@ export const getProducts = async () => {
         active: true,
         expand: ['data.default_price'],
     });
-
     const { data } = products;
-    //    console.log(data);
     return data;
 }
 
-export async function getPlanFeatures(plans: Stripe.Price[]) {
+export async function getPlanFeatures(plans: Stripe.Price[]): Promise<PriceWithFeatures[]> {
     const dbPlans = await prisma.plans.findMany();
 
     return plans.map(plan => {
@@ -36,14 +33,13 @@ export async function getPlanFeatures(plans: Stripe.Price[]) {
             console.error("Invalid Stripe product:", plan.product);
             return {
                 ...plan,
-                features: {}
-            };
+                features: null
+            } as PriceWithFeatures;
         }
         const dbPlan = dbPlans.find(dbPlan => dbPlan.stripe_product_id === product.id);
         return {
             ...plan,
-            features: dbPlan?.features
-        }
-
+            features: dbPlan?.features || null
+        } as PriceWithFeatures;
     });
 }

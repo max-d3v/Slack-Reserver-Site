@@ -1,15 +1,18 @@
 import PricingPlans from "@/components/ui/pricingPlans";
 import { getPlanFeatures, getPlans } from "@/lib/stripe/stripeServices";
+import { JsonValue } from "@prisma/client/runtime/library";
+import { JsonObject } from "next-auth/adapters";
 import { Suspense } from "react";
+import Stripe from "stripe";
 
-
+export type PriceWithFeatures = Stripe.Price & {
+    features: null | JsonObject;
+} 
 
 const Page = async () => {
     const stripePricingPlans = await getPlanFeatures(await getPlans());
 
     return (
-
-
         <main className="min-h-screen w-full bg-gray-100"
             style={{
                 //Noise implementation!
