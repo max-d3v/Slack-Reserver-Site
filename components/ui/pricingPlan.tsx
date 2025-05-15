@@ -14,6 +14,8 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
     )
   }
 
+  console.log(price);
+
   const core = () => (
     <div className="border border-slate-200 rounded-lg bg-white p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:h-[90%] md:self-center">
       <div>
@@ -22,7 +24,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
         <h1 className="text-3xl font-bold mt-4 text-gray-800">
           ${Number(price.unit_amount_decimal) / 100}
           <span className="text-gray-500 text-lg font-normal">
-            {`/${price.recurring?.interval}`}
+            {` /${price.recurring?.interval}`}
           </span>
         </h1>
         <div className="mt-2 inline-flex items-center">

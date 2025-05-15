@@ -4,111 +4,11 @@ import { VideoDemo } from "@/components/ui/videoDemo";
 import RotatingText from "@/components/ui/RotatingText/RotatingText";
 import { SlackButton } from "@/components/ui/slackButton";
 import Image from 'next/image'
-import { Metadata } from "next";
-import Script from "next/script";
-
-export const metadata: Metadata = {
-  title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
-  description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
-  keywords: 'slack integration, room booking, resource management, meeting scheduler, slack app, workspace management, slack',
-  openGraph: {
-    title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
-    description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
-    url: process.env.SITE_URL,
-    siteName: 'Slack Reserver',
-    images: [
-      {
-        url: '/images/slack-reserver-og.png', // Make sure this image exists in your public folder
-        width: 1200,
-        height: 630,
-        alt: 'Slack Reserver - Workspace Resource Management',
-      }
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  alternates: {
-    canonical: process.env.SITE_URL,
-    languages: {
-      'en': process.env.SITE_URL,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-};
 
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Slack Reserver",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "description": "A Slack integration that allows teams to book meeting rooms, equipment, and other shared resources directly within Slack.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "500",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/OnlineOnly"
-    },
-    "featureList": "Room booking, Resource management, Automated notifications, Custom resource groups",
-    "screenshot": `${process.env.SITE_URL}/images/prints_reserver/Modal_reservation.png`,
-    "softwareHelp": {
-      "@type": "WebContent",
-      "url": `${process.env.SITE_URL}/support`
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Sarah T."
-        },
-        "reviewBody": "After implementing Slack Reserver, we reduced meeting setup time by 30%. No more double-bookings or confusion about room availability."
-      },
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "David K."
-        },
-        "reviewBody": "After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."
-      }
-    ]
-  };
-
-
   return (
     <main className="min-h-[95hv] w-full">
-      <Script
-        id="slack-reserver-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
