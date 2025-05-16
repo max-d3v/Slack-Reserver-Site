@@ -67,16 +67,11 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
 
     // Calculate reservation utilization percentage based on plan
     const totalReservations = reservations.length;
+
     // Assume plan limits from pricing page - this should be dynamically determined
     // from the tenant's subscription in a real implementation
     const planLimit = 250; // Default to pro plan limit
     const utilizationPercentage = Math.round((totalReservations / planLimit) * 100);
-
-    // Count participants
-    const participantCount = reservations.reduce((count, res) => {
-        // Each reservation has at least one participant (the organizer)
-        return count + 1;
-    }, 0);
 
     return (
         <div className="space-y-6">

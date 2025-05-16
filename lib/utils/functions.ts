@@ -35,3 +35,7 @@ export function isStripeProduct(product: any): product is Stripe.Product {
     'name' in product &&
     typeof product.name === 'string';
 }
+
+export function includesInsensitive(str: string, search: string): boolean {
+  return str.toLowerCase().includes(search.toLowerCase());
+}

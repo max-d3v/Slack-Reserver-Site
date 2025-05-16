@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Stripe from 'stripe';
 import PricingPlan from './pricingPlan';
 import { PriceWithFeatures } from '@/app/pricing/page';
-import { isStripeProduct } from '@/lib/utils/functions';
+import { includesInsensitive, isStripeProduct } from '@/lib/utils/functions';
 import { CONSTANTS } from '@/lib/constants';
 
 const PricingPlans = ({ pricingPlans }: { pricingPlans: PriceWithFeatures[] }) => {
@@ -24,12 +24,12 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: PriceWithFeatures[] }) =
 
     const filterPlans = ({ recurring_interval }: { recurring_interval: string }) => {
         const filtered = pricingPlans.filter((plan) => {
-            return ((plan.recurring?.interval === recurring_interval && isStripeProduct(plan.product) && plan.product.active === true) || (isStripeProduct(plan.product) && plan.product.name.toUpperCase().includes(CONSTANTS.PRICING.FIXED_PLAN.toUpperCase())));
+            return ((plan.recurring?.interval === recurring_interval && isStripeProduct(plan.product) && plan.product.active === true) || (isStripeProduct(plan.product) && includesInsensitive(plan.product.name, CONSTANTS.PRICING.FIXED_PLAN)));
         });
 
         //Order highlighted plans in the middle
-        const highlightedPlans = filtered.filter((plan) => (plan.product as Stripe.Product).name.toUpperCase().includes(CONSTANTS.PRICING.HIGHLIGHTED_PLAN.toUpperCase()));
-        const otherPlans = filtered.filter((plan) => !(plan.product as Stripe.Product).name.toUpperCase().includes(CONSTANTS.PRICING.HIGHLIGHTED_PLAN.toUpperCase()));
+        const highlightedPlans = filtered.filter((plan) => includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
+        const otherPlans = filtered.filter((plan) => !includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
         return [...otherPlans.slice(0, 1), ...highlightedPlans, ...otherPlans.slice(1)];
     }
 
@@ -54,7 +54,7 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: PriceWithFeatures[] }) =
 
                 {/* Pricing plans */}
                 {chosenPlans.map((price) => {
-                    return <PricingPlan price={price} highlight={(price.product as Stripe.Product).name.toUpperCase().includes(CONSTANTS.PRICING.HIGHLIGHTED_PLAN.toUpperCase())} hasTenantId={hasTenantId} hasSubscription={hasSubscription} />
+                    return <PricingPlan price={price} highlight={includesInsensitive((price.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN)} hasTenantId={hasTenantId} hasSubscription={hasSubscription} />
                 })}
 
 

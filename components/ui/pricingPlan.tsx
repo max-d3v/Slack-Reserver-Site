@@ -1,12 +1,33 @@
-import { isStripeProduct } from '@/lib/utils/functions';
+import { includesInsensitive, isStripeProduct } from '@/lib/utils/functions';
 import { SlackButton } from './slackButton';
 import { CalendarCheck } from 'lucide-react';
 import { PriceWithFeatures } from '@/app/pricing/page';
 import React from 'react'
+import { CONSTANTS } from '@/lib/constants';
+import { useRouter } from 'next/navigation';
 
+/*
+
+<div className="flex items-center group relative">
+                            <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
+                            <p>Up to 1000 reservations per month!<span className="text-blue-600 cursor-help">*</span></p>
+
+                            <div className="absolute left-16 bottom-full pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-800 text-white text-xs rounded py-1 px-2 w-64 pointer-events-none">
+                                Need more reservations?
+                                <span
+                                    className="font-medium text-blue-300 cursor-pointer ml-1 pointer-events-auto"
+                                    onClick={() => router.push("/contact?flavor=needMoreReservations&inputHighlight=message")}
+                                >
+                                    Contact us for custom enterprise solutions
+                                </span>
+                            </div>
+                        </div>
+*/
 
 const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price: PriceWithFeatures, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean }) => {
   const { product, features } = price;
+
+  const router = useRouter();
 
   if (!isStripeProduct(product)) {
     return (
@@ -36,12 +57,32 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
   }
 
   const Feature = ({ name, value }: { name: string, value: string | number }) => {
-    return (
-      <div className="flex items-center  ">
-        <CalendarCheck className="h-5 w-5 min-w-5 text-green-500 mr-2" />
-        <p className="break-words text-md">{featureString(name, value)}</p>
-      </div>
-    )
+    if (includesInsensitive(CONSTANTS.PRICING.WANT_MORE_PLAN, product.name) && includesInsensitive(name, "reservations")) {
+      console.log("ENTRO AQUIIIIIIIIIIIIIIII");
+      return (
+        <div className="flex items-center group relative">
+          <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
+          <p>{featureString(name, value)}<span className="text-blue-600 cursor-help">*</span></p>
+
+          <div className="absolute left-16 bottom-full pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-800 text-white text-xs rounded py-1 px-2 w-64">
+            Need more reservations?
+            <span
+              className="font-medium text-blue-300 cursor-pointer ml-1 pointer-events-auto"
+              onClick={() => router.push("/contact?flavor=needMoreReservations&inputHighlight=message")}
+            >
+              Contact us for custom enterprise solutions
+            </span>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="flex items-center  ">
+          <CalendarCheck className="h-5 w-5 min-w-5 text-green-500 mr-2" />
+          <p className="break-words text-md">{featureString(name, value)}</p>
+        </div>
+      )
+    }
   }
 
   const core = () => (

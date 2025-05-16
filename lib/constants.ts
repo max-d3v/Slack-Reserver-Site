@@ -3,7 +3,8 @@
 export const CONSTANTS = {
     PRICING: {
         HIGHLIGHTED_PLAN: "company",
-        FIXED_PLAN: "free"
+        FIXED_PLAN: "free",
+        WANT_MORE_PLAN: "enterprise"
     },
     UI: {
         NAVBAR_ROUTES: [
