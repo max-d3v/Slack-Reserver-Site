@@ -1,10 +1,9 @@
 import { isStripeProduct } from '@/lib/utils/functions';
-import React from 'react'
-import Stripe from 'stripe'
 import { SlackButton } from './slackButton';
 import { CalendarCheck } from 'lucide-react';
 import { PriceWithFeatures } from '@/app/pricing/page';
-import { JsonObject } from 'next-auth/adapters';
+import React from 'react'
+
 
 const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price: PriceWithFeatures, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean }) => {
   const { product, features } = price;

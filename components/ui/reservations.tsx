@@ -34,14 +34,11 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-    console.log(reservations);
 
     //Get valid reservation based on active resources and groups.
     const validReservations = reservations.filter(r => {
         return (r.resources.active && r.resources.resource_groups.active)
     });
-
-    console.log("valid ones: ", validReservations);
 
     // Calculate upcoming reservations (start date is in the future)
     const upcomingReservations = validReservations.filter(r =>

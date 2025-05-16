@@ -21,17 +21,18 @@ import prisma from "@/lib/db/db";
 
 const Page = async () => {
   const { user } = await auth();
-  const activeSubscription = user.tenant.tenant_subscriptions[0]; // Assuming the first subscription is the active one
-  const subscriptionPlan = activeSubscription?.plans;
-
+  const activeSubscription = user.tenant.tenant_subscriptions?.[0];
+  const plan = activeSubscription?.plans;
+  
   const subscription = {
-    plan: subscriptionPlan?.name || "No active plan",
-    description: subscriptionPlan?.description || "No description available",
-    price: `$${subscriptionPlan?.price}/${subscriptionPlan?.billing_interval}`,
-    billingCycle: subscriptionPlan?.billing_interval === "monthly" ? "Monthly" : "Yearly",
-    nextBillingDate: "Coming soon", // You may need to fetch this from another API call
-    features: subscriptionPlan?.features ? subscriptionPlan.features : {},
-    status: activeSubscription?.status || "Inactive"
+    plan: plan?.name ?? "No active plan",
+    description: plan?.description ?? "No description available",
+    price: plan && plan.price ? `$${plan.price}/${plan.billing_interval}` : "—",
+    billingCycle: plan?.billing_interval === "monthly" ? "Monthly" : "Yearly",
+    nextBillingDate: plan ? "Coming soon" : "—",
+    features: plan?.features ?? {},
+    status: activeSubscription?.status ?? "Inactive",
+    isActive: activeSubscription?.status === "active"
   };
 
 

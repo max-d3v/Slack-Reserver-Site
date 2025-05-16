@@ -43,3 +43,17 @@ export async function getPlanFeatures(plans: Stripe.Price[]): Promise<PriceWithF
         } as PriceWithFeatures;
     });
 }
+
+export async function getSubscription(stripe_customer_id: string) {
+    const subscriptions = await stripe.subscriptions.list({
+        customer: stripe_customer_id,
+        status: 'active',
+    });
+
+    if (subscriptions.data.length === 0) {
+        return null;
+    }
+
+    const subscription = subscriptions.data[0];
+    return subscription;
+}

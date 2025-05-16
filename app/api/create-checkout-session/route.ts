@@ -46,7 +46,6 @@ export async function POST(request: Request) {
       line_items: [
         {
           price: price.id,
-          // For metered billing, do not pass quantity
           quantity: 1,
         },
       ],
@@ -56,7 +55,6 @@ export async function POST(request: Request) {
       metadata: {
         user_id: authSession.user.id,
       }
-
     });
 
     console.log("stripe session: ", session);

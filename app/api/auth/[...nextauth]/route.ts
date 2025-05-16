@@ -73,7 +73,7 @@ export const authOptions = {
           },
         },
       });
-    
+
       if (!dbUser) {
         throw new Error("User not found");
       }
