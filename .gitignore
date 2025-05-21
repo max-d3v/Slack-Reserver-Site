@@ -2,6 +2,7 @@
 *.txt
 drafts.txt
 logs/
+*.log
 
 # dependencies
 /node_modules
