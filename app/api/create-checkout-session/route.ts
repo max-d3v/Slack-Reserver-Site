@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const session = await stripe.checkout.sessions.create({
       billing_address_collection: 'auto',
       line_items: [
-        {
+        { 
           price: price.id,
           quantity: 1,
         },
@@ -54,8 +54,8 @@ export async function POST(request: Request) {
       cancel_url: `${YOUR_DOMAIN}/pricing?canceled=true`,
       metadata: {
         user_id: authSession.user.id,
-      }
-    });
+      },
+      });
 
     console.log("stripe session: ", session);
 

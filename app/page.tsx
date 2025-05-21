@@ -64,7 +64,7 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Real Time-Saver</h3>
-                  <p className="text-sm text-gray-500 mb-1">Sarah T. - Office Manager at Brightline</p>
+                  <p className="text-sm text-gray-500 mb-1">Sarah T. - Office Manager</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After implementing Slack Reserver, we reduced meeting setup time by 30%. No more double-bookings or confusion about room availability."</p>
                 </div>
@@ -76,7 +76,7 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Perfect Integration</h3>
-                  <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager at Cortex</p>
+                  <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"We've been using it daily for 3 months now. The Slack commands are intuitive and the whole team adopted it without any training."</p>
                 </div>
@@ -88,7 +88,7 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Game Changer</h3>
-                  <p className="text-sm text-gray-500 mb-1">David K. - CTO at Nimbus</p>
+                  <p className="text-sm text-gray-500 mb-1">David K. - CTO</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."</p>
                 </div>
@@ -104,7 +104,7 @@ export default function Home() {
                 {/* Duplicate the first set exactly for smooth infinite scrolling */}
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Real Time-Saver</h3>
-                  <p className="text-sm text-gray-500 mb-1">Sarah T. - Office Manager at Brightline</p>
+                  <p className="text-sm text-gray-500 mb-1">Sarah T. - Office Manager</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After implementing Slack Reserver, we reduced meeting setup time by 30%. No more double-bookings or confusion about room availability."</p>
                 </div>
@@ -116,7 +116,7 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Smooth Integration</h3>
-                  <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager at Cortex</p>
+                  <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"We've been using it daily for 3 months now. The Slack commands are intuitive and the whole team adopted it without any training."</p>
                 </div>
@@ -128,7 +128,7 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Game Changer</h3>
-                  <p className="text-sm text-gray-500 mb-1">David K. - CTO at Nimbus</p>
+                  <p className="text-sm text-gray-500 mb-1">David K. - CTO</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."</p>
                 </div>
@@ -251,7 +251,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-6 text-gray-700">
             <h2 className="text-3xl md:text-4xl font-bold">Ready to start reserving</h2>
             <RotatingText
-              texts={['Rooms', 'Offices', 'Equipment', 'Everything!']}
+              texts={['Meeting Rooms', 'Auditoriums', 'Equipment', 'Everything!']}
               mainClassName="px-2 sm:px-2 md:px-3 bg-[#4A154B] text-white overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-lg text-3xl md:text-4xl font-bold"
               staggerFrom={"last"}
               initial={{ y: "100%" }}
@@ -265,7 +265,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold">?</h2>
           </div>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Join hundreds of teams who have eliminated booking confusion with our Slack integration.</p>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Join hundreds of teams who are unleashing their creativity to customize and maximize the potential of this Slack app for their unique workflows.</p>
           <SlackButton className="mb-12" />
         </div>
       </section>

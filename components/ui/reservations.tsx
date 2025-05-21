@@ -27,8 +27,8 @@ const getReservations = async (tenantId: string) => {
     return data;
 }
 
-export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
-    const reservations = await getReservations(tenantId);
+export const ReservationStats = async ({ tenantId }: { tenantId: string | undefined }) => {
+    const reservations = tenantId ? await getReservations(tenantId) : [];
 
     // Get current date for comparisons
     const now = new Date();
@@ -99,7 +99,7 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string }) => {
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                     <div className="bg-white p-4 rounded-lg border shadow-sm">
                         <div className="flex items-center justify-between">
-                            <h3 className="text-sm font-medium text-gray-500">Finished/Deleted</h3>
+                            <h3 className="text-sm font-medium text-gray-500">Finished/Cancelled</h3>
                             <Clock className="h-5 w-5 text-green-500" />
                         </div>
                         <p className="text-2xl font-bold mt-2">{finishedReservationsCount}</p>

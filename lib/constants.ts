@@ -1,5 +1,3 @@
-
-
 export const CONSTANTS = {
     PRICING: {
         HIGHLIGHTED_PLAN: "company",

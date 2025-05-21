@@ -21,7 +21,7 @@ import prisma from "@/lib/db/db";
 
 const Page = async () => {
   const { user } = await auth();
-  const activeSubscription = user.tenant.tenant_subscriptions?.[0];
+  const activeSubscription = user.tenant?.tenant_subscriptions?.[0];
   const plan = activeSubscription?.plans;
   
   const subscription = {
@@ -75,7 +75,7 @@ const Page = async () => {
             </CardTitle>
             <CardDescription>Information about your reservations</CardDescription>
             <Suspense fallback={<LoadingStats />}>
-              <ReservationStats tenantId={user.tenant.id} />
+              <ReservationStats tenantId={user.tenant?.id} />
             </Suspense>
           </CardHeader>
         </Card>

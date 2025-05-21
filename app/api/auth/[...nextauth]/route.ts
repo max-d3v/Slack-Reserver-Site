@@ -84,8 +84,6 @@ export const authOptions = {
         email: session.user.email,
         image: session.user.image || "",
       };
-      
-      
     
       return session;
     },

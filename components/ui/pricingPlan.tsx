@@ -40,7 +40,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
   const featureString = (name: string, value: string | number) => {
     let string = "";
     switch (name) {
-      case "resource-groups":
+      case "resource_groups":
         string = `Up to ${value} resource groups`;
         break;
       case "resources":

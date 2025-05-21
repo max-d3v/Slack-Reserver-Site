@@ -64,7 +64,7 @@ const jsonLd = {
     "priceCurrency": "USD",
     "availability": "https://schema.org/OnlineOnly"
   },
-  "featureList": "Room booking, Resource management, Automated notifications, Custom resource groups",
+  "featureList": "Room booking, Resource management, Automated notifications, Custom resource groups, Custom resources",
   "screenshot": `${process.env.SITE_URL}/images/prints_reserver/Modal_reservation.png`,
   "softwareHelp": {
     "@type": "WebContent",
