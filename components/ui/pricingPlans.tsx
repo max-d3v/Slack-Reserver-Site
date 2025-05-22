@@ -10,12 +10,12 @@ import { PriceWithFeatures } from '@/app/pricing/page';
 import { includesInsensitive, isStripeProduct } from '@/lib/utils/functions';
 import { CONSTANTS } from '@/lib/constants';
 
-const PricingPlans = ({ pricingPlans }: { pricingPlans: PriceWithFeatures[] }) => {
+const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
     const { data: session } = useSession();
     const hasTenantId = (session?.user as any)?.tenant_id;
-    const hasSubscription = (session?.user as any)?.tenant?.tenant_subscriptions?.length > 0;
+    const hasSubscription = (session?.user as any)?.subscription ?? false;
 
-    const [chosenPlans, setChosenPlans] = useState<PriceWithFeatures[]>([]);
+    const [chosenPlans, setChosenPlans] = useState<Stripe.Price[]>([]);
     const [billingCycle, setBillingCycle] = useState<'month' | 'year'>('month');
 
     const handleBillingChange = () => {

@@ -39,3 +39,24 @@ export function isStripeProduct(product: any): product is Stripe.Product {
 export function includesInsensitive(str: string, search: string): boolean {
   return str.toLowerCase().includes(search.toLowerCase());
 }
+
+
+export type ValidPlanFeatures = {
+  reservations: number;
+  resources: number;
+  resource_groups: number;
+}
+
+export function validPlanFeatures(features: unknown): features is ValidPlanFeatures {
+  if (typeof features !== 'object' || features === null) {
+    return false;
+  }
+
+  const { reservations, resources, resource_groups } = features as Record<string, unknown>;
+
+  return (
+    typeof reservations === 'number' &&
+    typeof resources === 'number' &&
+    typeof resource_groups === 'number'
+  );
+}

@@ -1,0 +1,95 @@
+import { NextResponse } from 'next/server';
+import { auth } from '@/app/auth';
+import stripe from '@/lib/stripe/stripe';
+import prisma from '@/lib/db/db';
+import logger from '@/lib/utils/logger';
+
+export async function POST(request: Request) {
+  try {
+    const formData = await request.formData();
+    const newProductId = formData.get('product_id') as string | null;
+
+    if (!newProductId) {
+      return NextResponse.json(
+        { error: 'product_id is required' },
+        { status: 400 }
+      );
+    }
+
+    const authSession = await auth();
+    if (!authSession?.user) {
+      return NextResponse.json(
+        { error: 'User must be authenticated' },
+        { status: 401 }
+      );
+    }
+
+    const user = authSession.user as any;
+    if (!user.stripe_customer_id) {
+      return NextResponse.json(
+        { error: 'No Stripe customer found for this user' },
+        { status: 404 }
+      );
+    }
+
+    const currentSubscription = await prisma.tenant_subscriptions.findFirst({
+      where: { tenant_id: user.tenant_id },
+      orderBy: { created_at: 'desc' },
+    });
+
+    console.log("currentSubscription: ", currentSubscription?.id);
+
+    if (!currentSubscription || !currentSubscription.stripe_subscription_id) {
+      return NextResponse.json(
+        { error: 'No current subscription found' },
+        { status: 404 }
+      );
+    }
+
+    // Get the subscription details from Stripe
+    const stripeSubscription = await stripe.subscriptions.retrieve(
+      currentSubscription.stripe_subscription_id
+    );
+
+    const prices = await stripe.prices.list({
+      product: newProductId,
+      active: true,
+    });
+
+    if (!prices.data.length) {
+      return NextResponse.json(
+        { error: 'No active prices found for this product' },
+        { status: 404 }
+      );
+    }
+
+    const newPrice = prices.data[0];
+
+    // Get the current subscription item ID
+    const subscriptionItemId = stripeSubscription.items.data[0].id;
+
+    // Update the subscription directly
+    const updatedSubscription = await stripe.subscriptions.update(
+      currentSubscription.stripe_subscription_id,
+      {
+        items: [{
+          id: subscriptionItemId,
+          price: newPrice.id,
+        }],
+        proration_behavior: 'create_prorations', // This makes billing automatic when coming from a free tier to a paid one, and when 
+        //going from paid to paid, 
+        payment_behavior: 'pending_if_incomplete',
+      }
+    );
+
+    logger.info('stripe', "Client updated subscription!", updatedSubscription.id);
+
+    // Redirect to success page
+    return NextResponse.redirect(`${process.env.SITE_URL}/?success=true&upgraded=true`, { status: 303 });
+  } catch (error: any) {
+    logger.error('stripe', `Subscription upgrade error: ${error.message}`);
+    return NextResponse.redirect(
+      new URL(`/pricing?error=${encodeURIComponent(error.message)}`, request.url)
+    );
+  }
+}

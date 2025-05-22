@@ -15,24 +15,38 @@ import * as utils from "@/lib/utils/functions";
 import { ReservationStats } from '@/components/ui/reservations'
 import { LoadingStats } from '@/components/ui/loadingReservations'
 import prisma from "@/lib/db/db";
-
-
+import Stripe from 'stripe'
+import { inspect } from 'util'
+import { CONSTANTS } from '@/lib/constants'
+import stripeServices from '@/lib/stripe/stripeServices'
+import subscriptionService from '@/lib/stripe/subscriptions'
 
 
 const Page = async () => {
   const { user } = await auth();
-  const activeSubscription = user.tenant?.tenant_subscriptions?.[0];
-  const plan = activeSubscription?.plans;
-  
+  const stripeSubscription = user.subscription;
+  const status = user.subscription_status;
+  const product = stripeSubscription?.price.product as Stripe.Product | null;
+  const price = stripeSubscription?.price as Stripe.Price | null;
+  //console.log("Subscription no profile: ", stripeSubscription);
+  //const plan = stripeSubscription?.plan as Stripe.Plan | null;
+
+ (await subscriptionService.retrieveSubscription(undefined, user.stripe_customer_id))
+
+
   const subscription = {
-    plan: plan?.name ?? "No active plan",
-    description: plan?.description ?? "No description available",
-    price: plan && plan.price ? `$${plan.price}/${plan.billing_interval}` : "—",
-    billingCycle: plan?.billing_interval === "monthly" ? "Monthly" : "Yearly",
-    nextBillingDate: plan ? "Coming soon" : "—",
-    features: plan?.features ?? {},
-    status: activeSubscription?.status ?? "Inactive",
-    isActive: activeSubscription?.status === "active"
+    plan: product?.name ?? "No active plan",
+    description: stripeSubscription?.description ?? "No description available",
+    price: price && price?.unit_amount
+      ? new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(price.unit_amount / 100)
+      : "—", billingCycle: price?.recurring?.interval === "month" ? "Monthly" : "Yearly",
+    nextBillingDate: "Coming soon",
+    features: product?.metadata ?? {},
+    status: status,
+    isActive: CONSTANTS.STRIPE.VALID_SUBSCRIPTION_STATUSES.includes(status),
   };
 
 

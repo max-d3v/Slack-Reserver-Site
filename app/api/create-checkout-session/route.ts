@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
-import Stripe from 'stripe';
 import { auth } from '@/app/auth';
 import prisma from '@/lib/db/db';
+import stripe from '@/lib/stripe/stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const YOUR_DOMAIN = process.env.SITE_URL;
 
 export async function POST(request: Request) {

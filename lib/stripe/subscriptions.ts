@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import prisma from "../db/db";
 import stripe from "./stripe";
 import logger from "../utils/logger";
+import { inspect } from "util";
 
 export enum SubscriptionStatus {
   ACTIVE = 'active',
@@ -15,13 +16,13 @@ export class SubscriptionService {
     try {
       const customer = event.data.object as Stripe.Customer;
       logger.info("stripe", "Cliente criado no Stripe", { customerId: customer.id });
-      
+
       const checkoutSession = await this.findCheckoutSessionByStripeId(customer.id, "customer");
       if (!checkoutSession) {
         logger.error('stripe', 'Nenhuma sessão de checkout encontrada para o cliente', { customerId: customer.id });
         return false;
       }
-      
+
       if (!checkoutSession?.users?.id) {
         logger.error('stripe', 'Nenhum usuário encontrado para a sessão de checkout', { sessionId: checkoutSession.id });
         return false;
@@ -31,7 +32,7 @@ export class SubscriptionService {
         where: { id: checkoutSession.users.id },
         data: { stripe_customer_id: customer.id },
       });
-      
+
       logger.info('stripe', `Id do stripe associado á conta do usuário ${checkoutSession.users.id}: ${customer.id}`);
       return true;
     } catch (error: any) {
@@ -60,17 +61,17 @@ export class SubscriptionService {
       if (billing_reason === 'subscription_create') {
         await this.createSubscription(invoice, subscription);
       } else {
-        await this.updateSubscription(invoice, subscription);
+        // No need to update the subscription in my db since it will keep its stripe id so.
       }
 
-      logger.info('stripe', `Pagamento processado com sucesso`, { 
-        invoiceId: invoice.id, 
-        subscriptionId: subscription.id 
+      logger.info('stripe', `Pagamento processado com sucesso`, {
+        invoiceId: invoice.id,
+        subscriptionId: subscription.id
       });
-      
+
       return true;
     } catch (error: any) {
-      logger.error('stripe', 'Erro processando pagamento de fatura', { 
+      logger.error('stripe', 'Erro processando pagamento de fatura', {
         error: error.message,
         stack: error.stack
       });
@@ -78,128 +79,6 @@ export class SubscriptionService {
     }
   }
 
-  async handleSubscriptionUpdated(event: Stripe.Event): Promise<boolean> {
-    try {
-      const subscription = event.data.object as Stripe.Subscription;
-      logger.info('stripe', "Subscription updated", { subscriptionId: subscription.id, status: subscription.status });
-
-      const dbSubscription = await this.findDbSubscription(subscription.id);
-      if (!dbSubscription) {
-        return false;
-      }
-
-      const newStatus = this.mapStripeStatusToDbStatus(subscription.status);
-
-      await prisma.tenant_subscriptions.update({
-        where: { id: dbSubscription.id },
-        data: {
-          status: newStatus,
-          updated_at: new Date()
-        }
-      });
-
-      logger.info('stripe', `Assinatura atualizada do antigo: ${subscription.status}, para o novo status: ${newStatus}`, { 
-        subscriptionId: subscription.id, 
-        tenantId: dbSubscription.tenant_id 
-      });
-      
-      return true;
-    } catch (error: any) {
-      logger.error('stripe', 'Erro ao processar atualização da assinatura', { 
-        error: error.message,
-        stack: error.stack
-      });
-      return false;
-    }
-  }
-
-  async handleInvoicePaymentFailed(event: Stripe.Event): Promise<boolean> {
-    try {
-      const invoice = event.data.object as Stripe.Invoice;
-      logger.info('stripe', "Pagamento de fatura falhou", { invoiceId: invoice.id });
-
-      if (!invoice?.parent?.subscription_details?.subscription) {
-        logger.debug('stripe', 'Fatura sem assinatura associada', { invoiceId: invoice.id });
-        return true;
-      }
-
-      const subscriptionId = invoice?.parent?.subscription_details?.subscription as string;
-      
-      const dbSubscription = await this.findDbSubscription(subscriptionId);
-      if (!dbSubscription) {
-        return false;
-      }
-
-      await prisma.tenant_subscriptions.update({
-        where: { id: dbSubscription.id },
-        data: {
-          status: SubscriptionStatus.PAST_DUE,
-          updated_at: new Date()
-        }
-      });
-
-      logger.info('stripe', `Assinatura marcada como past_due devido à falha no pagamento`, { 
-        subscriptionId, 
-        invoiceId: invoice.id 
-      });
-      
-      return true;
-    } catch (error: any) {
-      logger.error('stripe', 'Erro ao processar falha de pagamento', { 
-        error: error.message,
-        stack: error.stack 
-      });
-      return false;
-    }
-  }
-
-  async handleSubscriptionDeleted(event: Stripe.Event): Promise<boolean> {
-    try {
-      const subscription = event.data.object as Stripe.Subscription;
-      logger.info('stripe', "Assinatura cancelada", { subscriptionId: subscription.id });
-
-      const dbSubscription = await this.findDbSubscription(subscription.id);
-      if (!dbSubscription) {
-        return false;
-      }
-
-      await prisma.tenant_subscriptions.update({
-        where: { id: dbSubscription.id },
-        data: {
-          status: SubscriptionStatus.CANCELED,
-          updated_at: new Date()
-        }
-      });
-
-      logger.info('stripe', `Assinatura marcada como cancelada`, { 
-        subscriptionId: subscription.id, 
-        dbSubscriptionId: dbSubscription.id 
-      });
-      
-      return true;
-    } catch (error: any) {
-      logger.error('stripe', 'Erro ao processar cancelamento da assinatura', { 
-        error: error.message,
-        stack: error.stack 
-      });
-      return false;
-    }
-  }
-
-  private mapStripeStatusToDbStatus(stripeStatus: string): SubscriptionStatus {
-    switch (stripeStatus) {
-      case 'active':
-        return SubscriptionStatus.ACTIVE;
-      case 'past_due':
-        return SubscriptionStatus.PAST_DUE;
-      case 'unpaid':
-        return SubscriptionStatus.INACTIVE;
-      case 'canceled':
-        return SubscriptionStatus.CANCELED;
-      default:
-        return SubscriptionStatus.INACTIVE;
-    }
-  }
 
   private async createSubscription(invoice: Stripe.Invoice, subscription: Stripe.Subscription): Promise<boolean> {
     try {
@@ -218,7 +97,7 @@ export class SubscriptionService {
 
       const { users } = checkOutSession;
       if (!users || !users.id) {
-        logger.error('stripe', 'Nenhum usuário encontrado para o cliente do Stripe', { 
+        logger.error('stripe', 'Nenhum usuário encontrado para o cliente do Stripe', {
           customerId: customer.id,
           customerEmail: typeof customer !== 'string' ? customer.email : undefined
         });
@@ -231,10 +110,10 @@ export class SubscriptionService {
       }
 
       const lineItem = invoice.lines.data[0];
-      
-      logger.debug('stripe', "Processando item da fatura", { 
+
+      logger.debug('stripe', "Processando item da fatura", {
         lineItemId: lineItem.id,
-        lineItemDescription: lineItem.description 
+        lineItemDescription: lineItem.description
       });
 
       const productId = lineItem.pricing?.price_details?.product;
@@ -242,26 +121,11 @@ export class SubscriptionService {
         logger.error('stripe', 'Não foi possível determinar o priceId da fatura', { invoiceId: invoice.id });
         return false;
       }
-      
-      const plan = await prisma.plans.findFirst({
-        where: {
-          OR: [
-            { stripe_product_id: productId }
-          ]
-        }
-      });
-
-      if (!plan) {
-        logger.error('stripe', 'Plano não encontrado para o produto', { productId });
-        return false;
-      }
 
       // Criar a assinatura no banco de dados
       const newSubscription = await prisma.tenant_subscriptions.create({
         data: {
           tenant_id: users.tenant_id,
-          plan_id: plan.id,
-          status: SubscriptionStatus.ACTIVE,
           stripe_subscription_id: subscription.id,
         },
         include: {
@@ -269,15 +133,14 @@ export class SubscriptionService {
         }
       });
 
-      logger.info('stripe', `Assinatura criada para tenant ${users.tenant_id} com plano ${plan.id}`, {
+      logger.info('stripe', `Assinatura criada para tenant ${users.tenant_id} com subscription id ${newSubscription.id}`, {
         subscriptionId: newSubscription.id,
         tenantId: users.tenant_id,
-        planId: plan.id
       });
 
       return true;
     } catch (error: any) {
-      logger.error('stripe', 'Erro ao criar assinatura', { 
+      logger.error('stripe', 'Erro ao criar assinatura', {
         error: error.message,
         stack: error.stack
       });
@@ -285,76 +148,39 @@ export class SubscriptionService {
     }
   }
 
-  private async updateSubscription(invoice: Stripe.Invoice, subscription: Stripe.Subscription): Promise<boolean> {
+  public async retrieveSubscription(subscriptionId?: string | null, customerId?: string | null): Promise<Stripe.Subscription | null> {
     try {
-      logger.info('stripe', "Subscription renewed! Atualizando entry no db...");
-          
-      const dbSubscription = await prisma.tenant_subscriptions.findFirst({
-        where: {
-          stripe_subscription_id: subscription.id
-        },
-        include: {
-          tenants: true
-        }
-      });
-      
-      if (!dbSubscription) {
-        logger.error('stripe', 'Subscription não encontrada no banco de dados', { 
-          subscriptionId: subscription.id,
-          customerId: invoice.customer
+      if (!subscriptionId && !customerId) {
+        throw new Error('Nenhum ID de assinatura ou cliente fornecido');
+      }
+
+      let subscription;
+      if (subscriptionId) {
+        subscription = await stripe.subscriptions.retrieve(subscriptionId, {
+          expand: ['items.data.price.product']
         });
-        return false;
-      }
+      } else if (customerId) {
+        const subscriptions = await stripe.subscriptions.list({
+          customer: customerId,
+          status: "active",
+        });
 
-      await prisma.tenant_subscriptions.update({
-        where: { id: dbSubscription.id },
-        data: {
-          status: SubscriptionStatus.ACTIVE,
-          updated_at: new Date()
+        console.log("Numero de subscriptions: ", subscriptions.data.length);
+
+        if (subscriptions.data.length > 1) {
+
+          subscription = this.getNewestSubscription(subscriptions.data);
+          console.log("Subscription mais nova: ", inspect(subscription, { depth: 5 }));
         }
-      });
-
-      logger.info('stripe', `Assinatura atualizada com sucesso`, { 
-        subscriptionId: subscription.id, 
-        dbSubscriptionId: dbSubscription.id 
-      });
-      
-      return true;
-    } catch (error: any) {
-      logger.error('stripe', 'Erro ao atualizar assinatura', { 
-        error: error.message,
-        stack: error.stack
-      });
-      return false;
-    }
-  }
-
-  private async findDbSubscription(subscriptionId: string) {
-    const dbSubscription = await prisma.tenant_subscriptions.findFirst({
-      where: { stripe_subscription_id: subscriptionId },
-      include: { tenants: true }
-    });
-
-    if (!dbSubscription) {
-      logger.error('stripe', 'Assinatura não encontrada no banco de dados', { subscriptionId });
-      return null;
-    }
-
-    return dbSubscription;
-  }
-
-  private async retrieveSubscription(subscriptionId: string): Promise<Stripe.Subscription | null> {
-    try {
-      const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-      
-      if (!subscription || !subscription.id) {
-        logger.error('stripe', 'Assinatura não encontrada ou inválida no Stripe', { subscriptionId });
-        return null;
       }
-      
+
+      if (!subscription || !subscription.id) {
+        throw new Error('Assinatura não encontrada ou inválida no Stripe');
+      }
+
       return subscription;
     } catch (error: any) {
-      logger.error('stripe', 'Erro ao buscar assinatura no Stripe', { 
+      logger.error('stripe', 'Erro ao buscar assinatura no Stripe', {
         subscriptionId,
         error: error.message
       });
@@ -365,15 +191,15 @@ export class SubscriptionService {
   private async retrieveCustomer(customerId: string): Promise<Stripe.Customer | null> {
     try {
       const customer = await stripe.customers.retrieve(customerId);
-      
+
       if (typeof customer === 'string' || customer.deleted) {
         logger.error('stripe', 'Cliente não encontrado ou excluído', { customerId });
         return null;
       }
-      
+
       return customer;
     } catch (error: any) {
-      logger.error('stripe', 'Erro ao buscar cliente no Stripe', { 
+      logger.error('stripe', 'Erro ao buscar cliente no Stripe', {
         customerId,
         error: error.message
       });
@@ -387,7 +213,7 @@ export class SubscriptionService {
       logger.error('stripe', 'Nenhuma sessão encontrada', { stripeId });
       return null;
     }
-    
+
     return this.findCheckoutSession(session.id);
   }
 
@@ -420,6 +246,25 @@ export class SubscriptionService {
       return user;
     } catch (error: any) {
       logger.error('stripe', 'Erro ao buscar cliente pela sessão de checkout', { error: error.message });
+      return null;
+    }
+  }
+
+  private getNewestSubscription(subscriptions: Stripe.Subscription[]): Stripe.Subscription | null {
+    try {
+      if (!subscriptions || subscriptions.length === 0) {
+        return null;
+      }
+
+      const sortedSubscriptions = subscriptions.sort((a, b) => {
+        const dateA = new Date(a.created);
+        const dateB = new Date(b.created);
+        return dateB.getTime() - dateA.getTime();
+      });
+
+      return sortedSubscriptions[0];
+    } catch (error: any) {
+      logger.error('stripe', 'Erro ao buscar a assinatura mais recente', { error: error.message });
       return null;
     }
   }

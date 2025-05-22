@@ -5,6 +5,7 @@ import { PriceWithFeatures } from '@/app/pricing/page';
 import React from 'react'
 import { CONSTANTS } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
+import Stripe from 'stripe';
 
 /*
 
@@ -24,8 +25,9 @@ import { useRouter } from 'next/navigation';
                         </div>
 */
 
-const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price: PriceWithFeatures, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean }) => {
-  const { product, features } = price;
+const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price: Stripe.Price, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean }) => {
+  const { product } = price;
+  const features = (price.product as Stripe.Product).metadata;
 
   const router = useRouter();
 
@@ -89,7 +91,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
     <div className={` ${highlight ? "" : "border border-slate-300 hover:shadow-md mt-6"} rounded-lg bg-white p-8 shadow-sm transition-shadow flex flex-col  w-full`}>
       <div className="mb-4">
         <h2 className={`${highlight ? "text-2xl" : "text-xl"} font-semibold text-gray-800`}>
-          {product.name}
+          {product.name}  
         </h2>
         <p className="mt-2 text-gray-600 text-sm">{product.description}</p>
         <h1 className={`${highlight ? "text-4xl" : "text-3xl"} font-bold mt-4 text-gray-800`}>
@@ -164,7 +166,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
         <div className="px-8 py-2 border-b border-gray-200"></div>
       </div>
 
-      <div className={`mt-2 flex ${highlight ? "min-h-[28vh]" : "min-h-[24vh]"} flex-col gap-[3vh] text-gray-800 overflow-y-auto`}>
+      <div className={`mt-2 flex ${highlight ? "min-h-[26vh]" : "min-h-[22vh]"} flex-col gap-[3vh] text-gray-800 overflow-y-auto`}>
         {features ? (
           Object.entries(features).map(([key, value], index) => (
             <Feature key={index} name={key} value={value as string | number} />

@@ -7,7 +7,7 @@ declare global {
 // Remova a extensão withAccelerate
 const prisma = global.prisma || 
   new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+    log: ['error'],
   });
 
 if (process.env.NODE_ENV !== 'production') {
