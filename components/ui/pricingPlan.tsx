@@ -1,33 +1,16 @@
 import { includesInsensitive, isStripeProduct } from '@/lib/utils/functions';
 import { SlackButton } from './slackButton';
 import { CalendarCheck } from 'lucide-react';
-import { PriceWithFeatures } from '@/app/pricing/page';
 import React from 'react'
 import { CONSTANTS } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
 import Stripe from 'stripe';
 
-/*
-
-<div className="flex items-center group relative">
-                            <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
-                            <p>Up to 1000 reservations per month!<span className="text-blue-600 cursor-help">*</span></p>
-
-                            <div className="absolute left-16 bottom-full pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-800 text-white text-xs rounded py-1 px-2 w-64 pointer-events-none">
-                                Need more reservations?
-                                <span
-                                    className="font-medium text-blue-300 cursor-pointer ml-1 pointer-events-auto"
-                                    onClick={() => router.push("/contact?flavor=needMoreReservations&inputHighlight=message")}
-                                >
-                                    Contact us for custom enterprise solutions
-                                </span>
-                            </div>
-                        </div>
-*/
-
-const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price: Stripe.Price, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean }) => {
+const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSubscriptionPrice }: { price: Stripe.Price, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean, currentSubscriptionPrice: Stripe.Price }) => {
   const { product } = price;
   const features = (price.product as Stripe.Product).metadata;
+  const currentPlanPrice = currentSubscriptionPrice;
+  const planPrice = price;
 
   const router = useRouter();
 
@@ -39,20 +22,56 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
     )
   }
 
+  const planComparedToCurrent = (currentPrice: Stripe.Price, planPrice: Stripe.Price) => {
+    if (!currentPrice) {
+      return 'Upgrade';
+    }
+  
+    if (currentPrice.product === planPrice.product) {
+      return 'Current';
+    }
+  
+    const currentMonthlyAmount = normalizeToMonthlyPrice(currentPrice);
+    const planMonthlyAmount = normalizeToMonthlyPrice(planPrice);
+  
+    if (currentMonthlyAmount < planMonthlyAmount) {
+      return 'Upgrade';
+    } else if (currentMonthlyAmount > planMonthlyAmount) {
+      return 'Downgrade';
+    } else {
+      return 'Current';
+    }
+  }
+  
+  const normalizeToMonthlyPrice = (price: Stripe.Price): number => {
+    if (!price || !price.unit_amount) return 0;
+    
+    const amount = price.unit_amount;
+    
+    if (price.recurring?.interval === 'year') {
+      return amount / CONSTANTS.PRICING.CORRESPONDENT_YEARLY_MONTHS; 
+    } else if (price.recurring?.interval === 'month') {
+      return amount;
+    } else {
+      return amount;
+    }
+  }
+
   const featureString = (name: string, value: string | number) => {
     let string = "";
+    let valueString = Number(value) > 0 ? value : "Unlimited";
     switch (name) {
       case "resource_groups":
-        string = `Up to ${value} resource groups`;
+        string = `Up to ${valueString} resource groups`;
         break;
       case "resources":
-        string = `Up to ${value} resources`;
+        string = `Up to ${valueString} resources`;
         break;
       case "reservations":
-        string = `Up to ${value} reservations per month`;
+        string = `Up to ${valueString} reservations per month`;
         break;
       default:
-        string = `${name}: ${value}`;
+        string = `${name}: ${valueString}`;
     }
 
     return string
@@ -60,7 +79,6 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
 
   const Feature = ({ name, value }: { name: string, value: string | number }) => {
     if (includesInsensitive(CONSTANTS.PRICING.WANT_MORE_PLAN, product.name) && includesInsensitive(name, "reservations")) {
-      console.log("ENTRO AQUIIIIIIIIIIIIIIII");
       return (
         <div className="flex items-center group relative">
           <CalendarCheck className="h-5 w-5 text-green-500 mr-2" />
@@ -91,7 +109,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
     <div className={` ${highlight ? "" : "border border-slate-300 hover:shadow-md mt-6"} rounded-lg bg-white p-8 shadow-sm transition-shadow flex flex-col  w-full`}>
       <div className="mb-4">
         <h2 className={`${highlight ? "text-2xl" : "text-xl"} font-semibold text-gray-800`}>
-          {product.name}  
+          {product.name}
         </h2>
         <p className="mt-2 text-gray-600 text-sm">{product.description}</p>
         <h1 className={`${highlight ? "text-4xl" : "text-3xl"} font-bold mt-4 text-gray-800`}>
@@ -136,7 +154,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
             </form>
             :
             hasTenantId ?
-              <form className="w-full" action="/api/create-upgrade-session" method="POST" >
+              <form className="w-full" action={planComparedToCurrent(currentSubscriptionPrice, price) == "Current" ? "/profile" : "/api/create-upgrade-session"} method="POST" >
                 <input type="hidden" name="product_id" value={product.id} />
                 <input type="hidden" name="billing_cycle" value={price.recurring?.interval} />
 
@@ -144,7 +162,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription }: { price
                   className={`w-full py-3 ${highlight ? "py-4" : "py-3"} px-5 bg-gradient-to-r from-[#4A154B] via-[#5F1B61] to-[#4A154B] text-white font-bold rounded-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A154B] focus:ring-opacity-50 shadow-md relative overflow-hidden group`}
                 >
                   <span className="relative z-10 flex items-center justify-center">
-                    Upgrade Plan
+                    {`${planComparedToCurrent(currentSubscriptionPrice, price)}`} Plan
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"

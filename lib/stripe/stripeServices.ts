@@ -12,7 +12,6 @@ class StripeServices {
         });
         const { data } = plans;
 
-        console.log(data);
         return data
     }
 

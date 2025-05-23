@@ -156,6 +156,7 @@ model users {
   updated_at             DateTime                 @updatedAt @db.Timestamptz(6)
   google_id              String                   @unique
   imageUrl               String?
+  isAdmin                Boolean                  @default(false)
   name                   String
   stripe_customer_id     String?                  @db.VarChar(255)
   password               String?                  @db.VarChar(255)

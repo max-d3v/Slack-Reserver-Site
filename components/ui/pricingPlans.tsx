@@ -1,19 +1,24 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 
 import { BillingToggle } from './billingToggle';
 import { useRouter } from 'next/navigation';
-import Stripe from 'stripe';
-import PricingPlan from './pricingPlan';
-import { PriceWithFeatures } from '@/app/pricing/page';
 import { includesInsensitive, isStripeProduct } from '@/lib/utils/functions';
 import { CONSTANTS } from '@/lib/constants';
+
+import Stripe from 'stripe';
+import PricingPlan from './pricingPlan';
+
 
 const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
     const { data: session } = useSession();
     const hasTenantId = (session?.user as any)?.tenant_id;
-    const hasSubscription = (session?.user as any)?.subscription ?? false;
+    const subscription = (session?.user as any)?.subscription as any | undefined;
+    const hasSubscription = subscription ?? false;
+    const currentPlanPrice = subscription?.price;
+
+    console.log("Current subscription: ", (session?.user as any)?.subscription);
 
     const [chosenPlans, setChosenPlans] = useState<Stripe.Price[]>([]);
     const [billingCycle, setBillingCycle] = useState<'month' | 'year'>('month');
@@ -27,7 +32,6 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
             return ((plan.recurring?.interval === recurring_interval && isStripeProduct(plan.product) && plan.product.active === true) || (isStripeProduct(plan.product) && includesInsensitive(plan.product.name, CONSTANTS.PRICING.FIXED_PLAN)));
         });
 
-        //Order highlighted plans in the middle
         const highlightedPlans = filtered.filter((plan) => includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
         const otherPlans = filtered.filter((plan) => !includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
         return [...otherPlans.slice(0, 1), ...highlightedPlans, ...otherPlans.slice(1)];
@@ -51,12 +55,10 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto'>
 
-
                 {/* Pricing plans */}
-                {chosenPlans.map((price) => {
-                    return <PricingPlan price={price} highlight={includesInsensitive((price.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN)} hasTenantId={hasTenantId} hasSubscription={hasSubscription} />
+                {chosenPlans.map((price, index) => {
+                    return <PricingPlan key={index} price={price} currentSubscriptionPrice={currentPlanPrice} highlight={includesInsensitive((price.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN)} hasTenantId={hasTenantId} hasSubscription={hasSubscription} />
                 })}
-
 
 
             </div>

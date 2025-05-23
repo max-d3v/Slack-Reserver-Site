@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
@@ -120,6 +121,7 @@ export default async function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Toaster />
         </SessionProvider>
       </body>
     </html>

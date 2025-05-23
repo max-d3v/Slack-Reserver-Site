@@ -53,7 +53,7 @@ export class SubscriptionService {
         return false;
       }
 
-      const subscription = await this.retrieveSubscription(subscriptionId);
+      const subscription = await this.retrieveActiveSubscription(subscriptionId);
       if (!subscription) {
         return false;
       }
@@ -148,7 +148,7 @@ export class SubscriptionService {
     }
   }
 
-  public async retrieveSubscription(subscriptionId?: string | null, customerId?: string | null): Promise<Stripe.Subscription | null> {
+  public async retrieveActiveSubscription(subscriptionId?: string | null, customerId?: string | null): Promise<Stripe.Subscription | null> {
     try {
       if (!subscriptionId && !customerId) {
         throw new Error('Nenhum ID de assinatura ou cliente fornecido');

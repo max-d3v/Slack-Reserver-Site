@@ -4,22 +4,33 @@ import { VideoDemo } from "@/components/ui/videoDemo";
 import RotatingText from "@/components/ui/RotatingText/RotatingText";
 import { SlackButton } from "@/components/ui/slackButton";
 import Image from 'next/image'
+import NotificationWrapper from "@/components/notificationWrapper";
 
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const { success, error } = (await searchParams);
+
+
   return (
     <main className="min-h-[95hv] w-full">
+
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
             <span className="inline-flex items-end">
               <BlurText
-                text="/reserver"
+                text="/reserve"
                 delay={200}
                 animateBy="words"
                 direction="top"
                 className="text-5xl md:text-6xl font-bold inline-block mr-2 text-[#4A154B]"
               />
+                    <NotificationWrapper success={success as string | undefined} error={error as string | undefined} />
+
             </span>
             <span className="inline-block ml-2">directly in your slack</span>
           </h1>

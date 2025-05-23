@@ -9,17 +9,13 @@ import {
 } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, CreditCard, Clock, Users, CheckCircle } from "lucide-react"
+import { CalendarIcon, CreditCard, Clock, Users, CheckCircle, CircleFadingArrowUp } from "lucide-react"
 import { auth } from '../auth'
 import * as utils from "@/lib/utils/functions";
 import { ReservationStats } from '@/components/ui/reservations'
 import { LoadingStats } from '@/components/ui/loadingReservations'
-import prisma from "@/lib/db/db";
 import Stripe from 'stripe'
-import { inspect } from 'util'
 import { CONSTANTS } from '@/lib/constants'
-import stripeServices from '@/lib/stripe/stripeServices'
-import subscriptionService from '@/lib/stripe/subscriptions'
 
 
 const Page = async () => {
@@ -28,10 +24,6 @@ const Page = async () => {
   const status = user.subscription_status;
   const product = stripeSubscription?.price.product as Stripe.Product | null;
   const price = stripeSubscription?.price as Stripe.Price | null;
-  //console.log("Subscription no profile: ", stripeSubscription);
-  //const plan = stripeSubscription?.plan as Stripe.Plan | null;
-
- (await subscriptionService.retrieveSubscription(undefined, user.stripe_customer_id))
 
 
   const subscription = {
@@ -141,11 +133,18 @@ const Page = async () => {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row gap-4 sm:justify-between">
-          <form action="/api/create-customer-portal-session" method="POST">
+          <div className='flex gap-4' >
+          <form action="/pricing" method="POST">
             <button className="bg-green-600 text-white hover:bg-green-700 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium sm:order-2">
-              <CreditCard className="h-4 w-4" /> Manage Subscription
+            <CircleFadingArrowUp className="h-4 w-4"  /> Upgrade Plan 
             </button>
           </form>
+          <form action="/api/create-customer-portal-session" method="POST">
+            <button className="border border-gray-300 hover:bg-gray-50 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium sm:order-2">
+              <CreditCard className="h-4 w-4" /> Manage Plan 
+            </button>
+          </form>
+          </div>
           <form action="/api/create-customer-portal-session" method="POST">
             <button className="border border-gray-300 hover:bg-gray-50 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium w-full sm:w-auto sm:order-1">
               View Billing History

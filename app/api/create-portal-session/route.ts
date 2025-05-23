@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       return_url: YOUR_DOMAIN,
     });
 
-    return NextResponse.redirect(portalSession.url, { status: 303 });
+    return NextResponse.redirect(`${portalSession.url}/success=checkout`, { status: 303 });
   } catch (error: any) {
     console.error('Error creating portal session:', error);
     return NextResponse.redirect(new URL(`/auth-result?error=${error.message}`, request.url));

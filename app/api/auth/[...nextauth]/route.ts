@@ -45,6 +45,7 @@ export const authOptions = {
         select: {
           id: true,
           role: true,
+          isAdmin: true,
           tenant_id: true,
           created_at: true,
           stripe_customer_id: true,
@@ -78,11 +79,9 @@ export const authOptions = {
       let subscription = null;
       let status = null;
       if (dbUser.tenant) {
-        const foundSubscription = await subscriptionService.retrieveSubscription(dbUser.tenant.tenant_subscriptions[0]?.stripe_subscription_id);
-        console.log("Subscription found pelo id do banco: ", dbUser.tenant.tenant_subscriptions[0]?.stripe_subscription_id)
+        const foundSubscription = await subscriptionService.retrieveActiveSubscription(dbUser.tenant.tenant_subscriptions[0]?.stripe_subscription_id);
         status = foundSubscription?.status;
         subscription = foundSubscription?.items.data[0];
-        //console.log(foundSubscription);
 
       }
     

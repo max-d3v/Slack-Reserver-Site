@@ -49,8 +49,8 @@ export async function POST(request: Request) {
         },
       ],
       mode: 'subscription',
-      success_url: `${YOUR_DOMAIN}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${YOUR_DOMAIN}/pricing?canceled=true`,
+      success_url: `${YOUR_DOMAIN}?success=Checkout successful!`,
+      cancel_url: `${YOUR_DOMAIN}?error=Checkout canceled`,
       metadata: {
         user_id: authSession.user.id,
       },
