@@ -29,7 +29,7 @@ export default async function Home({
                 direction="top"
                 className="text-5xl md:text-6xl font-bold inline-block mr-2 text-[#4A154B]"
               />
-                    <NotificationWrapper success={success as string | undefined} error={error as string | undefined} />
+              <NotificationWrapper success={success as string | undefined} error={error as string | undefined} />
 
             </span>
             <span className="inline-block ml-2">directly in your slack</span>
@@ -224,7 +224,6 @@ export default async function Home({
                 <p>Slack. Simple commands, powerful results, zero confusion.</p>
               </div>
             </div>
-
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
@@ -256,7 +255,103 @@ export default async function Home({
         </div>
       </section>
 
-      <section className="bg-white py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24 border-t border-gray-200">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-16">
+            <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">The difference is clear</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">Why Slack beats traditional booking</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Teams using Slack-based reservations see 10x higher adherence rates compared to web portals and email systems</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
+            {/* Traditional Methods */}
+            <div className="bg-red-50 border border-red-200 rounded-lg p-8">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">❌</span>
+                </div>
+                <h3 className="text-2xl font-bold text-red-700 mb-2">Traditional Booking</h3>
+                <p className="text-red-600">Web portals, email chains, shared calendars</p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-red-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-red-700">Low adherence rate</p>
+                    <p className="text-sm text-red-600">People forget to check separate systems</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-red-700">5+ clicks to book</p>
+                    <p className="text-sm text-red-600">Reserving usage suffocated under tabs and scrolls</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-red-700">Missed notifications</p>
+                    <p className="text-sm text-red-600">Email alerts get buried or ignored</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-red-700">Context switching</p>
+                    <p className="text-sm text-red-600">Disrupts workflow by leaving main work environment</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Slack Method */}
+            <div className="bg-green-50 border border-green-200 rounded-lg p-8">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">✅</span>
+                </div>
+                <h3 className="text-2xl font-bold text-green-700 mb-2">Slack Reservations</h3>
+                <p className="text-green-600">Native integration in your daily workflow</p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-green-700">High adherence rate</p>
+                    <p className="text-sm text-green-600">Instant visibility where teams already work</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-green-700">1 command to book</p>
+                    <p className="text-sm text-green-600">Simple `/reserve` command gets it done</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-green-700">Impossible to miss</p>
+                    <p className="text-sm text-green-600">Notifications appear in active workspace</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">•</span>
+                  <div>
+                    <p className="font-semibold text-green-700">Zero context switching</p>
+                    <p className="text-sm text-green-600">Book rooms while discussing the meeting</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className=" bg-gray-50 py-16 md:py-24 border-t border-gray-200 ">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Boost your workspace's organisation</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-6 text-gray-700">
@@ -276,8 +371,7 @@ export default async function Home({
             <h2 className="text-3xl md:text-4xl font-bold">?</h2>
           </div>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Join hundreds of teams who are transforming organization by customizing and maximizing the potential of this Slack app for their unique workflows.</p>
-          <SlackButton className="mb-12" />
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tired of people forgetting reservations, avoiding slow web forms, or missing important notifications because they don't check their emails? Make room booking effortless.</p>          <SlackButton className="mb-12" />
         </div>
       </section>
     </main>

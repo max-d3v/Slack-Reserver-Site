@@ -184,7 +184,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
         <div className="px-8 py-2 border-b border-gray-200"></div>
       </div>
 
-      <div className={`mt-2 flex ${highlight ? "min-h-[26vh]" : "min-h-[22vh]"} flex-col gap-[3vh] text-gray-800 overflow-y-auto`}>
+      <div className={`mt-2 flex ${highlight ? "min-h-[26vh]" : "min-h-[22vh]"} flex-col gap-[3vh] text-gray-800 overflow-hidden`}>
         {features ? (
           Object.entries(features).map(([key, value], index) => (
             <Feature key={index} name={key} value={value as string | number} />
