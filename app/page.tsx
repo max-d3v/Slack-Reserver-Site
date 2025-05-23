@@ -1,8 +1,9 @@
+import { VideoDemo } from "@/components/ui/videoDemo";
+import { SlackButton } from "@/components/ui/slackButton";
+
 import BlurText from "@/components/ui/BlurText/BlurText";
 import CountUp from "@/components/ui/CountUp/CountUp";
-import { VideoDemo } from "@/components/ui/videoDemo";
 import RotatingText from "@/components/ui/RotatingText/RotatingText";
-import { SlackButton } from "@/components/ui/slackButton";
 import Image from 'next/image'
 import NotificationWrapper from "@/components/notificationWrapper";
 
@@ -17,7 +18,6 @@ export default async function Home({
 
   return (
     <main className="min-h-[95hv] w-full">
-
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
@@ -51,7 +51,6 @@ export default async function Home({
           </div>
         </div>
       </section>
-
 
       <section className="bg-white py-12 md:pb-24">
         <div className=" ">
@@ -255,7 +254,7 @@ export default async function Home({
         </div>
       </section>
 
-      <section className="bg-white py-16 md:py-24 border-t border-gray-200">
+      <section className="bg-white pt-16 md:pt-24 pb-10 md:pb-18 border-t border-gray-200">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">The difference is clear</p>
@@ -264,7 +263,6 @@ export default async function Home({
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 mb-16">
-            {/* Traditional Methods */}
             <div className="bg-red-50 border border-red-200 rounded-lg p-8">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">

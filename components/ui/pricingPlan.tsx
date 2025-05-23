@@ -9,8 +9,6 @@ import Stripe from 'stripe';
 const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSubscriptionPrice }: { price: Stripe.Price, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean, currentSubscriptionPrice: Stripe.Price }) => {
   const { product } = price;
   const features = (price.product as Stripe.Product).metadata;
-  const currentPlanPrice = currentSubscriptionPrice;
-  const planPrice = price;
 
   const router = useRouter();
 
@@ -26,14 +24,14 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
     if (!currentPrice) {
       return 'Upgrade';
     }
-  
+
     if (currentPrice.product === planPrice.product) {
       return 'Current';
     }
-  
+
     const currentMonthlyAmount = normalizeToMonthlyPrice(currentPrice);
     const planMonthlyAmount = normalizeToMonthlyPrice(planPrice);
-  
+
     if (currentMonthlyAmount < planMonthlyAmount) {
       return 'Upgrade';
     } else if (currentMonthlyAmount > planMonthlyAmount) {
@@ -42,14 +40,14 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
       return 'Current';
     }
   }
-  
+
   const normalizeToMonthlyPrice = (price: Stripe.Price): number => {
     if (!price || !price.unit_amount) return 0;
-    
+
     const amount = price.unit_amount;
-    
+
     if (price.recurring?.interval === 'year') {
-      return amount / CONSTANTS.PRICING.CORRESPONDENT_YEARLY_MONTHS; 
+      return amount / CONSTANTS.PRICING.CORRESPONDENT_YEARLY_MONTHS;
     } else if (price.recurring?.interval === 'month') {
       return amount;
     } else {
