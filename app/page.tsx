@@ -86,7 +86,7 @@ export default async function Home({
                   <p className="mt-3 text-gray-600">"Our standups run more smoothly now that everyone knows exactly which room is available. Would love calendar sync in the next update."</p>
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
-                  <h3 className="text-xl text-gray-700 font-bold mb-2">Perfect Integration</h3>
+                  <h3 className="text-xl text-gray-700 font-bold mb-2">Smooth Integration</h3>
                   <p className="text-sm text-gray-500 mb-1">Alex W. - Product Manager</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
                   <p className="mt-3 text-gray-600">"We've been using it daily for 3 months now. The Slack commands are intuitive and the whole team adopted it without any training."</p>
@@ -276,7 +276,7 @@ export default async function Home({
             <h2 className="text-3xl md:text-4xl font-bold">?</h2>
           </div>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Join hundreds of teams who are unleashing their creativity to customize and maximize the potential of this Slack app for their unique workflows.</p>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Join hundreds of teams who are transforming organization by customizing and maximizing the potential of this Slack app for their unique workflows.</p>
           <SlackButton className="mb-12" />
         </div>
       </section>

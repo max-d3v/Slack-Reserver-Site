@@ -65,7 +65,7 @@ const pricingJsonLd = {
                 "description": "Up to 30 reservations per month, up to 3 resource groups, up to 10 resources"
             }
         },
-        {
+/*        {
             "@type": "Offer",
             "name": "Team Plan (Monthly)",
             "description": "For small teams that want to reserve a limited amount of rooms",
@@ -110,7 +110,7 @@ const pricingJsonLd = {
                 "name": "Team Slack Reserver Plan (Annual)",
                 "description": "Up to 120 reservations per month, up to 20 resource groups, up to 60 resources, email notifications"
             }
-        },
+        },*/
         {
             "@type": "Offer",
             "name": "Company Plan (Monthly)",
@@ -138,7 +138,7 @@ const pricingJsonLd = {
             "@type": "Offer",
             "name": "Company Plan (Annual)",
             "description": "Transform your workspace with comprehensive resource management",
-            "price": "80",
+            "price": "120",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
             "url": `${process.env.SITE_URL}/pricing#company-annual`,

@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
+//Dont need to keep this super in sync.
 const roadmapJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
