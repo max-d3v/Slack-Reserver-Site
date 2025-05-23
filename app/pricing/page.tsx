@@ -11,8 +11,6 @@ export type PriceWithFeatures = Stripe.Price & {
 
 const Page = async () => {
     const stripePricingPlans = (await stripeServices.getPrices());
-    //console.log(stripePricingPlans);
-
     return (
         <main className="min-h-screen w-full bg-gray-100"
             style={{

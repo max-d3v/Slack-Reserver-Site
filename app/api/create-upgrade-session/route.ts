@@ -3,6 +3,7 @@ import { auth } from '@/app/auth';
 import stripe from '@/lib/stripe/stripe';
 import prisma from '@/lib/db/db';
 import logger from '@/lib/utils/logger';
+import subscriptionService from '@/lib/stripe/subscriptions';
 
 export async function POST(request: Request) {
   try {
@@ -32,24 +33,16 @@ export async function POST(request: Request) {
       );
     }
 
-    const currentSubscription = await prisma.tenant_subscriptions.findFirst({
-      where: { tenant_id: user.tenant_id },
-      orderBy: { created_at: 'desc' },
-    });
+    const currentSubscription = await subscriptionService.retrieveActiveSubscription(undefined, user.stripe_customer_id);
 
     console.log("currentSubscription: ", currentSubscription?.id);
 
-    if (!currentSubscription || !currentSubscription.stripe_subscription_id) {
+    if (!currentSubscription || !currentSubscription.id) {
       return NextResponse.json(
         { error: 'No current subscription found' },
         { status: 404 }
       );
     }
-
-    // Get the subscription details from Stripe
-    const stripeSubscription = await stripe.subscriptions.retrieve(
-      currentSubscription.stripe_subscription_id
-    );
 
     const prices = await stripe.prices.list({
       product: newProductId,
@@ -66,11 +59,11 @@ export async function POST(request: Request) {
     const newPrice = prices.data[0];
 
     // Get the current subscription item ID
-    const subscriptionItemId = stripeSubscription.items.data[0].id;
+    const subscriptionItemId = currentSubscription.items.data[0].id;
 
     // Update the subscription directly
     const updatedSubscription = await stripe.subscriptions.update(
-      currentSubscription.stripe_subscription_id,
+      currentSubscription.id,
       {
         items: [{
           id: subscriptionItemId,

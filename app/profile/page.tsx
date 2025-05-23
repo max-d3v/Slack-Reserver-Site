@@ -21,7 +21,7 @@ import { CONSTANTS } from '@/lib/constants'
 const Page = async () => {
   const { user } = await auth();
   const stripeSubscription = user.subscription;
-  const status = user.subscription_status;
+  const status = "Active";
   const product = stripeSubscription?.price.product as Stripe.Product | null;
   const price = stripeSubscription?.price as Stripe.Price | null;
 
@@ -38,7 +38,6 @@ const Page = async () => {
     nextBillingDate: "Coming soon",
     features: product?.metadata ?? {},
     status: status,
-    isActive: CONSTANTS.STRIPE.VALID_SUBSCRIPTION_STATUSES.includes(status),
   };
 
 

@@ -1,3 +1,1 @@
-stripe plans and db plans. (Kinda now, migration endpoint made, just need to make it a cron job)
-
-JSONld data and page data! (example pricing).
+JSONld data and page data! (pricing).

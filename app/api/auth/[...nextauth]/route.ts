@@ -55,15 +55,6 @@ export const authOptions = {
               subdomain: true,
               status: true,
               workspace_team_id: true,
-              tenant_subscriptions: {
-                select: {
-                  id: true,
-                  stripe_subscription_id: true,
-                },
-                orderBy: {
-                  created_at: "desc",
-                }
-              },
             },
             where: {
               status: "active",
@@ -77,18 +68,15 @@ export const authOptions = {
       }
 
       let subscription = null;
-      let status = null;
+      // In the paper, the user cannot have a customer id and not have a tenant. // this logic is in slack button and pricing 
       if (dbUser.tenant) {
-        const foundSubscription = await subscriptionService.retrieveActiveSubscription(dbUser.tenant.tenant_subscriptions[0]?.stripe_subscription_id);
-        status = foundSubscription?.status;
+        const foundSubscription = await subscriptionService.retrieveActiveSubscription(undefined, dbUser.stripe_customer_id);
         subscription = foundSubscription?.items.data[0];
-
       }
     
       session.user = {
         ...dbUser,
         subscription,
-        subscription_status: status,
         name: session.user.name, // Google name
         email: session.user.email, // Google email
         image: session.user.image || "", // Google image
