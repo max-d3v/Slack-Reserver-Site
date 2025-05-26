@@ -20,6 +20,7 @@ export default async function Home({
     <main className="min-h-[95hv] w-full">
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
+        <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >Reservations directly in your slack</p>
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
             <span className="inline-flex items-end">
               <BlurText
@@ -30,12 +31,11 @@ export default async function Home({
                 className="text-5xl md:text-6xl font-bold inline-block mr-2 text-[#4A154B]"
               />
               <NotificationWrapper success={success as string | undefined} error={error as string | undefined} />
-
             </span>
-            <span className="inline-block ml-2">directly in your slack</span>
+            <span className="inline-block ml-2">& Organize your workspace</span>
           </h1>
-          <p className="text-xl md:text-1xl text-gray-600 text-bold ">Always fighting for rooms?, make things simple with reservations right in your slack.</p>
-          <p className="text-xl md:text-1xl text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
+          <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Always fighting for rooms?, make things simple with resource managment right in your slack.</p>
+          <p className="text-xl leading-tight md:text-1xl  text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
           <SlackButton className="mb-12" />
 
           <div className="flex flex-col items-center justify-center space-x-1 text-amber-400">
