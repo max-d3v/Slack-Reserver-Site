@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { LockKeyhole, Menu, X } from 'lucide-react';
-import { useSession, signOut } from "next-auth/react";
+import { Menu, X } from 'lucide-react';
+import { useSession } from "next-auth/react";
 import { Profile } from './profileDropdown';
 import { CONSTANTS } from '@/lib/constants';
 
@@ -73,8 +73,9 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <div className=" flex items-center space-x-8">
 
-              {CONSTANTS.UI.NAVBAR_ROUTES.map((route) => (
+              {CONSTANTS.UI.NAVBAR_ROUTES.map((route, index) => (
                 <Link
+                  key={index}
                   href={route.path}
                   className="text-gray-600 hover:text-black transition-colors px-2 py-1 text-sm font-medium"
                 >
@@ -117,8 +118,9 @@ export const Navbar = () => {
         <div className="md:hidden bg-white p-4 border-t border-gray-100">
           <div className="flex flex-col space-y-4 pt-2 pb-3">
 
-          {CONSTANTS.UI.NAVBAR_ROUTES.map((route) => (
+          {CONSTANTS.UI.NAVBAR_ROUTES.map((route, index) => (
                 <Link
+                  key={index}
                   href={route.path}
                   className="text-gray-600 hover:text-[#4A154B] block px-3 py-2 rounded-md text-base font-medium"
                   onClick={() => setMobileMenuOpen(false)}

@@ -8,7 +8,7 @@ import { auth } from "@/app/auth";
 
 //prod_SJjCcg00HJWAlo - free
 
-export async function GET(request: Request, response: Response) {
+export async function GET(request: Request) {
     try {
         const { user } = await auth();
         if (!user.isAdmin) {
@@ -20,7 +20,7 @@ export async function GET(request: Request, response: Response) {
         const freeFeatures = {"resources": 10, "reservations": 30, "resource_groups": 3}
         const companyFeatures = {"resources": 180, "reservations": 360, "resource_groups": 50}
 
-        const success = [];
+        const success: any[] = [];
         const errors: any[] = [];
         const products = [
             { id: "prod_SJOG024YLTJpPS", features: companyFeatures },

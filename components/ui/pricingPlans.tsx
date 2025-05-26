@@ -26,20 +26,22 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
         setBillingCycle(billingCycle == "month" ? 'year' : 'month');
     };
 
-    const filterPlans = ({ recurring_interval }: { recurring_interval: string }) => {
-        const filtered = pricingPlans.filter((plan) => {
-            return ((plan.recurring?.interval === recurring_interval && isStripeProduct(plan.product) && plan.product.active === true) || (isStripeProduct(plan.product) && includesInsensitive(plan.product.name, CONSTANTS.PRICING.FIXED_PLAN)));
-        });
-
-        const highlightedPlans = filtered.filter((plan) => includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
-        const otherPlans = filtered.filter((plan) => !includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
-        return [...otherPlans.slice(0, 1), ...highlightedPlans, ...otherPlans.slice(1)];
-    }
 
     useEffect(() => {
+        const filterPlans = ({ recurring_interval }: { recurring_interval: string }) => {
+            const filtered = pricingPlans.filter((plan) => {
+                return ((plan.recurring?.interval === recurring_interval && isStripeProduct(plan.product) && plan.product.active === true) || (isStripeProduct(plan.product) && includesInsensitive(plan.product.name, CONSTANTS.PRICING.FIXED_PLAN)));
+            });
+
+            const highlightedPlans = filtered.filter((plan) => includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
+            const otherPlans = filtered.filter((plan) => !includesInsensitive((plan.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN));
+            return [...otherPlans.slice(0, 1), ...highlightedPlans, ...otherPlans.slice(1)];
+        }
+
+
         const filteredPlans = filterPlans({ recurring_interval: billingCycle })
         setChosenPlans(filteredPlans);
-    }, [billingCycle])
+    }, [billingCycle, pricingPlans])
 
     const router = useRouter();
     return (

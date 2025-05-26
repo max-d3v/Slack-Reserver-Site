@@ -55,9 +55,11 @@ const logger = winston.createLogger({
 });
 
 // Helper method to log with service context
-export default {
+const loggerService = {
   info: (service: string, message: string, metadata?: any) => logger.info(message, { service, ...metadata }),
   warn: (service: string, message: string, metadata?: any) => logger.warn(message, { service, ...metadata }),
   error: (service: string, message: string, metadata?: any) => logger.error(message, { service, ...metadata }),
   debug: (service: string, message: string, metadata?: any) => logger.debug(message, { service, ...metadata }),
 };
+
+export default loggerService;

@@ -20,7 +20,7 @@ export default async function Home({
     <main className="min-h-[95hv] w-full">
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
-        <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >Reservations directly in your slack</p>
+          <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >Reservations directly in your slack</p>
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
             <span className="inline-flex items-end">
               <BlurText

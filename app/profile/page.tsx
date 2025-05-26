@@ -40,7 +40,7 @@ const Page = async () => {
     };
   }) | undefined;
 
-  var product = stripeSubscription?.price.product && typeof stripeSubscription?.price.product !== "string" ? stripeSubscription?.price.product as Stripe.Product : undefined;
+  const product = stripeSubscription?.price.product && typeof stripeSubscription?.price.product !== "string" ? stripeSubscription?.price.product as Stripe.Product : undefined;
   const status = product ? "Active" : "No active plan";
   const price = stripeSubscription?.price;
 

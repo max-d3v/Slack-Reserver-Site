@@ -35,16 +35,11 @@ export async function POST(request: Request) {
         break;
       case 'invoice.paid':
         logger.info('stripe-webhook', 'Processing invoice.paid event', { id: event.id });
-        await subscriptionService.handleInvoicePaid(event);
         break;
       case 'invoice.payment_failed':
         logger.info('stripe-webhook', 'Processing invoice.payment_failed event', { id: event.id });
         break;
       case 'customer.subscription.updated':
-        // TODO - Some error hapened while setting up plane upgrades and multiple subscriptions were created for the user. create here a failsafe
-        // For when a update occurs, it checks the stripe newest one and keeps it?
-        // PS: Maybe not, since i dont want to keep any other information about the subscriptions in the db, so no actives. hence i 
-        // Need to only check the newest one? (Maybe)
         logger.info('stripe-webhook', 'Processing customer.subscription.updated event', { id: event.id });
         break;
       case 'customer.subscription.deleted':

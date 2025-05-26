@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
 import { SessionProvider } from "@/components/sessionProvider";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/utils/authOptions";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster"

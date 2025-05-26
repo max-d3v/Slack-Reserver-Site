@@ -57,7 +57,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
 
   const featureString = (name: string, value: string | number) => {
     let string = "";
-    let valueString = Number(value) > 0 ? value : "Unlimited";
+    const valueString = Number(value) > 0 ? value : "Unlimited";
     switch (name) {
       case "resource_groups":
         string = `Up to ${valueString} active resource groups`;

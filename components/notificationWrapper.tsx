@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Button } from "./ui/button";
 
 interface NotificationWrapperProps {
   success?: string;
@@ -20,38 +19,33 @@ export default function NotificationWrapper({ success, error }: NotificationWrap
   }
 
 
-  const displayToast = () => {
-    
-    if (success) {
-      toast({
-        title: "All done! Your request was successful.",
-        description: success,
-        duration: 20000
-      });
-    } else if (error) {
-      toast({
-        title: "Uh oh! Something went wrong.",
-        description: error,
-        variant: "destructive",
-      });
-    } else {
-      // No params, no toast.
-      null;
-    }
 
-    clearParams();
-  }
 
 
   useEffect(() => {
+    const displayToast = () => {
+
+      if (success) {
+        toast({
+          title: "All done! Your request was successful.",
+          description: success,
+          duration: 20000
+        });
+      } else if (error) {
+        toast({
+          title: "Uh oh! Something went wrong.",
+          description: error,
+          variant: "destructive",
+        });
+      }
+
+      clearParams();
+    }
     setTimeout(() => {
       displayToast();
     }, 500);
-  }, [toast]);
+  }, [success, error, toast]);
 
 
-  return (
-    null
-  )
-
+  return null;
 }
