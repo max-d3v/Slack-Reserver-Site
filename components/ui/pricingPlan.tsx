@@ -60,10 +60,10 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
     let valueString = Number(value) > 0 ? value : "Unlimited";
     switch (name) {
       case "resource_groups":
-        string = `Up to ${valueString} resource groups`;
+        string = `Up to ${valueString} active resource groups`;
         break;
       case "resources":
-        string = `Up to ${valueString} resources`;
+        string = `Up to ${valueString} active resources`;
         break;
       case "reservations":
         string = `Up to ${valueString} reservations per month`;

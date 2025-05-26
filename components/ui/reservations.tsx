@@ -1,6 +1,7 @@
 import prisma from "@/lib/db/db";
-import { CalendarCheck, Clock, CalendarX, Building, Users, Calendar } from "lucide-react";
+import { CalendarCheck, Clock, CalendarX, Building, Users, Calendar, TrendingUp } from "lucide-react";
 import { resolve } from "path";
+import Stripe from "stripe";
 
 export enum ReservationStatuses {
     CREATED = "created",
@@ -27,12 +28,15 @@ const getReservations = async (tenantId: string) => {
     return data;
 }
 
-export const ReservationStats = async ({ tenantId }: { tenantId: string | undefined }) => {
+export const ReservationStats = async ({ tenantId, product }: { tenantId: string | undefined, product: Stripe.Product }) => {
     const reservations = tenantId ? await getReservations(tenantId) : [];
 
-    // Get current date for comparisons
+
+    // Anchor dates
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+
 
 
     //Get valid reservation based on active resources and groups.
@@ -47,12 +51,15 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string | undefi
 
     const finishedReservationsCount = reservations.length - upcomingReservations.length;
 
+
     // Get popular resources (most reserved)
     const resourceCounts = validReservations.reduce((acc, res) => {
         const resourceId = res.resource_id;
         acc[resourceId] = (acc[resourceId] || 0) + 1;
         return acc;
     }, {} as Record<string, number>);
+
+
 
     // Find most reserved resource
     let mostReservedResource = null;
@@ -65,13 +72,50 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string | undefi
         }
     }
 
+
     // Calculate reservation utilization percentage based on plan
     const totalReservations = reservations.length;
 
     // Assume plan limits from pricing page - this should be dynamically determined
     // from the tenant's subscription in a real implementation
-    const planLimit = 250; // Default to pro plan limit
+
+    const planLimit = product?.metadata.reservations ? parseInt(product.metadata.reservations, 10) : 0;
     const utilizationPercentage = Math.round((totalReservations / planLimit) * 100);
+
+
+
+    const thisMonthReservations = validReservations.filter(r =>
+        new Date(r.created_at) >= lastMonth
+    );
+
+    const averageDuration = validReservations.reduce((sum, r) => {
+        const duration = new Date(r.end_date).getTime() - new Date(r.start_date).getTime();
+        return sum + (duration / (1000 * 60 * 60)); // Convert to hours
+    }, 0) / validReservations.length || 0;
+
+    // Peak day analysis
+    const dayStats = validReservations.reduce((acc, r) => {
+        const day = new Date(r.start_date).getDay();
+        const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
+        acc[dayName] = (acc[dayName] || 0) + 1;
+        return acc;
+    }, {} as Record<string, number>);
+
+    const peakDay = Object.entries(dayStats).reduce((a, b) =>
+        dayStats[a[0]] > dayStats[b[0]] ? a : b, ['Monday', 0]
+    )[0];
+
+    // Booking lead time
+    const leadTimes = validReservations.map(r => {
+        const created = new Date(r.created_at);
+        const start = new Date(r.start_date);
+        return (start.getTime() - created.getTime()) / (1000 * 60 * 60 * 24); // Days
+    }).filter(days => days >= 0);
+
+    const avgLeadTime = leadTimes.reduce((sum, days) => sum + days, 0) / leadTimes.length || 0;
+
+
+
 
     return (
         <div className="space-y-6">
@@ -128,6 +172,28 @@ export const ReservationStats = async ({ tenantId }: { tenantId: string | undefi
                         </p>
                     </div>
                 </div>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-2">
+                    <div className="bg-white p-4 rounded-lg border shadow-sm">
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-sm font-medium text-gray-500">This Month</h3>
+                            <TrendingUp className="h-5 w-5 text-blue-500" />
+                        </div>
+                        <p className="text-2xl font-bold mt-2">{thisMonthReservations.length}</p>
+                        <p className="text-xs text-gray-500 mt-1">New reservations</p>
+                    </div>
+
+
+                    <div className="bg-white p-4 rounded-lg border shadow-sm">
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-sm font-medium text-gray-500">Peak Day</h3>
+                            <Calendar className="h-5 w-5 text-purple-500" />
+                        </div>
+                        <p className="text-lg font-semibold mt-2">{peakDay}</p>
+                        <p className="text-xs text-gray-500 mt-1">Most bookings</p>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     );

@@ -71,7 +71,8 @@ export const authOptions = {
       // In the paper, the user cannot have a customer id and not have a tenant. // this logic is in slack button and pricing 
       if (dbUser.tenant) {
         const foundSubscription = await subscriptionService.retrieveActiveSubscription(undefined, dbUser.stripe_customer_id);
-        subscription = foundSubscription?.items.data[0];
+        const data = foundSubscription?.items.data[0];
+        subscription = data;
       }
     
       session.user = {

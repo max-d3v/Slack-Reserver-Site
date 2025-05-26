@@ -11,6 +11,17 @@ export enum SubscriptionStatus {
   CANCELED = 'canceled'
 }
 
+export type SubscriptionWithProduct = Stripe.Subscription & {
+  items: Stripe.ApiList<Stripe.SubscriptionItem> & {
+    data: (Stripe.SubscriptionItem & {
+      price: Stripe.Price & {
+        product: Stripe.Product | undefined;
+      };
+    })[];
+  };
+};
+
+
 export class SubscriptionService {
   async handleCustomerCreated(event: Stripe.Event): Promise<boolean> {
     try {
@@ -41,13 +52,13 @@ export class SubscriptionService {
     }
   }
 
-  public async retrieveActiveSubscription(subscriptionId?: string | null, customerId?: string | null): Promise<Stripe.Subscription | null> {
+  public async retrieveActiveSubscription(subscriptionId?: string | null, customerId?: string | null): Promise<SubscriptionWithProduct | Stripe.Subscription | null> {
     try {
       if (!subscriptionId && !customerId) {
         throw new Error('Nenhum ID de assinatura ou cliente fornecido');
       }
 
-      let subscription;
+      let subscription: SubscriptionWithProduct | Stripe.Subscription | null = null;
       if (subscriptionId) {
         subscription = await stripe.subscriptions.retrieve(subscriptionId, {
           expand: ['items.data.price.product']
@@ -62,13 +73,31 @@ export class SubscriptionService {
 
         if (subscriptions.data.length >= 1) {
           subscription = this.getNewestSubscription(subscriptions.data);
+
+          // can not extend 5 items in the stripe list, so need to attach product by hand
+          if (subscription?.items?.data?.[0]?.price?.product && typeof subscription.items.data[0].price.product === 'string') {
+            try {
+              const product = await stripe.products.retrieve(subscription.items.data[0].price.product);
+
+              if (subscription.items.data[0].price) {
+                subscription.items.data[0].price.product = product;
+              }
+            } catch (productError: any) {
+              logger.error('stripe', 'Erro ao buscar detalhes do produto', {
+                productId: subscription.items.data[0].price.product,
+                error: productError.message
+              });
+            }
+          }
         }
+
       }
 
       if (!subscription || !subscription.id) {
         throw new Error('Assinatura não encontrada ou inválida no Stripe');
       }
 
+      //console.log(subscription.items.data[0]);
       return subscription;
     } catch (error: any) {
       logger.error('stripe', 'Erro ao buscar assinatura no Stripe', {

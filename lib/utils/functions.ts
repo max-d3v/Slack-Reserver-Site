@@ -7,7 +7,7 @@ export function capitalizeFirstLetter(val: string) {
 }
 
 export function makeTitle(slug: string) {
-  var words = slug.split('-');
+  var words = slug.split('_');
 
   for (var i = 0; i < words.length; i++) {
     var word = words[i];
@@ -59,4 +59,17 @@ export function validPlanFeatures(features: unknown): features is ValidPlanFeatu
     typeof resources === 'number' &&
     typeof resource_groups === 'number'
   );
+}
+
+export function capitalizeName(name: string): string {
+  return name.replace(/\b(\w)/g, s => s.toUpperCase());
+}
+
+export function dateDisplay(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  return date.toLocaleDateString('en-US', options);
 }

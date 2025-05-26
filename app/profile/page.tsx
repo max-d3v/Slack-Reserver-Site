@@ -9,147 +9,210 @@ import {
 } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, CreditCard, Clock, Users, CheckCircle, CircleFadingArrowUp } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import {
+  CalendarIcon,
+  CreditCard,
+  Clock,
+  Users,
+  CheckCircle,
+  CircleFadingArrowUp,
+  Crown,
+  Star,
+  Zap,
+  Settings,
+  ExternalLink,
+  Calendar,
+  TrendingUp
+} from "lucide-react"
 import { auth } from '../auth'
 import * as utils from "@/lib/utils/functions";
 import { ReservationStats } from '@/components/ui/reservations'
 import { LoadingStats } from '@/components/ui/loadingReservations'
 import Stripe from 'stripe'
 
-
 const Page = async () => {
   const { user } = await auth();
-  const stripeSubscription = user.subscription;
-  const status = "Active";
-  const product = stripeSubscription?.price.product as Stripe.Product | null;
-  const price = stripeSubscription?.price as Stripe.Price | null;
+  const stripeSubscription = user.subscription as Stripe.SubscriptionItem | (Stripe.SubscriptionItem & {
+    price: Stripe.Price & {
+      product: Stripe.Product | undefined;
+    };
+  }) | undefined;
 
+  var product = stripeSubscription?.price.product && typeof stripeSubscription?.price.product !== "string" ? stripeSubscription?.price.product as Stripe.Product : undefined;
+  const status = product ? "Active" : "No active plan";
+  const price = stripeSubscription?.price;
 
   const subscription = {
     plan: product?.name ?? "No active plan",
-    description: stripeSubscription?.description ?? "No description available",
     price: price && price?.unit_amount
       ? new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
       }).format(price.unit_amount / 100)
-      : "—", billingCycle: price?.recurring?.interval === "month" ? "Monthly" : "Yearly",
+      : "—",
+    billingCycle: price ? price.recurring?.interval === "month" ? "Monthly" : "Yearly" : undefined,
     nextBillingDate: "Coming soon",
     features: product?.metadata ?? {},
     status: status,
   };
 
+  //console.log(subscription)
 
   return (
-    <div className='container mt-[10vh] mb-20'>
-      <h1 className="text-4xl font-bold mb-8">My Profile</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card className="md:col-span-1 border-t-4 border-t-primary shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardTitle className="text-xl flex items-center gap-2">
-              <Users className="h-5 w-5 text-primary" />
-              User Profile
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col items-center gap-5">
-            <Avatar className="w-32 h-32 border-2 border-primary/20">
-              <AvatarImage src={user.image} alt={user.image} />
-              <AvatarFallback className="text-2xl bg-primary/10 text-primary">{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-            </Avatar>
-            <div className="space-y-3 text-center w-full">
-              <h2 className="text-2xl font-bold">{user.name}</h2>
-              <p className="text-muted-foreground">{user.email}</p>
-              <Badge variant="outline" className="bg-primary/10 hover:bg-primary/15 text-primary border-primary/30 px-3 py-1">
-                {user.role}
-              </Badge>
+    <div className='min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100'>
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-[#4A154B] to-[#611f64] text-white">
+        <div className="container py-12 md:py-20 pt-16 md:pt-28">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="relative">
+              <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-white/20 shadow-2xl">
+                <AvatarImage src={user.image} alt={user.name} className="object-cover" />
+                <AvatarFallback className="text-4xl bg-white/10 text-white backdrop-blur-sm">
+                  {utils.capitalizeName(user.name)}
+                </AvatarFallback>
+              </Avatar>
             </div>
-            <div className="w-full pt-4 border-t flex items-center gap-2 justify-center text-muted-foreground">
-              <Clock className="h-4 w-4" />
-              <p className="text-sm">Member since: {user.joinedDate}</p>
-            </div>
-          </CardContent>
 
-        </Card>
-
-        <Card className="md:col-span-2 border-t-4 border-t-[#4A154B] shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardTitle className="text-xl flex items-center gap-2">
-              <CalendarIcon className="h-5 w-5 text-[#4A154B]" />
-              Your Usage
-            </CardTitle>
-            <CardDescription>Information about your reservations</CardDescription>
-            <Suspense fallback={<LoadingStats />}>
-              <ReservationStats tenantId={user.tenant?.id} />
-            </Suspense>
-          </CardHeader>
-        </Card>
-      </div>
-
-      <Card className="w-full border-t-4 border-t-green-500 shadow-md hover:shadow-lg transition-shadow">
-        <CardHeader>
-          <CardTitle className="text-xl flex items-center gap-2">
-            <CreditCard className="h-5 w-5 text-green-600" />
-            Subscription Plan
-          </CardTitle>
-          <CardDescription>Manage your subscription and billing</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="col-span-1">
-              <div className="bg-gray-50 p-5 rounded-lg border">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-lg font-semibold text-gray-900">{subscription.plan}</span>
-                  <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-200">
-                    {subscription.status}
+            <div className="text-center md:text-left space-y-4 flex-1">
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-2">{utils.capitalizeName(user.name)}</h1>
+                <p className="text-xl text-white/80 mb-4">{user.email}</p>
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  <Badge className="bg-white/20 text-white hover:bg-white/30 px-4 py-2 text-sm backdrop-blur-sm border-white/30">
+                    <Users className="h-4 w-4 mr-2" />
+                    {user.role}
+                  </Badge>
+                  <Badge className="bg-green-500/20 text-green-100 hover:bg-green-500/30 px-4 py-2 text-sm backdrop-blur-sm border-green-400/30">
+                    <Crown className="h-4 w-4 mr-2" />
+                    {subscription.plan}
                   </Badge>
                 </div>
-                <div className="space-y-2 mb-6">
-                  <p className="text-2xl font-bold">{subscription.price}</p>
-                  <p className="text-sm text-muted-foreground">Billed {subscription.billingCycle.toLowerCase()}</p>
-                </div>
-                <div className="pt-4 border-t">
-                  <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-                    <CalendarIcon className="h-3.5 w-3.5" />
-                    Next billing: {subscription.nextBillingDate}
-                  </p>
-                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-white/70 justify-center md:justify-start">
+                <Clock className="h-4 w-4" />
+                <span>Member since {utils.dateDisplay(user.created_at)}</span>
               </div>
             </div>
-            <div className="col-span-1 md:col-span-2">
-              <div className="h-full">
-                <h3 className="text-lg font-medium mb-4">Plan Features</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {Object.keys(subscription.features).map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2 bg-gray-50 p-3 rounded-md">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span>{utils.makeTitle(feature)}: {subscription.features[feature]}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="container -mt-8 pb-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:grid-rows-1 lg:items-start">
+
+          {/* Stats Section */}
+          <div className="lg:col-span-2 flex flex-col h-full">
+            <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm flex-1 flex flex-col">
+              <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-2xl flex items-center gap-3">
+                    <div className="p-2 bg-[#4A154B]/10 rounded-lg">
+                      <TrendingUp className="h-6 w-6 text-[#4A154B]" />
                     </div>
-                  ))}
+                    Usage Analytics
+                  </CardTitle>
+                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                    This Month
+                  </Badge>
                 </div>
-              </div>
-            </div>
+                <CardDescription className="text-base">
+                  Track your reservation activity and workspace utilization
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col">
+                <Suspense fallback={<LoadingStats />}>
+                  {product ? <ReservationStats tenantId={user.tenant?.id} product={product} /> : <div className="text-center text-gray-500 p-6">No product data available</div>}
+                </Suspense>
+              </CardContent>
+            </Card>
           </div>
-        </CardContent>
-        <CardFooter className="flex flex-col sm:flex-row gap-4 sm:justify-between">
-          <div className='flex gap-4' >
-          <form action="/pricing" method="POST">
-            <button className="bg-green-600 text-white hover:bg-green-700 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium sm:order-2">
-            <CircleFadingArrowUp className="h-4 w-4"  /> Upgrade Plan 
-            </button>
-          </form>
-          <form action="/api/create-customer-portal-session" method="POST">
-            <button className="border border-gray-300 hover:bg-gray-50 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium sm:order-2">
-              <CreditCard className="h-4 w-4" /> Manage Plan 
-            </button>
-          </form>
+
+          {/* Subscription Section */}
+          <div className="flex flex-col h-full">
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-green-50 to-emerald-50 border-green-200/50 flex-1 flex flex-col">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl flex items-center gap-3">
+                  <div className="p-2 bg-green-500/10 rounded-lg">
+                    <Crown className="h-5 w-5 text-green-600" />
+                  </div>
+                  Current Plan
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6 flex-1 flex flex-col">
+                <div className="text-center p-6 bg-white/80 rounded-xl border border-green-200/50">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <h3 className="text-2xl font-bold text-gray-900">{subscription.plan}</h3>
+                    <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                      {subscription.status}
+                    </Badge>
+                  </div>
+
+                  <div className="text-3xl font-bold text-green-600 mb-1">
+                    {subscription.price}
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {subscription.billingCycle ? `Billed ${subscription.billingCycle.toLowerCase()}` : ""}
+                  </p>
+
+                  <Separator className="my-4" />
+
+                </div>
+
+                {/* Features */}
+                <div className="space-y-3 flex-1">
+                  <h4 className="font-semibold text-gray-900 flex items-center gap-2">
+                    <Star className="h-4 w-4 text-green-600" />
+                    Plan Features
+                  </h4>
+                  <div className="space-y-2">
+                    {Object.keys(subscription.features).map((feature, index) => (
+                      <div key={index} className="flex items-center gap-3 p-3 bg-white/60 rounded-lg border border-green-100">
+                        <div className="flex-shrink-0">
+                          <CheckCircle className="h-4 w-4 text-green-600" />
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-medium">{utils.makeTitle(feature)}:</span>
+                          <span className="text-gray-600 ml-1">{subscription.features[feature]}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="space-y-3 pt-4 mt-auto">
+                  <form action="/pricing" method="POST" className="w-full">
+                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl transition-all duration-200">
+                      <CircleFadingArrowUp className="h-4 w-4 mr-2" />
+                      Upgrade Plan
+                    </Button>
+                  </form>
+
+                  <div className="grid grid-cols-1 gap-2">
+                    <form action="/api/create-customer-portal-session" method="POST">
+                      <Button variant="outline" className="w-full hover:bg-gray-50">
+                        <CreditCard className="h-4 w-4 mr-2" />
+                        Manage Billing
+                      </Button>
+                    </form>
+
+                    <form action="/api/create-customer-portal-session" method="POST">
+                      <Button variant="ghost" className="w-full text-sm">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Billing History
+                      </Button>
+                    </form>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-          <form action="/api/create-customer-portal-session" method="POST">
-            <button className="border border-gray-300 hover:bg-gray-50 px-4 py-2.5 rounded-md flex items-center gap-2 font-medium w-full sm:w-auto sm:order-1">
-              View Billing History
-            </button>
-          </form>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }
