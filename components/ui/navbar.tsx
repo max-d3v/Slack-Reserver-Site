@@ -71,7 +71,7 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="flex items-center space-x-8">
+            <div className=" flex items-center space-x-8">
 
               {CONSTANTS.UI.NAVBAR_ROUTES.map((route) => (
                 <Link

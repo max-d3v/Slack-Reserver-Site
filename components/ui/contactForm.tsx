@@ -25,7 +25,7 @@ const handleFlavor = (flavor: string | string[] | undefined) => {
 
 export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string | string[] | undefined, user: any, inputHighlight: string | string[] | undefined }) => {
   const [formData, setFormData] = useState({
-    name: utils.capitalizedFirstName(user?.name) ?? '',
+    name: utils.capitalizeName(user?.name) ?? '',
     email: user?.email ?? '',
     subject: handleFlavor(flavor),
     message: '',

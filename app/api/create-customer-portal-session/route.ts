@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/app/auth';
 import stripe from '@/lib/stripe/stripe';
-export async function POST(request: Request) {
+
+export async function GET(request: Request) {
     try {
         const sessionData = await auth() as any;
         const { user } = sessionData;

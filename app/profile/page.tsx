@@ -193,14 +193,14 @@ const Page = async () => {
                   </form>
 
                   <div className="grid grid-cols-1 gap-2">
-                    <form action="/api/create-customer-portal-session" method="POST">
+                    <form action="/api/create-customer-portal-session" method="GET">
                       <Button variant="outline" className="w-full hover:bg-gray-50">
                         <CreditCard className="h-4 w-4 mr-2" />
                         Manage Billing
                       </Button>
                     </form>
 
-                    <form action="/api/create-customer-portal-session" method="POST">
+                    <form action="/api/create-customer-portal-session" method="GET">
                       <Button variant="ghost" className="w-full text-sm">
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Billing History

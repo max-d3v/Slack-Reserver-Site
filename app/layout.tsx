@@ -111,7 +111,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased bg-white`}>
+      <body className={`${inter.className} overflow-y-auto antialiased bg-white`}>
         <Script
           id="slack-reserver-jsonld"
           type="application/ld+json"

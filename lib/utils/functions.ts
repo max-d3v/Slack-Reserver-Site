@@ -21,11 +21,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function capitalizedFirstName(name: string | undefined | null) {
-  if (typeof name !== 'string') {
-    return name;
+export function capitalizedFirstWord(word: string | undefined | null) {
+  if (typeof word !== 'string') {
+    return word;
   }
-  return name.charAt(0).toUpperCase() + name.slice(1);
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 export function isStripeProduct(product: any): product is Stripe.Product {
