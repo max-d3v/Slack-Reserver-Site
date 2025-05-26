@@ -58,12 +58,10 @@ export class SubscriptionService {
           status: "active",
         });
 
-        console.log("Numero de subscriptions: ", subscriptions.data.length);
+        logger.info("subscriptions", `Numero de subscriptions para o cliente ${customerId}: ${subscriptions.data.length}`);
 
         if (subscriptions.data.length >= 1) {
-
           subscription = this.getNewestSubscription(subscriptions.data);
-          console.log("Subscription mais nova: ", inspect(subscription, { depth: 5 }));
         }
       }
 

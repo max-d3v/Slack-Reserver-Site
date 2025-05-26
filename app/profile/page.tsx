@@ -15,7 +15,6 @@ import * as utils from "@/lib/utils/functions";
 import { ReservationStats } from '@/components/ui/reservations'
 import { LoadingStats } from '@/components/ui/loadingReservations'
 import Stripe from 'stripe'
-import { CONSTANTS } from '@/lib/constants'
 
 
 const Page = async () => {

@@ -21,7 +21,7 @@ export default function NotificationWrapper({ success, error }: NotificationWrap
 
 
   const displayToast = () => {
-    console.log(success);
+    
     if (success) {
       toast({
         title: "All done! Your request was successful.",

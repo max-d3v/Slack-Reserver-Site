@@ -18,7 +18,6 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
     const hasSubscription = subscription ?? false;
     const currentPlanPrice = subscription?.price;
 
-    console.log("Current subscription: ", (session?.user as any)?.subscription);
 
     const [chosenPlans, setChosenPlans] = useState<Stripe.Price[]>([]);
     const [billingCycle, setBillingCycle] = useState<'month' | 'year'>('month');

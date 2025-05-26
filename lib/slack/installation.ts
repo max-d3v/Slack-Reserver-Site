@@ -1,5 +1,6 @@
 import prisma from '@/lib/db/db';
 import { SlackInstallation } from '@/types/types';
+import logger from '../utils/logger';
 
 export async function storeInstallation(installation: SlackInstallation, state: string) {
   try {
@@ -61,8 +62,8 @@ export async function storeInstallation(installation: SlackInstallation, state: 
     })
 
 
-    console.log(`Installation stored for team: ${team.name} (${team.id})`);
-    console.log(`Updated user with ID: ${state} to tenant ID: ${tenant.id}`);
+    logger.info('slack-integration', `Installation stored for team: ${team.name} (${team.id})`);
+    logger.info('slack-integration', `Updated user with ID: ${state} to tenant ID: ${tenant.id}`);
     
     return {
       tenant, 

@@ -178,37 +178,38 @@ export default async function Home({
               </div>
 
               <div className="text-lg text-gray-600" >
-                <p>Customize your workspace with any resources your team shares - from</p>
-                <p>meeting rooms to ping pong tables and beyond. Start with essential</p>
-                <p>spaces and expand as your organization grows, creating a reservation</p>
-                <p>system perfectly tailored to your company's unique needs.</p>
+                <p>Customize your workspace with any resources your team shares - from meeting rooms to ping pong tables and beyond. Using our resource and resource group system, you can start with essential spaces and expand as your organization grows, creating a reservation system perfectly tailored to your company's unique needs.</p>
               </div>
             </div>
-            <div className="md:w-1/2 w-2/3 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
-              <Image
-                src="/images/prints_reserver/Resource_groups-branco.png"
-                width={860}
-                height={700}
-                alt="Picture of resource groups"
-                className="w-full object-contain"
-                priority
-                sizes="(max-width: 768px) 90vw, 45vw"
-              />
+            <div className="md:w-1/2 w-full max-w-md mx-auto">
+              <div className="bg-gray-200 rounded-lg overflow-hidden min-h-[280px] md:min-h-[320px] flex items-center justify-center">
+                <Image
+                  src="/images/features/resource_groups.png"
+                  width={400}
+                  height={300}
+                  alt="Picture of resource groups"
+                  className="w-full h-full object-cover"
+                  priority
+                  sizes="(max-width: 768px) 90vw, 45vw"
+                />
+              </div>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
-            <div className="md:w-1/2 w-2/3 bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-              <Image
-                src="/images/prints_reserver/Modal_reservation.png"
-                width={400}
-                height={300}
-                alt="Picture of new reservation modal"
-                className="w-full h-full object-cover rounded-md"
-                priority
-              />
+            <div className="md:w-1/2 w-full max-w-md mx-auto md:order-1">
+              <div className="bg-gray-200 rounded-lg overflow-hidden min-h-[280px] md:min-h-[320px] flex items-center justify-center">
+                <Image
+                  src="/images/features/home.png"
+                  width={400}
+                  height={300}
+                  alt="Picture of new reservation modal"
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
             </div>
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 md:order-2">
               <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Reserve.</p>
               <div className="space-y-0 leading-tight mb-4">
                 <h3 className="text-2xl font-bold text-gray-700">Project War Room?</h3>
@@ -217,10 +218,7 @@ export default async function Home({
               </div>
 
               <div className="text-lg text-gray-600" >
-                <p>Our seamless reservation system handles all your booking needs.</p>
-                <p>Invite team members, set custom room statuses, schedule for hours</p>
-                <p>or days, and personalize with creative titles - all without leaving</p>
-                <p>Slack. Simple commands, powerful results, zero confusion.</p>
+                <p>Our seamless reservation system handles all your booking needs. Invite team members, set custom room statuses, schedule for hours or days, and personalize with creative titles - all without leaving Slack. Simple commands, powerful results, zero confusion.</p>
               </div>
             </div>
           </div>
@@ -234,21 +232,20 @@ export default async function Home({
               </div>
 
               <div className="text-lg text-gray-600" >
-                <p>Our intelligent notification system keeps everyone on schedule,</p>
-                <p>sending automatic alerts when meetings are created, shortly before</p>
-                <p>they begin, and right at start time. No more waiting for latecomers</p>
-                <p>or forgotten appointments - just punctual, productive meetings.</p>
+                <p>Our intelligent notification system keeps everyone on schedule, sending automatic alerts when meetings are created, shortly before they begin, and right at start time. No more waiting for latecomers or forgotten appointments - just punctual, productive meetings.</p>
               </div>
             </div>
-            <div className="md:w-1/2 w-2/3 bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-              <Image
-                src="/images/prints_reserver/Notification_message.png"
-                width={400}
-                height={300}
-                alt="Picture of notification message"
-                className="w-full h-full object-cover rounded-md"
-                priority
-              />
+            <div className="md:w-1/2 w-full max-w-sm mx-auto">
+              <div className="bg-gray-200 rounded-lg overflow-hidden  flex items-center justify-center">
+                <Image
+                  src="/images/features/notification_invitation.png"
+                  width={400}
+                  height={300}
+                  alt="Picture of notification message"
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>

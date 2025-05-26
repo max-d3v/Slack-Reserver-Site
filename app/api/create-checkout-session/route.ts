@@ -56,14 +56,14 @@ export async function POST(request: Request) {
       },
       });
 
-    console.log("stripe session: ", session);
+    
 
     if (!session.url) {
       throw new Error("Error creating stripe session")
     }
 
 
-    console.log("user creating checkout session: ", authSession);
+    
 
     await prisma.user_checkout_sessions.create({
       data: {

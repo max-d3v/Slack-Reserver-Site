@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     const currentSubscription = await subscriptionService.retrieveActiveSubscription(undefined, user.stripe_customer_id);
 
-    console.log("currentSubscription: ", currentSubscription?.id);
+    
 
     if (!currentSubscription || !currentSubscription.id) {
       return NextResponse.json(
