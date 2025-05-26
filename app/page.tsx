@@ -1,4 +1,4 @@
-import { VideoDemo } from "@/components/ui/videoDemo";
+import { NextVideo } from "@/components/ui/videoDemo";
 import { SlackButton } from "@/components/ui/slackButton";
 
 import BlurText from "@/components/ui/BlurText/BlurText";
@@ -36,17 +36,17 @@ export default async function Home({
           </h1>
           <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Always fighting for rooms?, make things simple with resource managment right in your slack.</p>
           <p className="text-xl leading-tight md:text-1xl  text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
-          <SlackButton className="mb-12" />
+          <SlackButton className="mb-4" />
 
           <div className="flex flex-col items-center justify-center space-x-1 text-amber-400">
-            <span className="text-3xl" >★★★★★</span>
+            <span className="text-xl">★★★★★</span>
             <span className="text-gray-600 text-lg ml-2">Trusted by <CountUp
               from={0}
               to={500}
               separator=","
               direction="up"
               duration={8}
-              className="count-up-text"
+              className="count-up-text font-semibold"
             />+ teams</span>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default async function Home({
 
           <div className="max-w-6xl px-4 md:px-6 mx-auto mb-16">
             <div className="rounded-lg overflow-hidden shadow-xl">
-              <VideoDemo></VideoDemo>
+              <NextVideo src={"videos/slack_reserver_editado.mp4"} />
             </div>
           </div>
 
@@ -238,7 +238,7 @@ export default async function Home({
             <div className="md:w-1/2 w-full max-w-sm mx-auto">
               <div className="bg-gray-200 rounded-lg overflow-hidden  flex items-center justify-center">
                 <Image
-                  src="/images/features/notification_invitation.png"
+                  src="/images/features/notification.png"
                   width={400}
                   height={300}
                   alt="Picture of notification message"
