@@ -1,4 +1,5 @@
 import prisma from "@/lib/db/db";
+import { reservations, resource_groups, resources } from "@prisma/client";
 import { CalendarCheck, Clock, CalendarX, Building, Users, Calendar, TrendingUp } from "lucide-react";
 import { resolve } from "path";
 import Stripe from "stripe";
@@ -10,7 +11,13 @@ export enum ReservationStatuses {
     CANCELLED = "cancelled",
 }
 
-const getReservations = async (tenantId: string) => {
+export type ReservationDetails = reservations & {
+    resources: resources & {
+        resource_groups: resource_groups
+    }
+}
+
+const getReservations = async (tenantId: string): Promise<ReservationDetails[]> => {
     const data = await prisma.reservations.findMany({
         where: {
             tenant_id: tenantId,
@@ -62,7 +69,7 @@ export const ReservationStats = async ({ tenantId, product }: { tenantId: string
 
 
     // Find most reserved resource
-    let mostReservedResource = null;
+    let mostReservedResource: ReservationDetails["resources"] | null | undefined = null;
     let maxReservations = 0;
 
     for (const [resourceId, count] of Object.entries(resourceCounts)) {
