@@ -50,3 +50,6 @@ videos/*
 !videos/*.js
 !videos/*.ts
 public/_next-video
+
+#db
+db-init/

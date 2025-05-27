@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  slack_site:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: slack_site
+    ports:
+      - "8001:3000"  # host:container
+    depends_on:
+      - db
+    networks:
+      - slack_app
+    restart: on-failure:5
+    
+
+
+
+
+  slack_app:
+    build:
+      context: C:/Users/luizg/documents/SlackReserver
+      dockerfile: dockerfile
+    container_name: slack_app
+    ports:
+      - "8002:3001"  # host:container
+    depends_on:
+      - db
+    networks:
+      - slack_app
+    restart: on-failure:5
+
+
+
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: SlackReserverDB
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - slack_app
+
+
+networks:
+  slack_app:
+    driver: bridge
+
+volumes:
+  db_data:

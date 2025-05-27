@@ -8,10 +8,10 @@ export interface SlackButtonProps {
   className?: string;
 }
 
-export const SlackButton = ({className}: SlackButtonProps) => {
+export const SlackButton = ({ className }: SlackButtonProps) => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  
+
   // Redirecionar para login se não estiver autenticado
   if (status === "unauthenticated") {
     return (
@@ -37,7 +37,6 @@ export const SlackButton = ({className}: SlackButtonProps) => {
             position: "relative",
           }}
         >
-          {/* Animated background */}
           <span
             className="absolute inset-0 bg-gradient-to-r from-[#4A154B] via-[#5F1B61] to-[#4A154B] bg-[length:200%_100%]"
             style={{
@@ -46,8 +45,7 @@ export const SlackButton = ({className}: SlackButtonProps) => {
               transition: "opacity 0.3s ease"
             }}
           />
-  
-          {/* Button content with SVG */}
+
           <span className="relative flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" style={{ height: "24px", width: "24px", marginRight: "12px" }} viewBox="0 0 122.8 122.8">
               <path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"></path>
@@ -61,10 +59,11 @@ export const SlackButton = ({className}: SlackButtonProps) => {
       </div>
     )
   }
-  
+
   // URL de autorização do Slack incluindo o userId
   const userId = (session?.user as any)?.id;
-  const authUrl = `https://slack.com/oauth/v2/authorize?scope=app_mentions%3Aread%2Ccanvases%3Aread%2Ccanvases%3Awrite%2Cchannels%3Ahistory%2Cchat%3Awrite%2Ccommands%2Cemoji%3Aread%2Ctriggers%3Aread&user_scope=&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fapi%2Fslack-auth&client_id=8320946706706.8320960407410&state=${userId || ''}`;
+  const redirectUri = process.env.SITE_URL
+  const authUrl = `https://slack.com/oauth/v2/authorize?scope=app_mentions%3Aread%2Ccanvases%3Aread%2Ccanvases%3Awrite%2Cchannels%3Ahistory%2Cchat%3Awrite%2Ccommands%2Cemoji%3Aread%2Ctriggers%3Aread&user_scope=&redirect_uri=${redirectUri}%2Fapi%2Fslack-auth&client_id=8320946706706.8320960407410&state=${userId || ''}`;
 
   return (
     <div className={`${className}`}>

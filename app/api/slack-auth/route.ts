@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     try {
         const clientId = process.env.SLACK_CLIENT_ID;
         const clientSecret = process.env.SLACK_CLIENT_SECRET;
-        const redirectUri = "https://localhost:3000/api/slack-auth"; 
+        const redirectUri = process.env.SITE_URL + "/api/slack-auth"; 
         
         const response = await fetch('https://slack.com/api/oauth.v2.access', {
             method: 'POST',
