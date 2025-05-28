@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Slack Reserver Roadmap - Our Development Plan',
     description: 'See what\'s in the pipeline for Slack Reserver - from quick booking features to calendar integrations. Follow our development journey and submit your feature requests.',
-    url: `${process.env.SITE_URL}/roadmap`,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap`,
     siteName: 'Slack Reserver',
     images: [
       {
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: `${process.env.SITE_URL}/roadmap`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap`,
     languages: {
-      'en': `${process.env.SITE_URL}/roadmap`,
+      'en': `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap`,
     },
   },
   robots: {
@@ -46,7 +46,7 @@ const roadmapJsonLd = {
     "publisher": {
       "@type": "Organization",
       "name": "Slack Reserver",
-      "logo": `${process.env.SITE_URL}/images/slack-reserver-logo.png`
+      "logo": `${process.env.NEXT_PUBLIC_SITE_URL}/images/slack-reserver-logo.png`
     },
     "mainEntity": {
       "@type": "ItemList",
@@ -56,28 +56,28 @@ const roadmapJsonLd = {
           "position": 1,
           "name": "Quick Book",
           "description": "One-day reservations with simplified resource selection. Search resources by name for faster booking process.",
-          "url": `${process.env.SITE_URL}/roadmap#quick-book`
+          "url": `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap#quick-book`
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Meeting Feedback System",
           "description": "Post-meeting feedback collection from organizers. Automatic sharing of meeting summaries with all participants.",
-          "url": `${process.env.SITE_URL}/roadmap#meeting-feedback`
+          "url": `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap#meeting-feedback`
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Confirm attendance",
           "description": "Support for confirming participation in meetings. Automatic reminders for participants to confirm their attendance.",
-          "url": `${process.env.SITE_URL}/roadmap#confirm-attendance`
+          "url": `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap#confirm-attendance`
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": "Google Calendar Integration",
           "description": "Seamless synchronization with Google Calendar. Import and export reservations between Slack Reserver and Google Calendar.",
-          "url": `${process.env.SITE_URL}/roadmap#google-calendar`
+          "url": `${process.env.NEXT_PUBLIC_SITE_URL}/roadmap#google-calendar`
         }
       ]
     }

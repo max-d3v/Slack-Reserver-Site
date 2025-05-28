@@ -1,3 +1,6 @@
+console.log(`Running server in ${process.env.NODE_ENV} mode`);
+console.log(`Server URL: ${process.env.NEXT_PUBLIC_SITE_URL}`);
+
 export const CONSTANTS = {
     PRICING: {
         HIGHLIGHTED_PLAN: "company",

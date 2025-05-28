@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
     description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
-    url: process.env.SITE_URL,
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: 'Slack Reserver',
     images: [
       {
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: process.env.SITE_URL,
+    canonical: process.env.NEXT_PUBLIC_SITE_URL,
     languages: {
-      'en': process.env.SITE_URL,
+      'en': process.env.NEXT_PUBLIC_SITE_URL,
     },
   },
   robots: {
@@ -66,10 +66,10 @@ const jsonLd = {
     "availability": "https://schema.org/OnlineOnly"
   },
   "featureList": "Room booking, Resource management, Automated notifications, Custom resource groups, Custom resources",
-  "screenshot": `${process.env.SITE_URL}/images/prints_reserver/Modal_reservation.png`,
+  "screenshot": `${process.env.NEXT_PUBLIC_SITE_URL}/images/prints_reserver/Modal_reservation.png`,
   "softwareHelp": {
     "@type": "WebContent",
-    "url": `${process.env.SITE_URL}/support`
+    "url": `${process.env.NEXT_PUBLIC_SITE_URL}/support`
   },
   "review": [
     {

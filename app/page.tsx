@@ -14,7 +14,8 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { success, error } = (await searchParams);
-
+  const redirect_uri = process.env.NEXT_PUBLIC_SITE_URL;
+  console.log("redirect uri in home page", redirect_uri);
 
   return (
     <main className="min-h-[95hv] w-full">
@@ -36,7 +37,7 @@ export default async function Home({
           </h1>
           <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Always fighting for rooms?, make things simple with resource managment right in your slack.</p>
           <p className="text-xl leading-tight md:text-1xl  text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
-          <SlackButton className="mb-4" />
+          <SlackButton  className="mb-4" />
 
           <div className="flex flex-col items-center justify-center space-x-1 text-amber-400">
             <span className="text-xl">★★★★★</span>
@@ -366,7 +367,8 @@ export default async function Home({
             <h2 className="text-3xl md:text-4xl font-bold">?</h2>
           </div>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tired of people forgetting reservations, avoiding slow web forms, or missing important notifications because they don't check their emails? Make room booking effortless.</p>          <SlackButton className="mb-12" />
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tired of people forgetting reservations, avoiding slow web forms, or missing important notifications because they don't check their emails? Make room booking effortless.</p>          
+          <SlackButton  className="mb-12" />
         </div>
       </section>
     </main>

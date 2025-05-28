@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import db from "@/lib/db/db";
 
 export const authOptions = {
+  url: process.env.NEXT_PUBLIC_SITE_URL,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,

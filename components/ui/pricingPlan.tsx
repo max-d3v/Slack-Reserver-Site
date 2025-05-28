@@ -176,7 +176,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
               </form>
 
               :
-              <SlackButton className={highlight ? "py-4" : "py-3"} />
+              <SlackButton  className={highlight ? "py-4" : "py-3"} />
           }
         </div>
         <div className="px-8 py-2 border-b border-gray-200"></div>
