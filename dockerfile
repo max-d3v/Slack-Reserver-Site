@@ -24,6 +24,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY .env.production .env.production
 RUN npx prisma generate
 
 
