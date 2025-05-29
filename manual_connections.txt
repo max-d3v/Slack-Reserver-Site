@@ -1,1 +1,3 @@
 JSONld data and page data! (pricing).
+
+db current schema and prisma schemas from apps

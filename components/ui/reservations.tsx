@@ -1,7 +1,6 @@
 import prisma from "@/lib/db/db";
 import { reservations, resource_groups, resources } from "@prisma/client";
-import { CalendarCheck, Clock, CalendarX, Building, Users, Calendar, TrendingUp } from "lucide-react";
-import { resolve } from "path";
+import { CalendarCheck, Clock, Building, Calendar, TrendingUp } from "lucide-react";
 import Stripe from "stripe";
 
 export enum ReservationStatuses {
