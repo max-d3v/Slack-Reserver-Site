@@ -17,14 +17,16 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-
-
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npx prisma generate
+
+
+ARG STRIPE_SECRET_KEY
+ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 
 
 # Next.js collects completely anonymous telemetry data about general usage.
