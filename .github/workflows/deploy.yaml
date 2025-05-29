@@ -29,3 +29,5 @@ jobs:
         push: true
         tags:
           copapel/funil_vendas_api:latest
+        build-args: |
+          STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
