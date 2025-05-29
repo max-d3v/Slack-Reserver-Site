@@ -11,7 +11,7 @@ export default async function ContactPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { flavor, inputHighlight } = (await searchParams);
-  const user = await auth()
+  const sessionData = await auth();
 
   return (
     <div className="container mx-auto px-4 py-[12vh] max-w-6xl">
@@ -26,7 +26,7 @@ export default async function ContactPage({
       <div className="grid md:grid-cols-2 gap-12">
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h2 className="text-2xl font-semibold mb-6">Send us a message</h2>
-          <ContactForm flavor={flavor} user={user?.user} inputHighlight={inputHighlight} />
+          <ContactForm flavor={flavor} sessionData={sessionData} inputHighlight={inputHighlight} />
         </div>
 
         <div className="bg-white rounded-lg shadow-xl p-8">

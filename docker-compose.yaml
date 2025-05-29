@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   slack_site:
-    build:
-      context: .
-      dockerfile: dockerfile
+    image: maxdev123/slack_reserver:site_latest
     container_name: slack_site
     ports:
       - "8001:3000"  # host:container
@@ -19,9 +17,7 @@ services:
 
 
   slack_app:
-    build:
-      context: C:/Users/luizg/documents/SlackReserver
-      dockerfile: dockerfile
+    image: maxdev123/slack_reserver:app_latest
     container_name: slack_app
     ports:
       - "8002:3001"  # host:container

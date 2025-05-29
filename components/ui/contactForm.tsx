@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimate } from 'framer-motion';
 import * as utils from '@/lib/utils/functions';
+import { Session } from 'next-auth';
 
 const handleFlavor = (flavor: string | string[] | undefined) => {
   let subject = '';
@@ -23,10 +24,10 @@ const handleFlavor = (flavor: string | string[] | undefined) => {
   return subject;
 }
 
-export const ContactForm = ({ flavor, user, inputHighlight }: { flavor: string | string[] | undefined, user: any, inputHighlight: string | string[] | undefined }) => {
+export const ContactForm = ({ flavor, sessionData, inputHighlight   }: { flavor: string | string[] | undefined, sessionData: Session | null, inputHighlight: string | string[] | undefined }) => {
   const [formData, setFormData] = useState({
-    name: utils.capitalizeName(user?.name) ?? '',
-    email: user?.email ?? '',
+    name: utils.capitalizeName(sessionData?.user.name ?? ""),
+    email: sessionData?.user.email ?? '',
     subject: handleFlavor(flavor),
     message: '',
   });

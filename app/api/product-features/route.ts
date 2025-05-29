@@ -8,9 +8,15 @@ import { auth } from "@/app/auth";
 
 //prod_SJjCcg00HJWAlo - free
 
+
+
 export async function GET(request: Request) {
     try {
-        const { user } = await auth();
+        const sessionData = await auth();
+        if (!sessionData) {
+            return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+        }
+        const { user } = sessionData;
         if (!user.isAdmin) {
             return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
         }

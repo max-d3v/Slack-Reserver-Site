@@ -33,8 +33,10 @@ import { LoadingStats } from '@/components/ui/loadingReservations'
 import Stripe from 'stripe'
 
 const Page = async () => {
-  const { user } = await auth();
-  const stripeSubscription = user.subscription as Stripe.SubscriptionItem | (Stripe.SubscriptionItem & {
+  const sessionData = await auth();
+  const user = sessionData?.user;
+  
+  const stripeSubscription = sessionData?.user.subscription as Stripe.SubscriptionItem | (Stripe.SubscriptionItem & {
     price: Stripe.Price & {
       product: Stripe.Product | undefined;
     };
@@ -68,21 +70,21 @@ const Page = async () => {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="relative">
               <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-white/20 shadow-2xl">
-                <AvatarImage src={user.image} alt={user.name} className="object-cover" />
+                <AvatarImage src={user?.image ?? "no-session"} alt={user?.name ?? "no-session"} className="object-cover" />
                 <AvatarFallback className="text-4xl bg-white/10 text-white backdrop-blur-sm">
-                  {utils.capitalizeName(user.name)}
+                  {utils.capitalizeName(user?.name ?? "User")}
                 </AvatarFallback>
               </Avatar>
             </div>
 
             <div className="text-center md:text-left space-y-4 flex-1">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-2">{utils.capitalizeName(user.name)}</h1>
-                <p className="text-xl text-white/80 mb-4">{user.email}</p>
+                <h1 className="text-4xl md:text-5xl font-bold mb-2">{utils.capitalizeName(user?.name ?? "User")}</h1>
+                <p className="text-xl text-white/80 mb-4">{user?.email ?? "Email"}</p>
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <Badge className="bg-white/20 text-white hover:bg-white/30 px-4 py-2 text-sm backdrop-blur-sm border-white/30">
                     <Users className="h-4 w-4 mr-2" />
-                    {user.role}
+                    {user?.role ?? "Role"}
                   </Badge>
                   <Badge className="bg-green-500/20 text-green-100 hover:bg-green-500/30 px-4 py-2 text-sm backdrop-blur-sm border-green-400/30">
                     <Crown className="h-4 w-4 mr-2" />
@@ -93,7 +95,7 @@ const Page = async () => {
 
               <div className="flex items-center gap-2 text-white/70 justify-center md:justify-start">
                 <Clock className="h-4 w-4" />
-                <span>Member since {utils.dateDisplay(user.created_at)}</span>
+                <span>Member since {user?.created_at ? utils.dateDisplay(user?.created_at) : " - "}</span>
               </div>
             </div>
           </div>
@@ -125,7 +127,7 @@ const Page = async () => {
               </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <Suspense fallback={<LoadingStats />}>
-                  {product ? <ReservationStats tenantId={user.tenant?.id} product={product} /> : <div className="text-center text-gray-500 p-6">No product data available</div>}
+                  {product ? <ReservationStats tenantId={user?.tenant?.id} product={product} /> : <div className="text-center text-gray-500 p-6">No product data available</div>}
                 </Suspense>
               </CardContent>
             </Card>
