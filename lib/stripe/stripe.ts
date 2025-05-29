@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+//Placeholder is only used in build time to avoid error raised.
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "placeholder");
 
 await stripe.billingPortal.configurations.create({
   features: {
