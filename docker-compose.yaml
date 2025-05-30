@@ -3,7 +3,6 @@ version: '3.8'
 services:
   slack_site:
     image: maxdev123/slack_reserver:site_latest
-    container_name: slack_site
     ports:
       - "8001:3000"  # host:container
     depends_on:
@@ -18,9 +17,8 @@ services:
 
   slack_app:
     image: maxdev123/slack_reserver:app_latest
-    container_name: slack_app
     ports:
-      - "8002:3001"  # host:container
+      - "8010:3001"  # host:container
     depends_on:
       - db
     networks:
@@ -31,7 +29,6 @@ services:
 
   db:
     image: postgres:latest
-    container_name: db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
