@@ -10,6 +10,9 @@ services:
     networks:
       - slack_app
     restart: on-failure:5
+    env_file:
+      - .env.production
+
     
 
 
