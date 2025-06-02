@@ -16,7 +16,7 @@ export const CONSTANTS = {
             { name: "Contact", path: "/contact" }
         ]
     },
-    CONTACT_EMAIL: "contact@slackreserver.com.br",
+    CONTACT_EMAIL: "slackreserver@gmail.com",
     STRIPE: {
         VALID_SUBSCRIPTION_STATUSES: [
             "active"

@@ -2,6 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import subscriptionService from "@/lib/stripe/subscriptions";
 import { PrismaClient } from "@prisma/client";
 import db from "@/lib/db/db";
+import { responseCookiesToRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 export const authOptions = {
   url: process.env.NEXT_PUBLIC_SITE_URL,
@@ -69,7 +70,8 @@ export const authOptions = {
       let subscription: any = null;
       // In the paper, the user cannot have a customer id and not have a tenant. // this logic is in slack button and pricing 
       if (dbUser.tenant) {
-        const foundSubscription = await subscriptionService.retrieveActiveSubscription(undefined, dbUser.stripe_customer_id);
+        console.log("cust id stripe: ", dbUser.stripe_customer_id)
+        const foundSubscription = await subscriptionService.getActiveSubscription(dbUser.stripe_customer_id);
         const data = foundSubscription?.items.data[0];
         subscription = data;
       }

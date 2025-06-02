@@ -52,56 +52,52 @@ export class SubscriptionService {
     }
   }
 
-  public async retrieveActiveSubscription(subscriptionId?: string | null, customerId?: string | null): Promise<SubscriptionWithProduct | Stripe.Subscription | null> {
+  public async getActiveSubscription(customerId?: string | null): Promise<SubscriptionWithProduct | null> {
     try {
-      if (!subscriptionId && !customerId) {
+      if (!customerId) {
         throw new Error('Nenhum ID de assinatura ou cliente fornecido');
       }
 
       let subscription: SubscriptionWithProduct | Stripe.Subscription | null = null;
-      if (subscriptionId) {
-        subscription = await stripe.subscriptions.retrieve(subscriptionId, {
-          expand: ['items.data.price.product']
-        });
-      } else if (customerId) {
-        const subscriptions = await stripe.subscriptions.list({
-          customer: customerId,
-          status: "active",
-        });
 
-        logger.info("subscriptions", `Numero de subscriptions para o cliente ${customerId}: ${subscriptions.data.length}`);
+      const subscriptions = await stripe.subscriptions.list({
+        customer: customerId,
+        status: "active",
+      });
 
-        if (subscriptions.data.length >= 1) {
-          subscription = this.getNewestSubscription(subscriptions.data);
+      logger.info("subscriptions", `Numero de subscriptions para o cliente ${customerId}: ${subscriptions.data.length}`);
 
-          // can not extend 5 items in the stripe list, so need to attach product by hand
-          if (subscription?.items?.data?.[0]?.price?.product && typeof subscription.items.data[0].price.product === 'string') {
-            try {
-              const product = await stripe.products.retrieve(subscription.items.data[0].price.product);
+      if (subscriptions.data.length >= 1) {
+        subscription = this.getNewestSubscription(subscriptions.data);
 
-              if (subscription.items.data[0].price) {
-                subscription.items.data[0].price.product = product;
-              }
-            } catch (productError: any) {
-              logger.error('stripe', 'Erro ao buscar detalhes do produto', {
-                productId: subscription.items.data[0].price.product,
-                error: productError.message
-              });
+        // can not extend 5 items in the stripe list, so need to attach product by hand
+        if (subscription?.items?.data?.[0]?.price?.product && typeof subscription.items.data[0].price.product === 'string') {
+          try {
+            const product = await stripe.products.retrieve(subscription.items.data[0].price.product);
+
+            if (subscription.items.data[0].price) {
+              subscription.items.data[0].price.product = product;
             }
+          } catch (productError: any) {
+            logger.error('stripe', 'Erro ao buscar detalhes do produto', {
+              productId: subscription.items.data[0].price.product,
+              error: productError.message
+            });
           }
         }
-
       }
 
-      if (!subscription || !subscription.id) {
+      const product = subscription?.items?.data[0]?.price?.product;
+
+      if (!subscription || !subscription.id || !product || typeof product === 'string') {
         throw new Error('Assinatura não encontrada ou inválida no Stripe');
       }
 
       //console.log(subscription.items.data[0]);
-      return subscription;
+      return subscription as SubscriptionWithProduct;
     } catch (error: any) {
       logger.error('stripe', 'Erro ao buscar assinatura no Stripe', {
-        subscriptionId,
+        customerId,
         error: error.message
       });
       return null;

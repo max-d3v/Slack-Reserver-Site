@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const currentSubscription = await subscriptionService.retrieveActiveSubscription(undefined, user.stripe_customer_id);
+    const currentSubscription = await subscriptionService.getActiveSubscription(user.stripe_customer_id);
 
     
 
