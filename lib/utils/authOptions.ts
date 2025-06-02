@@ -1,5 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
-import subscriptionService from "@/lib/stripe/subscriptions";
+import subscriptionService from "@/lib/stripe/subscriptionServices";
 import { PrismaClient } from "@prisma/client";
 import db from "@/lib/db/db";
 import { responseCookiesToRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";

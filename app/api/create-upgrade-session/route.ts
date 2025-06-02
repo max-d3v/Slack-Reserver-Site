@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/app/auth';
 import stripe from '@/lib/stripe/stripe';
 import logger from '@/lib/utils/logger';
-import subscriptionService from '@/lib/stripe/subscriptions';
+import subscriptionService from '@/lib/stripe/subscriptionServices';
 
 export async function POST(request: Request) {
   try {

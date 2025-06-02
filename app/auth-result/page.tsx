@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Check, X } from 'lucide-react'
+import loggerService from '@/lib/utils/logger'
 
 export default function SlackAuthSuccess() {
   const router = useRouter()
@@ -16,7 +17,8 @@ export default function SlackAuthSuccess() {
     }, 30000)
 
     return () => clearTimeout(redirectTimer)
-  }, [router])
+  }, [router]);
+
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">

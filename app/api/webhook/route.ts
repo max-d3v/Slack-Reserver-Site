@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 import stripe from "@/lib/stripe/stripe";
-import subscriptionService from "@/lib/stripe/subscriptions";
+import subscriptionService from "@/lib/stripe/subscriptionServices";
 import logger from "@/lib/utils/logger";
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;

@@ -1,6 +1,7 @@
 import prisma from '@/lib/db/db';
 import { SlackInstallation } from '@/types/types';
 import logger from '../utils/logger';
+import loggerService from '../utils/logger';
 
 export async function storeInstallation(installation: SlackInstallation, state: string) {
   try {
@@ -69,8 +70,14 @@ export async function storeInstallation(installation: SlackInstallation, state: 
       tenant, 
       workspace
     };
-  } catch (error) {
-    console.error('Error storing Slack installation:', error);
-    throw error;
+  } catch (error: any) {
+    await loggerService.critical('slack-installation', 
+      'Failed to store Slack installation', 
+      { 
+        teamId: installation.team?.id,
+        error: error.message,
+        state 
+      }
+    );    throw error;
   }
 }

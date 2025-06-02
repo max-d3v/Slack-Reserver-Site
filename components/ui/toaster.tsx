@@ -9,9 +9,27 @@ import {
   ToastTitle,
   ToastViewport,
 } from "@/components/ui/toast"
+import { useEffect } from "react";
+import loggerService from "@/lib/utils/logger";
 
 export function Toaster() {
   const { toasts } = useToast()
+
+
+  useEffect(() => {
+    toasts.forEach(toast => {
+      if (toast.variant === 'destructive') {
+        loggerService.critical('ui-toast', 
+          'Critical error toast displayed to user', 
+          { 
+            title: toast.title,
+            description: toast.description,
+            timestamp: new Date().toISOString()
+          }
+        );
+      }
+    });
+  }, [toasts]);
 
   return (
     <ToastProvider>
