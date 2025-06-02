@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/app/auth';
 import prisma from '@/lib/db/db';
 import stripe from '@/lib/stripe/stripe';
+import logger from '@/lib/utils/logger';
 
 const YOUR_DOMAIN = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -43,7 +44,7 @@ export async function POST(request: Request) {
     const session = await stripe.checkout.sessions.create({
       billing_address_collection: 'auto',
       line_items: [
-        { 
+        {
           price: price.id,
           quantity: 1,
         },
@@ -54,16 +55,16 @@ export async function POST(request: Request) {
       metadata: {
         user_id: authSession.user.id,
       },
-      });
+    });
 
-    
+
 
     if (!session.url) {
       throw new Error("Error creating stripe session")
     }
 
 
-    
+
 
     await prisma.user_checkout_sessions.create({
       data: {
@@ -74,7 +75,9 @@ export async function POST(request: Request) {
 
     return NextResponse.redirect(session.url, { status: 303 });
   } catch (error: any) {
-    console.error("Checkout session creation error");
+    logger.critical('stripe', `Checkout session creation error: ${error.message}`, {
+
+    })
     return NextResponse.redirect(new URL(`/?error=${error.message}`, request.url));
   }
 }

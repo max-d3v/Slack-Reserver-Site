@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/app/auth';
 import stripe from '@/lib/stripe/stripe';
-import prisma from '@/lib/db/db';
 import logger from '@/lib/utils/logger';
 import subscriptionService from '@/lib/stripe/subscriptions';
 
