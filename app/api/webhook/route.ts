@@ -58,7 +58,7 @@ export async function POST(request: Request) {
     });
 
   } catch (error: any) {
-    logger.error('stripe-webhook', `Erro no processamento do webhook`, {
+    logger.critical('stripe-webhook', `Erro no processamento do webhook`, {
       error: error.message,
       stack: error.stack
     });

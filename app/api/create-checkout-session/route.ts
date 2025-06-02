@@ -75,9 +75,7 @@ export async function POST(request: Request) {
 
     return NextResponse.redirect(session.url, { status: 303 });
   } catch (error: any) {
-    logger.critical('stripe', `Checkout session creation error: ${error.message}`, {
-
-    })
+    logger.critical('stripe', `Checkout session creation error: ${error.message}`)
     return NextResponse.redirect(new URL(`/?error=${error.message}`, request.url));
   }
 }

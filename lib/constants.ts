@@ -2,6 +2,9 @@ console.log(`Running server in ${process.env.NODE_ENV} mode`);
 console.log(`Server URL: ${process.env.NEXT_PUBLIC_SITE_URL}`);
 
 export const CONSTANTS = {
+    TIMERS: {
+        ALERT_COOLDOWN_MILISECONDS: 5 * 60 * 1000 // 5 minutos
+    },
     PRICING: {
         HIGHLIGHTED_PLAN: "company",
         FIXED_PLAN: "free",

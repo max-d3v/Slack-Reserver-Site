@@ -1,7 +1,7 @@
-// app/api/slack-auth/route.ts
 import { NextResponse } from 'next/server';
 import { SlackInstallation } from '@/types/types';
 import { storeInstallation } from '@/lib/slack/installation';
+import logger from '@/lib/utils/logger';
 
 export async function GET(request: Request) {
     const url = new URL(request.url);
@@ -46,7 +46,7 @@ export async function GET(request: Request) {
         // Redirect to pricing
         return NextResponse.redirect(new URL('/pricing', request.url));
     } catch (error: any) {
-        console.error('Error exchanging code for token:', error);
+        logger.critical("slack", 'Error exchanging code for token:', error);
         return NextResponse.redirect(new URL(`/auth-result?error=${error.message}`, request.url));
     }
 }

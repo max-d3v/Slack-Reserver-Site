@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import stripe from '@/lib/stripe/stripe';
+import loggerService from '@/lib/utils/logger';
 
 const YOUR_DOMAIN = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
 
     return NextResponse.redirect(`${portalSession.url}/success=checkout`, { status: 303 });
   } catch (error: any) {
-    console.error('Error creating portal session:', error);
+    loggerService.critical("stripe", "Error creating portal session: " + error.message);
     return NextResponse.redirect(new URL(`/auth-result?error=${error.message}`, request.url));
   }
 }

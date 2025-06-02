@@ -1,6 +1,7 @@
 import winston from 'winston';
 import path from 'path';
-import emailer from '../emailer/emailer';
+import emailer from '../emailer/emailerServices';
+import { CONSTANTS } from '../constants';
 
 const logDir = path.join(process.cwd(), 'logs');
 
@@ -64,7 +65,7 @@ const logger = winston.createLogger({
 
 
 const alertRateLimit = new Map<string, number>();
-const ALERT_COOLDOWN = 5 * 60 * 1000; // 5 minutes
+const ALERT_COOLDOWN = CONSTANTS.TIMERS.ALERT_COOLDOWN_MILISECONDS
 
 async function sendCriticalAlert(service: string, message: string, metadata?: any) {
 

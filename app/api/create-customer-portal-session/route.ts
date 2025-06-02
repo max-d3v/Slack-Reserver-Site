@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/app/auth';
 import stripe from '@/lib/stripe/stripe';
+import loggerService from '@/lib/utils/logger';
 
 export async function GET(request: Request) {
     try {
@@ -20,7 +21,7 @@ export async function GET(request: Request) {
 
         return NextResponse.redirect(session.url, { status: 303 });
     } catch (error: any) {
-        console.error("Checkout session creation error");
+        loggerService.critical("stripe", `Checkout session creation error: ${error.message}`);
         return NextResponse.redirect(new URL(`/?error=${error.message}`, request.url));
     }
 }

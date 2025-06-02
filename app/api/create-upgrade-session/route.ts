@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     // Redirect to success page
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/?success=Plan updated successfully!`, { status: 303 });
   } catch (error: any) {
-    logger.error('stripe', `Subscription upgrade error: ${error.message}`);
+    logger.critical('stripe', `Subscription upgrade error: ${error.message}`);
     return NextResponse.redirect(
       new URL(`/pricing?error=${encodeURIComponent(error.message)}`, request.url)
     );
