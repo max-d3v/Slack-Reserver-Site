@@ -21,7 +21,7 @@ export default async function Home({
     <main className="min-h-[95hv] w-full">
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >Reservations directly in your slack</p>
+          <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >All of your reservations entirely inside slack</p>
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
             <span className="inline-flex items-end">
               <BlurText
@@ -101,7 +101,7 @@ export default async function Home({
                   <h3 className="text-xl text-gray-700 font-bold mb-2">Game Changer</h3>
                   <p className="text-sm text-gray-500 mb-1">David K. - CTO</p>
                   <div className="text-amber-400 tracking-wider">★ ★ ★ ★ ★</div>
-                  <p className="mt-3 text-gray-600">"After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."</p>
+                  <p className="mt-3 text-gray-600">"After migrating from a web app to Slack, utilization almos quadrupled. Almost every meeting is now properly scheduled."</p>
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg shadow-sm min-w-[360px]">
                   <h3 className="text-xl text-gray-700 font-bold mb-2">No More Conflicts</h3>

@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Check, X } from 'lucide-react'
-import loggerService from '@/lib/utils/logger'
 
 export default function SlackAuthSuccess() {
   const router = useRouter()
