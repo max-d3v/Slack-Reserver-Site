@@ -76,6 +76,11 @@ async function sendCriticalAlert(service: string, message: string, metadata?: an
   if (alertRateLimit.has(alertKey)) {
     const lastSent = alertRateLimit.get(alertKey)!;
     if (now - lastSent < ALERT_COOLDOWN) {
+      logger.warn('alert-rate-limit', `Skipping alert for ${service} - already sent recently`, {
+        service,
+        message,
+        metadata
+      });
       return; // Skip sending to avoid spam
     }
   }

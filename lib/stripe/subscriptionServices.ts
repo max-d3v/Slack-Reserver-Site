@@ -93,7 +93,7 @@ export class SubscriptionService {
         throw new Error('Assinatura não encontrada ou inválida no Stripe');
       }
 
-      //console.log(subscription.items.data[0]);
+      //
       return subscription as SubscriptionWithProduct;
     } catch (error: any) {
       logger.error('stripe', 'Erro ao buscar assinatura no Stripe', {

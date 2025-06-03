@@ -3,7 +3,6 @@ import logger from '@/lib/utils/logger';
 import nodemailer from 'nodemailer';
 import { transporter } from './emailer';
 import { CONSTANTS } from '../constants';
-import { JsonValue } from 'next-auth/adapters';
 
 class Emailer {
     private targetEmail = CONSTANTS.CONTACT_EMAIL;

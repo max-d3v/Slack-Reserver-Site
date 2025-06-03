@@ -4,7 +4,7 @@ import loggerService from "../utils/logger"
 
 export const emailContact = async (FormData: FormData, flavor: string | string[] | undefined, sessionData: any, inputHighlight: string | undefined) => {
     try {
-        console.log(FormData);
+        
         const subject = FormData.get("subject") as string;
         const message = FormData.get("message") as string;
         const email = FormData.get("email") as string;

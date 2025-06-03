@@ -15,7 +15,6 @@ export default async function Home({
 }) {
   const { success, error } = (await searchParams);
   const redirect_uri = process.env.NEXT_PUBLIC_SITE_URL;
-  console.log("redirect uri in home page", redirect_uri);
 
   return (
     <main className="min-h-[95hv] w-full">

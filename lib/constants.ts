@@ -1,4 +1,4 @@
-console.log(`Running server in ${process.env.NODE_ENV} mode`);
+
 
 export const CONSTANTS = {
     TIMERS: {
