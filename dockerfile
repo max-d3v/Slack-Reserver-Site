@@ -27,6 +27,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN npx prisma generate
+
 
 ARG STRIPE_SECRET_KEY
 ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
