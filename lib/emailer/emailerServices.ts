@@ -3,6 +3,7 @@ import logger from '@/lib/utils/logger';
 import nodemailer from 'nodemailer';
 import { transporter } from './emailer';
 import { CONSTANTS } from '../constants';
+import { JsonValue } from 'next-auth/adapters';
 
 class Emailer {
     private targetEmail = CONSTANTS.CONTACT_EMAIL;
@@ -41,6 +42,19 @@ class Emailer {
             second: "2-digit"
         })}
         `
+        this.sendMail(subject, emailBody);
+    }
+
+    contactEmail({ subject, message, email, flavor, sessionData, inputHighlight }: { subject: string, message: string, email: string, flavor?: string, sessionData?: any, inputHighlight?: string }) {
+        
+        const emailBody = `
+        **Flavor:** ${flavor || "N/A"}
+        \n\n**Email:** ${email}
+        \n\n**Message:** ${message}
+        \n\n**Input Highlight:** ${inputHighlight ?? "None"}
+        \n\n**User Session data:** ${ sessionData ?? "N/A"}
+        `;
+
         this.sendMail(subject, emailBody);
     }
 }

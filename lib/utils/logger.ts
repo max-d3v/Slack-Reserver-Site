@@ -107,9 +107,9 @@ const loggerService = {
     logger.error(message, { service, level: 'CRITICAL', ...metadata });
 
     //Only send emails in production
-    if (process.env.NODE_ENV === 'production') {
+    //if (process.env.NODE_ENV === 'production') {
       await sendCriticalAlert(service, message, metadata);
-    }
+    //}
   }
 };
 

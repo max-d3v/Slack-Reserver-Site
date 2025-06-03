@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimate } from 'framer-motion';
 import * as utils from '@/lib/utils/functions';
 import { Session } from 'next-auth';
+import { emailContact } from '@/lib/emailer/emailerActions';
 
 const handleFlavor = (flavor: string | string[] | undefined) => {
   let subject = '';
@@ -53,20 +54,19 @@ export const ContactForm = ({ flavor, sessionData, inputHighlight   }: { flavor:
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const [status, message] = await emailContact(
+        new FormData(e.currentTarget as HTMLFormElement),
+        flavor,
+        sessionData,
+        typeof inputHighlight === "string" ? inputHighlight : undefined
+      );
 
-      if (response.ok) {
-        setSubmitMessage('Message sent successfully! We\'ll get back to you soon.');
+      if (status === true) {
+        setSubmitMessage(message);
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setSubmitMessage('Something went wrong. Please try again later.');
+        setSubmitMessage(message);
         setSubmitStatus('error');
       }
     } catch (error) {
@@ -146,10 +146,10 @@ export const ContactForm = ({ flavor, sessionData, inputHighlight   }: { flavor:
             type="text"
             id="subject"
             name="subject"
-            disabled={formData.subject ? true : false}
+            readOnly={formData.subject ? true : false}
             value={formData.subject}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={` ${formData.subject ? "bg-slate-100" : ""} w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
             required
           />
         </div>
