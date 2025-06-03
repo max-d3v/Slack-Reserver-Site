@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'Slack Reserver',
     images: [
       {
-        url: '/images/slack-reserver-og.png', // Make sure this image exists in your public folder
+        url: '/images/butler-separated.png',
         width: 1200,
         height: 630,
         alt: 'Slack Reserver - Workspace Resource Management',
