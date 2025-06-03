@@ -13,7 +13,7 @@ import PricingPlan from './pricingPlan';
 
 const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
     const { data: session } = useSession();
-    const hasTenantId = false//(session?.user as any)?.tenant_id;
+    const hasTenantId = (session?.user as any)?.tenant_id;
     const subscription = (session?.user as any)?.subscription as any | undefined;
     const hasSubscription = subscription ?? false;
     const currentPlanPrice = subscription?.price;
