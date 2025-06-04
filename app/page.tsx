@@ -14,8 +14,6 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { success, error } = (await searchParams);
-  console.log("redirect url in server side:", process.env.SITE_URL);
-  console.log(process.env)
   const redirectUrl = process.env.SITE_URL!;
 
   return (

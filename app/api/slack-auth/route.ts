@@ -42,8 +42,6 @@ export async function GET(request: Request) {
         
         const {workspace, tenant} = await storeInstallation(installation as SlackInstallation, state);
         
-        console.log(`Request url given: ${request.url}`);
-        console.log(request);
         // Redirect to pricing
         return NextResponse.redirect(`${process.env.SITE_URL}/pricing`);
     } catch (error: any) {
