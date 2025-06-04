@@ -64,8 +64,6 @@ export async function POST(request: Request) {
     }
 
 
-
-
     await prisma.user_checkout_sessions.create({
       data: {
         user_id: authSession.user.id,

@@ -43,7 +43,7 @@ export async function GET(request: Request) {
         const {workspace, tenant} = await storeInstallation(installation as SlackInstallation, state);
         
         // Redirect to pricing
-        return NextResponse.redirect(`${process.env.SITE_URL}/pricing`);
+        return NextResponse.redirect(`${process.env.SITE_URL}?success=Slack installation successfull!`);
     } catch (error: any) {
         logger.critical("slack", 'Error exchanging code for token:', error);
         return NextResponse.redirect(new URL(`/auth-result?error=${error.message}`, request.url));
