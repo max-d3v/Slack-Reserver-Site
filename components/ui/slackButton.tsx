@@ -8,12 +8,8 @@ export interface SlackButtonProps {
   className?: string;
 }
 
-export const SlackButton = ({ className }: SlackButtonProps) => {
-  
-  
+export const SlackButton = ({ className }: SlackButtonProps) => {  
   const redirectUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  console.log("redirect url", redirectUrl);
-  console.log(process.env);
 
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -67,9 +63,9 @@ export const SlackButton = ({ className }: SlackButtonProps) => {
   }
 
   // URL de autorização do Slack incluindo o userId
-  const userId = (session?.user as any)?.id;
+    const userId = (session?.user as any)?.id;
     const authUrl = `https://slack.com/oauth/v2/authorize?scope=app_mentions%3Aread%2Ccanvases%3Aread%2Ccanvases%3Awrite%2Cchannels%3Ahistory%2Cchat%3Awrite%2Ccommands%2Cemoji%3Aread%2Ctriggers%3Aread&user_scope=&redirect_uri=${redirectUrl}%2Fapi%2Fslack-auth&client_id=8320946706706.8320960407410&state=${userId || ''}`;
-  
+    console.log("auth url: ", authUrl);
 
   return (
     <div className={`${className}`}>

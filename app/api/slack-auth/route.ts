@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     
     if (!state) {
         throw new Error("No logged account was found")
-    }    
+    }
     if (!code) {
         throw new Error("Slack permit unsuccessful. No client code was provided.") 
     }
@@ -42,9 +42,10 @@ export async function GET(request: Request) {
         
         const {workspace, tenant} = await storeInstallation(installation as SlackInstallation, state);
         
-
+        console.log(`Request url given: ${request.url}`);
+        console.log(request);
         // Redirect to pricing
-        return NextResponse.redirect(new URL('/pricing', request.url));
+        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/pricing`);
     } catch (error: any) {
         logger.critical("slack", 'Error exchanging code for token:', error);
         return NextResponse.redirect(new URL(`/auth-result?error=${error.message}`, request.url));
