@@ -32,7 +32,8 @@ RUN npx prisma generate
 
 ARG STRIPE_SECRET_KEY
 ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
-
+ARG SITE_URL
+ENV SITE_URL=$SITE_URL
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
