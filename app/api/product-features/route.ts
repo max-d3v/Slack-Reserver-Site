@@ -29,11 +29,11 @@ export async function GET(request: Request) {
         const success: any[] = [];
         const errors: any[] = [];
         const products = [
-            { id: "prod_SJOG024YLTJpPS", features: companyFeatures },
-            { id: "prod_SJOH1c19o09YuE", features: companyFeatures },
-            { id: "prod_SJjAP6Bv68EESW", features: enterpriseFeatures },
-            { id: "prod_SJjBEEIWmAluSy", features: enterpriseFeatures },
-            { id: "prod_SJjCcg00HJWAlo", features: freeFeatures }
+            { id: "prod_S4NpJVhM5e5rzg", features: companyFeatures },
+            { id: "prod_SJMSwvfX3HegBs", features: companyFeatures },
+            { id: "prod_SJN3dLvOUAYEMn", features: enterpriseFeatures },
+            { id: "prod_SJN4OPCBNgqX9V", features: enterpriseFeatures },
+            { id: "prod_SRG8T7wKmRc1Ui", features: freeFeatures }
         ];
 
         for (const product of products) {
