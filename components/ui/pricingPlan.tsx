@@ -10,6 +10,7 @@ import Stripe from 'stripe';
 const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSubscriptionPrice }: { price: Stripe.Price, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean, currentSubscriptionPrice: Stripe.Price }) => {
   const { product } = price;
   const features = (price.product as Stripe.Product).metadata;
+  const siteUrl = process.env.SITE_URL!;
 
   const router = useRouter();
 
@@ -182,7 +183,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
               </form>
 
               :
-              <SlackButton className={highlight ? "py-4" : "py-3"} />
+              <SlackButton redirectUrl={siteUrl} className={highlight ? "py-4" : "py-3"} />
           }
         </div>
         <div className="px-8 py-2 border-b border-gray-200"></div>

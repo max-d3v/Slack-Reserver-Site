@@ -367,7 +367,7 @@ export default async function Home({
           </div>
 
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tired of people forgetting reservations, avoiding slow web forms, or missing important notifications because they don't check their emails? Make room booking effortless.</p>          
-          <SlackButton  className="mb-12" />
+          <SlackButton redirectUrl={redirectUrl} className="mb-12" />
         </div>
       </section>
     </main>
