@@ -9,7 +9,12 @@ export interface SlackButtonProps {
 }
 
 export const SlackButton = ({ className }: SlackButtonProps) => {
+  
+  
   const redirectUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  console.log("redirect url", redirectUrl);
+  console.log(process.env);
+
   const { data: session, status } = useSession();
   const router = useRouter();
 
