@@ -27,6 +27,7 @@ jobs:
           maxdev123/slack_reserver:site_latest
         build-args: |
           STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
+          SITE_URL=https://slackreserver.com
 
   deploy:
     needs: image-push
