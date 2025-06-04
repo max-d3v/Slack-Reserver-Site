@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     try {
         const clientId = process.env.SLACK_CLIENT_ID;
         const clientSecret = process.env.SLACK_CLIENT_SECRET;
-        const redirectUri = process.env.NEXT_PUBLIC_SITE_URL + "/api/slack-auth"; 
+        const redirectUri = process.env.SITE_URL + "/api/slack-auth"; 
         
         const response = await fetch('https://slack.com/api/oauth.v2.access', {
             method: 'POST',
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
         console.log(`Request url given: ${request.url}`);
         console.log(request);
         // Redirect to pricing
-        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/pricing`);
+        return NextResponse.redirect(`${process.env.SITE_URL}/pricing`);
     } catch (error: any) {
         logger.critical("slack", 'Error exchanging code for token:', error);
         return NextResponse.redirect(new URL(`/auth-result?error=${error.message}`, request.url));

@@ -14,7 +14,7 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { success, error } = (await searchParams);
-  const redirect_uri = process.env.NEXT_PUBLIC_SITE_URL;
+  const redirectUrl = process.env.SITE_URL!;
 
   return (
     <main className="min-h-[95hv] w-full">
@@ -36,7 +36,7 @@ export default async function Home({
           </h1>
           <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Always fighting for rooms?, make things simple with resource managment right in your slack.</p>
           <p className="text-xl leading-tight md:text-1xl  text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
-          <SlackButton  className="mb-4" />
+          <SlackButton redirectUrl={redirectUrl} className="mb-4" />
 
           <div className="flex flex-col items-center justify-center space-x-1 text-amber-400">
             <span className="text-xl">★★★★★</span>

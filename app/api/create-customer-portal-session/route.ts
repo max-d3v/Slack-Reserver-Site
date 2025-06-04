@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
         const session = await stripe.billingPortal.sessions.create({
             customer: user.stripe_customer_id,
-            return_url: process.env.NEXT_PUBLIC_SITE_URL + "/profile",
+            return_url: process.env.SITE_URL + "/profile",
         });
 
         return NextResponse.redirect(session.url, { status: 303 });

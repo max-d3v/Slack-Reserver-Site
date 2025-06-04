@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Slack Reserver Pricing - Simple, Transparent Plans',
         description: 'From free to company-wide solutions, find the perfect Slack resource booking plan for your team. Includes 14-day free trial on paid plans.',
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/pricing`,
+        url: `${process.env.SITE_URL}/pricing`,
         siteName: 'Slack Reserver',
         images: [
             {
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
         images: ['/images/slack-reserver-pricing-og.png'],
     },
     alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/pricing`,
+        canonical: `${process.env.SITE_URL}/pricing`,
         languages: {
-            'en': `${process.env.NEXT_PUBLIC_SITE_URL}/pricing`,
+            'en': `${process.env.SITE_URL}/pricing`,
         },
     },
     robots: {
@@ -57,7 +57,7 @@ const pricingJsonLd = {
             "price": "0",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#free`,
+            "url": `${process.env.SITE_URL}/pricing#free`,
             "priceValidUntil": "2025-12-31",
             "itemOffered": {
                 "@type": "Service",
@@ -72,7 +72,7 @@ const pricingJsonLd = {
             "price": "6",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#team-monthly`,
+            "url": `${process.env.SITE_URL}/pricing#team-monthly`,
             "priceValidUntil": "2025-12-31",
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",
@@ -95,7 +95,7 @@ const pricingJsonLd = {
             "price": "40",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#team-annual`,
+            "url": `${process.env.SITE_URL}/pricing#team-annual`,
             "priceValidUntil": "2025-12-31",
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",
@@ -118,7 +118,7 @@ const pricingJsonLd = {
             "price": "12",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#company-monthly`,
+            "url": `${process.env.SITE_URL}/pricing#company-monthly`,
             "priceValidUntil": "2025-12-31",
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",
@@ -141,7 +141,7 @@ const pricingJsonLd = {
             "price": "120",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#company-annual`,
+            "url": `${process.env.SITE_URL}/pricing#company-annual`,
             "priceValidUntil": "2025-12-31",
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",
@@ -164,7 +164,7 @@ const pricingJsonLd = {
             "price": "20",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#enterprise-monthly`,
+            "url": `${process.env.SITE_URL}/pricing#enterprise-monthly`,
             "priceValidUntil": "2025-12-31",
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",
@@ -187,7 +187,7 @@ const pricingJsonLd = {
             "price": "200",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
-            "url": `${process.env.NEXT_PUBLIC_SITE_URL}/pricing#enterprise-annual`,
+            "url": `${process.env.SITE_URL}/pricing#enterprise-annual`,
             "priceValidUntil": "2025-12-31",
             "hasMerchantReturnPolicy": {
                 "@type": "MerchantReturnPolicy",

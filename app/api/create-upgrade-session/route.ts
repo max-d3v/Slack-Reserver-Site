@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     logger.info('stripe', "Client updated subscription!", updatedSubscription.id);
 
     // Redirect to success page
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/?success=Plan updated successfully!`, { status: 303 });
+    return NextResponse.redirect(`${process.env.SITE_URL}/?success=Plan updated successfully!`, { status: 303 });
   } catch (error: any) {
     logger.critical('stripe', `Subscription upgrade error: ${error.message}`);
     return NextResponse.redirect(
