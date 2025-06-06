@@ -71,9 +71,9 @@ const jsonLd = {
     "bestRating": "5",
     "worstRating": "1"
   },
-"featureList": [
+  "featureList": [
     "Slack room booking",
-    "Workspace resource management", 
+    "Workspace resource management",
     "Shared resources reservations",
     "Automated booking notifications",
     "Custom resource groups",
@@ -124,6 +124,18 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-METMVKBP5H"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-METMVKBP5H');
+          `}
+        </Script>
       <body className={`${inter.className} overflow-y-auto antialiased bg-white`}>
         <Script
           id="slack-reserver-jsonld"
