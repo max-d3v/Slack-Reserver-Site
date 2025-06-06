@@ -11,9 +11,9 @@ import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),
-  title: 'Slack Reserver - Book Rooms & Manage Shared Resources Directly in Slack',
+  title: 'Slack Reserver - Book Rooms & Workspace Resource Management Directly in Slack',
   description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
-  keywords: 'slack resource management, slack workspace management, slack room booking, slack reservations, shared resources slack, booking rooms slack, entirely slack reservations, workspace resources, workspace managment',
+  keywords: 'slack resource management, slack workspace management, slack room booking, slack reservations, shared resources slack, booking rooms slack, entirely slack reservations, workspace resources, workspace management',
   openGraph: {
     title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
     description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
@@ -54,7 +54,7 @@ const jsonLd = {
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
   "description": "Complete Slack workspace management solution for booking rooms, equipment, and shared resources entirely within Slack. Streamline reservations with automated notifications.",
-  "keywords": ["slack resource management", "workspace managment", "slack workspace management", "slack room booking", "slack reservations", "shared resources", "booking rooms slack", "entirely slack"],
+  "keywords": ["slack resource management", "workspace management", "slack workspace management", "slack room booking", "slack reservations", "shared resources", "booking rooms slack", "entirely slack"],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",

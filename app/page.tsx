@@ -34,7 +34,7 @@ export default async function Home({
             </span>
             <span className="inline-block ml-2">& Organize your workspace</span>
           </h1>
-          <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Few people booking? resource managment confusion?, make things simple right in your slack.</p>
+          <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Few people booking? resource management confusion?, make things simple right in your slack.</p>
           <p className="text-xl leading-tight md:text-1xl  text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
           <SlackButton redirectUrl={redirectUrl} className="mb-4" />
 
