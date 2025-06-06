@@ -95,7 +95,7 @@ export class EmailerService {
         }
 
         const { subject, text, metadata } = data;
-        let body = `${text} \n\n Metadata: ${JSON.stringify(metadata, null, 2)}`;
+        const body = `${text} \n\n Metadata: ${JSON.stringify(metadata, null, 2)}`;
 
         const mailOptions = {
             from: `Mailgun Sandbox <postmaster@${process.env.MAILGUN_DOMAIN}>`,
