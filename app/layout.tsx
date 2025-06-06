@@ -14,6 +14,14 @@ export const metadata: Metadata = {
   title: 'Slack Reserver - Book Rooms & Workspace Resource Management Directly in Slack',
   description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
   keywords: 'slack resource management, slack workspace management, slack room booking, slack reservations, shared resources slack, booking rooms slack, entirely slack reservations, workspace resources, workspace management',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+  },
   openGraph: {
     title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
     description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
