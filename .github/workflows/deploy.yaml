@@ -28,7 +28,6 @@ jobs:
         build-args: |
           STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}
           SITE_URL=https://slackreserver.com
-          GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}
 
   deploy:
     needs: image-push

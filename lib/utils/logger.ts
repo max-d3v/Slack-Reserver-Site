@@ -1,121 +1,149 @@
-import winston from 'winston';
-import path from 'path';
-import emailer from '../emailer/emailerServices';
+import winston, { loggers } from 'winston';
 import { CONSTANTS } from '../constants';
+import emailerServices, { EmailerService } from '../emailer/emailerServices';
+import path from 'path';
 
-const logDir = path.join(process.cwd(), 'logs');
+export interface LoggerService {
+  info: (message: string, metadata?: any) => void;
+  warn: (message: string, metadata?: any) => void;
+  error: (message: string, metadata?: any) => void;
+  debug: (message: string, metadata?: any) => void;
+  critical: (service: string, message: string, metadata?: any) => Promise<void>;
+}
 
-// custom format
-const customFormat = winston.format.combine(
-  winston.format.timestamp(),
-  winston.format.printf((info) => {
-    const { timestamp, level, message, service, ...metadata } = info;
-    const levelString = `[${level.toUpperCase()}]`;
+export class LoggerServices {
+  private loggerService: LoggerService | null = null;
+  private alertRateLimit = new Map<string, number>();
+  private emailerInitialized = false;
 
-    return JSON.stringify({
-      timestamp,
-      levelString,
-      service: service || 'app',
-      message,
-      metadata: Object.keys(metadata).length ? metadata : undefined
-    });
-  })
-);
+  constructor(private emailer: EmailerService) { }
 
-// colourss
-const consoleFormat = winston.format.combine(
-  winston.format.colorize(),
-  winston.format.timestamp(),
-  winston.format.printf((info) => {
-    const { timestamp, level, message, service, ...metadata } = info;
-    return `${level} [${timestamp}] [${service || 'app'}]: ${message} ${Object.keys(metadata).length ? JSON.stringify(metadata) : ''
-      }`;
-  })
-);
+  public buildLogger() {
+    try {
+      const logDir = path.join(process.cwd(), 'logs');
 
-const logger = winston.createLogger({
-  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-  transports: [
-    new winston.transports.Console({
-      format: consoleFormat
-    }),
-    new winston.transports.File({
-      filename: path.join(logDir, `stripe-${new Date().toISOString().split('T')[0]}.log`),
-      format: customFormat,
-      maxsize: 5242880, // 5MB
-      maxFiles: 5
-    }),
-    new winston.transports.File({
-      filename: path.join(logDir, 'error.log'),
-      level: 'error',
-      format: customFormat,
-      maxsize: 5242880, // 5MB
-      maxFiles: 5
-    }),
-    new winston.transports.File({
-      filename: path.join(logDir, 'critical.log'),
-      level: 'error',
-      format: customFormat,
-      maxsize: 5242880, // 5MB
-      maxFiles: 10
-    })
+      // custom format
+      const customFormat = winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf((info) => {
+          const { timestamp, level, message, service, ...metadata } = info;
+          const levelString = `[${level.toUpperCase()}]`;
 
-  ]
-});
+          return JSON.stringify({
+            timestamp,
+            levelString,
+            service: service || 'app',
+            message,
+            metadata: Object.keys(metadata).length ? metadata : undefined
+          });
+        })
+      );
 
+      // colourss
+      const consoleFormat = winston.format.combine(
+        winston.format.colorize(),
+        winston.format.timestamp(),
+        winston.format.printf((info) => {
+          const { timestamp, level, message, service, ...metadata } = info;
+          return `${level} [${timestamp}] [${service || 'app'}]: ${message} ${Object.keys(metadata).length ? JSON.stringify(metadata) : ''
+            }`;
+        })
+      );
 
-const alertRateLimit = new Map<string, number>();
-const ALERT_COOLDOWN = CONSTANTS.TIMERS.ALERT_COOLDOWN_MILISECONDS
+      const logger = winston.createLogger({
+        level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+        transports: [
+          new winston.transports.Console({
+            format: consoleFormat
+          }),
+          new winston.transports.File({
+            filename: path.join(logDir, `stripe-${new Date().toISOString().split('T')[0]}.log`),
+            format: customFormat,
+            maxsize: 5242880, // 5MB
+            maxFiles: 5
+          }),
+          new winston.transports.File({
+            filename: path.join(logDir, 'error.log'),
+            level: 'error',
+            format: customFormat,
+            maxsize: 5242880, // 5MB
+            maxFiles: 5
+          }),
+          new winston.transports.File({
+            filename: path.join(logDir, 'critical.log'),
+            level: 'error',
+            format: customFormat,
+            maxsize: 5242880, // 5MB
+            maxFiles: 10
+          })
 
-async function sendCriticalAlert(service: string, message: string, metadata?: any) {
-
-  const alertKey = `${service}:${message}`;
-  const now = Date.now();
-
-  // Check if we've already sent this alert recently
-  if (alertRateLimit.has(alertKey)) {
-    const lastSent = alertRateLimit.get(alertKey)!;
-    if (now - lastSent < ALERT_COOLDOWN) {
-      logger.warn('alert-rate-limit', `Skipping alert for ${service} - already sent recently`, {
-        service,
-        message,
-        metadata
+        ]
       });
-      return; // Skip sending to avoid spam
+
+
+      const loggerService = {
+        info: (service: string, message: string, metadata?: any) => logger.info(service, message, { ...metadata }),
+        warn: (message: string, metadata?: any) => logger.warn(message, { ...metadata }),
+        error: (message: string, metadata?: any) => logger.error(message, { ...metadata }),
+        debug: (message: string, metadata?: any) => logger.debug(message, { ...metadata }),
+        critical: async (service: string, message: string, metadata?: any) => {
+          try {
+            logger.error(message, { service, level: 'CRITICAL', ...metadata });
+
+            if (!this.emailerInitialized) {
+              await this.emailer.ensureInitialized();
+              this.emailerInitialized = true;
+            }
+
+            await this.sendCriticalAlert(service, message, metadata);
+          } catch (error: any) {
+            console.error('Failed to send critical alert', { error, service, message, metadata });
+          }
+        }
+      };
+
+      this.loggerService = loggerService;
+      console.log('Logger service initialized successfully');
+      return loggerService;
+    } catch (error: any) {
+      throw error
     }
   }
 
-  try {
-    await emailer.errorEmail({
-      subject: `🚨 Critical Error in ${service}`,
-      message,
-      timestamp: new Date(),
-      metadata
-    });
+  public getLogger() {
+    return this.loggerService;
+  }
 
-    alertRateLimit.set(alertKey, now);
-  } catch (emailError) {
-    // Don't let email failures break the application
-    logger.error('Failed to send critical alert email', { emailError });
+  private async sendCriticalAlert(service: string, message: string, metadata?: any) {
+    const alertKey = `${service}:${message}:${JSON.stringify(metadata)}`;
+    const now = Date.now();
+    const ALERT_COOLDOWN = CONSTANTS.TIMERS.ALERT_COOLDOWN_MILISECONDS
+
+    // Check if we've already sent this alert recently
+    if (this.alertRateLimit.has(alertKey)) {
+      const lastSent = this.alertRateLimit.get(alertKey)!;
+      if (now - lastSent < ALERT_COOLDOWN) {
+        console.warn(`Skipping alert for ${service} due to rate limit`, { service, message });
+        return;
+      }
+    }
+    const text = `Critical error has ocurred!`;
+
+    try {
+      await this.emailer.sendErrorEmail({
+        subject: `🚨 Critical Error in ${service}`,
+        text,
+        errorMessage: message,
+        metadata
+      });
+
+      this.alertRateLimit.set(alertKey, now);
+    } catch (emailError) {
+      console.error('Failed to send critical alert email', { emailError });
+    }
   }
 }
 
-
-
-// Helper method to log with service context
-const loggerService = {
-  info: (service: string, message: string, metadata?: any) => logger.info(message, { service, ...metadata }),
-  warn: (service: string, message: string, metadata?: any) => logger.warn(message, { service, ...metadata }),
-  error: (service: string, message: string, metadata?: any) => logger.error(message, { service, ...metadata }),
-  debug: (service: string, message: string, metadata?: any) => logger.debug(message, { service, ...metadata }),
-  critical: async (service: string, message: string, metadata?: any) => {
-    logger.error(message, { service, level: 'CRITICAL', ...metadata });
-
-    //Only send emails in production
-    //if (process.env.NODE_ENV === 'production') {
-      await sendCriticalAlert(service, message, metadata);
-    //}
-  }
-};
-
-export default loggerService;
+const loggerService = new LoggerServices(emailerServices);
+export const logger = loggerService.buildLogger();
+export default logger;

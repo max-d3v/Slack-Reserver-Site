@@ -2,7 +2,7 @@
 
 export const CONSTANTS = {
     TIMERS: {
-        ALERT_COOLDOWN_MILISECONDS: 5 * 60 * 1000 // 5 minutos
+        ALERT_COOLDOWN_MILISECONDS: 1 * 60 * 1000 // 5 minutos
     },
     PRICING: {
         HIGHLIGHTED_PLAN: "company",
