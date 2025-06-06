@@ -83,9 +83,9 @@ export class LoggerServices {
 
       const loggerService = {
         info: (service: string, message: string, metadata?: any) => logger.info(service, message, { ...metadata }),
-        warn: (message: string, metadata?: any) => logger.warn(message, { ...metadata }),
-        error: (message: string, metadata?: any) => logger.error(message, { ...metadata }),
-        debug: (message: string, metadata?: any) => logger.debug(message, { ...metadata }),
+        warn: (service: string, message: string, metadata?: any) => logger.warn(service, message, { ...metadata }),
+        error: (service: string, message: string, metadata?: any) => logger.error(service, message, { ...metadata }),
+        debug: (service: string, message: string, metadata?: any) => logger.debug(service, message, { ...metadata }),
         critical: async (service: string, message: string, metadata?: any) => {
           try {
             logger.error(message, { service, level: 'CRITICAL', ...metadata });
