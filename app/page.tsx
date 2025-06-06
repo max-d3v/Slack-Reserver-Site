@@ -42,7 +42,7 @@ export default async function Home({
             <span className="text-xl">★★★★★</span>
             <span className="text-gray-600 text-lg ml-2">Trusted by <CountUp
               from={0}
-              to={500}
+              to={270}
               separator=","
               direction="up"
               duration={8}
