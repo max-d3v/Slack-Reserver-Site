@@ -4,6 +4,7 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://slackreserver.com/sitemap.xml
 
 # Disallow sensitive or utility pages
 Disallow: /api/

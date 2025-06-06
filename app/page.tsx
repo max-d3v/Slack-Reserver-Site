@@ -20,7 +20,7 @@ export default async function Home({
     <main className="min-h-[95hv] w-full">
       <section className="bg-white py-16 pt-[12vh] md:pt-[22vh] md:pb-10 mb-2 mt-8">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >All of your reservations entirely inside slack</p>
+          <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1" >Complete Workspace Management - Complete inside Slack</p>
           <h1 className="text-4xl md:text-5xl font-bold mb-14 flex flex-wrap justify-center items-end text-gray-700">
             <span className="inline-flex items-end">
               <BlurText
@@ -34,7 +34,7 @@ export default async function Home({
             </span>
             <span className="inline-block ml-2">& Organize your workspace</span>
           </h1>
-          <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Always fighting for rooms?, make things simple with resource managment right in your slack.</p>
+          <p className="text-xl leading-tight md:text-1xl text-gray-600  ">Few people booking? resource managment confusion?, make things simple right in your slack.</p>
           <p className="text-xl leading-tight md:text-1xl  text-gray-600 text-bold mb-36">Stop entering rooms nose first to find people already there</p>
           <SlackButton redirectUrl={redirectUrl} className="mb-4" />
 

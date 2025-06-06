@@ -10,9 +10,10 @@ import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
+  metadataBase: new URL(process.env.SITE_URL!),
+  title: 'Slack Reserver - Book Rooms & Manage Shared Resources Directly in Slack',
   description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
-  keywords: 'slack integration, room booking, resource management, meeting scheduler, slack app, workspace management, slack',
+  keywords: 'slack resource management, slack workspace management, slack room booking, slack reservations, shared resources slack, booking rooms slack, entirely slack reservations, workspace resources, workspace managment',
   openGraph: {
     title: 'Slack Reserver - Book Rooms & Resources Directly in Slack',
     description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'Slack Reserver',
     images: [
       {
-        url: '/images/butler_separated.png',
+        url: `${process.env.SITE_URL}/images/butler_separated.png`,
         width: 1200,
         height: 630,
         alt: 'Slack Reserver - Workspace Resource Management',
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  category: 'business software'
 };
 
 const jsonLd = {
@@ -51,7 +53,8 @@ const jsonLd = {
   "name": "Slack Reserver",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "description": "A Slack integration that allows teams to book meeting rooms, equipment, and other shared resources directly within Slack.",
+  "description": "Complete Slack workspace management solution for booking rooms, equipment, and shared resources entirely within Slack. Streamline reservations with automated notifications.",
+  "keywords": ["slack resource management", "workspace managment", "slack workspace management", "slack room booking", "slack reservations", "shared resources", "booking rooms slack", "entirely slack"],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
@@ -59,19 +62,33 @@ const jsonLd = {
     "bestRating": "5",
     "worstRating": "1"
   },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/OnlineOnly"
-  },
-  "featureList": "Room booking, Resource management, Automated notifications, Custom resource groups, Custom resources",
+"featureList": [
+    "Slack room booking",
+    "Workspace resource management", 
+    "Shared resources reservations",
+    "Automated booking notifications",
+    "Custom resource groups",
+    "Entirely Slack-based management"
+  ],
   "screenshot": `${process.env.SITE_URL}/images/prints_reserver/Modal_reservation.png`,
   "softwareHelp": {
     "@type": "WebContent",
-    "url": `${process.env.SITE_URL}/support`
+    "url": `${process.env.SITE_URL}/contact`
   },
   "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "David K."
+      },
+      "reviewBody": "After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."
+    },
     {
       "@type": "Review",
       "reviewRating": {
@@ -85,19 +102,6 @@ const jsonLd = {
       },
       "reviewBody": "After implementing Slack Reserver, we reduced meeting setup time by 30%. No more double-bookings or confusion about room availability."
     },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "David K."
-      },
-      "reviewBody": "After migrating from a web app to Slack, utilization jumped from 20% to nearly 90%. Almost every meeting is now properly scheduled."
-    }
   ]
 };
 
