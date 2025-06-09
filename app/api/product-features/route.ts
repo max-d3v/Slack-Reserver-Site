@@ -33,7 +33,7 @@ export async function GET(request: Request) {
             { id: "prod_SJMSwvfX3HegBs", features: companyFeatures },
             { id: "prod_SJN3dLvOUAYEMn", features: enterpriseFeatures },
             { id: "prod_SJN4OPCBNgqX9V", features: enterpriseFeatures },
-            { id: "prod_SRG8T7wKmRc1Ui", features: freeFeatures }
+            { id: "prod_SSztKmVAPJuHf1", features: freeFeatures }
         ];
 
         for (const product of products) {

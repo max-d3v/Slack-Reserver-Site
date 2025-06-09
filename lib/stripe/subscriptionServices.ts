@@ -104,6 +104,34 @@ export class SubscriptionService {
     }
   }
 
+  public async hasFreePlan(customerId?: string | null) {
+    try {
+      if (!customerId) {
+        throw new Error('Nenhum ID de cliente fornecido');
+      }
+
+      const sessions = await stripe.checkout.sessions.list({
+        customer: customerId,
+        
+      });
+
+      // Ultimo checkout session (Se trocou de plano vai dar false pro has free plan!)
+      const data = sessions.data[0];
+
+      if (data.mode === "payment" && data.payment_status === "paid") {
+        return true;
+      }
+
+      return false;
+    } catch (error: any) {
+      logger.critical('stripe', 'Erro ao buscar plano gratuito no Stripe', {
+        customerId,
+        error: error.message
+      });
+      return false;
+    }
+  }
+
   public async retrieveCustomer(customerId: string): Promise<Stripe.Customer | null> {
     try {
       const customer = await stripe.customers.retrieve(customerId);

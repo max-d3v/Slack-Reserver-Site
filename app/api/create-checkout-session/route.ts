@@ -23,14 +23,15 @@ export async function POST(request: Request) {
       active: true,
       expand: ['data.product'],
     });
-
-
+ 
     if (!prices.data.length) {
       return NextResponse.json(
         { error: 'No active prices found for this product' },
         { status: 404 }
       );
     }
+
+    const { unit_amount } = prices.data[0]
 
     const authSession = await auth();
     if (!authSession?.user) {
@@ -49,7 +50,8 @@ export async function POST(request: Request) {
           quantity: 1,
         },
       ],
-      mode: 'subscription',
+      ...(unit_amount === 0 ? { customer_creation: "always" } : {}),
+      mode: unit_amount === 0 ? 'payment' : 'subscription',
       success_url: `${YOUR_DOMAIN}?success=Checkout successful!`,
       cancel_url: `${YOUR_DOMAIN}?error=Checkout canceled`,
       metadata: {

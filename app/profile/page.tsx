@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -12,7 +11,6 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
-  CalendarIcon,
   CreditCard,
   Clock,
   Users,
@@ -20,10 +18,7 @@ import {
   CircleFadingArrowUp,
   Crown,
   Star,
-  Zap,
-  Settings,
   ExternalLink,
-  Calendar,
   TrendingUp
 } from "lucide-react"
 import { auth } from '../auth'
@@ -35,18 +30,26 @@ import Stripe from 'stripe'
 const Page = async () => {
   const sessionData = await auth();
   const user = sessionData?.user;
-  
+
   const stripeSubscription = sessionData?.user.subscription as Stripe.SubscriptionItem | (Stripe.SubscriptionItem & {
     price: Stripe.Price & {
       product: Stripe.Product | undefined;
     };
   }) | undefined;
 
+  const freePlan = user?.freePlan ?? false;
   const product = stripeSubscription?.price.product && typeof stripeSubscription?.price.product !== "string" ? stripeSubscription?.price.product as Stripe.Product : undefined;
   const status = product ? "Active" : "No active plan";
   const price = stripeSubscription?.price;
 
-  const subscription = {
+  const subscription = freePlan && !product ? {
+    plan: "Free Plan",
+    price: "—",
+    billingCycle: undefined,
+    nextBillingDate: "N/A",
+    features: {"resources": 10, "reservations": 30, "resource_groups": 3},
+    status: "Active"
+  } : {
     plan: product?.name ?? "No active plan",
     price: price && price?.unit_amount
       ? new Intl.NumberFormat('en-US', {

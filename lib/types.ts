@@ -9,7 +9,8 @@ declare module "next-auth" {
       isAdmin: boolean;
       tenant_id: string | null;
       created_at: Date;
-      stripe_customer_id: string | null;
+      stripe_customer_id: string | null;\
+      freePlan: boolean;
       subscription: Stripe.Subscription; // Replace with your actual subscription type
       tenant?: {
         id: string;

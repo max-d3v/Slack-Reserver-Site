@@ -11,7 +11,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
   const { product } = price;
   const features = (price.product as Stripe.Product).metadata;
   const siteUrl = process.env.SITE_URL!;
-
+  
   const router = useRouter();
 
   if (!isStripeProduct(product)) {
@@ -120,7 +120,7 @@ const PricingPlan = ({ price, highlight, hasTenantId, hasSubscription, currentSu
         <h1 className={`${highlight ? "text-4xl" : "text-3xl"} font-bold mt-4 text-gray-800`}>
           ${Number(price.unit_amount_decimal) / 100}
           <span className="text-gray-500 text-lg font-normal">
-            {` / ${price.recurring?.interval} `}
+            {`${price.recurring?.interval ? `/ ${price.recurring?.interval}` : ``}`}
           </span>
         </h1>
         <div className="mt-2 inline-flex items-center">

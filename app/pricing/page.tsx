@@ -11,6 +11,10 @@ export type PriceWithFeatures = Stripe.Price & {
 
 const Page = async () => {
     const stripePricingPlans = (await stripeServices.getPrices());
+    const filterExceptionPlan = stripePricingPlans.filter((plan) => {
+        return typeof plan.product !== "string" && plan.product.id !== "prod_SRG8T7wKmRc1Ui" && plan.product.id !== "prod_SJjCcg00HJWAlo"; // Exclude free testing plan
+    })
+
     return (
         <main className="min-h-screen w-full bg-gray-100"
             style={{
@@ -21,7 +25,7 @@ const Page = async () => {
             }}>
             <div className='container mt-12 mx-auto px-4 py-16'>
 
-                <Suspense><PricingPlans pricingPlans={stripePricingPlans} ></PricingPlans></Suspense>
+                <Suspense><PricingPlans pricingPlans={filterExceptionPlan} ></PricingPlans></Suspense>
             </div>
         </main>
     )
