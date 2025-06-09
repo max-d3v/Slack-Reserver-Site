@@ -47,23 +47,23 @@ export const Profile = ({ session_data }: ProfileDropdownProps) => {
                 avoidCollisions={true}
             >
                 <DropdownMenuLabel className="font-medium text-sm pb-1.5">
-                        <p className="text-sm font-medium text-gray-900 truncate">
-                            {utils.capitalizeName(session_data?.user?.name || "User")}
-                        </p>
-                        <p className="text-xs text-gray-500 truncate">
-                            {session_data?.user?.email || "user@example.com"}
-                        </p>
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                        {utils.capitalizeName(session_data?.user?.name || "User")}
+                    </p>
+                    <p className="text-xs text-gray-500 truncate">
+                        {session_data?.user?.email || "user@example.com"}
+                    </p>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-gray-200 my-1" />
                 <DropdownMenuGroup className="space-y-0.5">
                     <Link href="/profile" className="block">
-                        <DropdownMenuItem className="rounded-md cursor-pointer hover:bg-gray-100 transition-colors py-1.5">
+                        <DropdownMenuItem className="rounded-md cursor-pointer focus:bg-gray-100 hover:bg-gray-100 data-[highlighted]:bg-gray-100 transition-colors duration-200 py-1.5">
                             <ContactRound className="mr-2 h-4 w-4" />
                             <span>Profile</span>
                         </DropdownMenuItem>
                     </Link>
                     <Link href="/api/create-customer-portal-session" className="block">
-                        <DropdownMenuItem className="rounded-md cursor-pointer hover:bg-gray-100 transition-colors py-1.5">
+                        <DropdownMenuItem className="rounded-md cursor-pointer focus:bg-gray-100 hover:bg-gray-100 data-[highlighted]:bg-gray-100 transition-colors duration-200 py-1.5">
                             <CreditCard className="mr-2 h-4 w-4" />
                             <span>Billing</span>
                         </DropdownMenuItem>
