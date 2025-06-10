@@ -10,7 +10,6 @@ import Stripe from 'stripe';
 const PricingPlan = ({ redirectUrl, price, highlight, hasTenantId, hasSubscription, currentSubscriptionPrice }: { redirectUrl: string, price: Stripe.Price, highlight: boolean, hasTenantId: boolean, hasSubscription: boolean, currentSubscriptionPrice: Stripe.Price }) => {
   const { product } = price;
   const features = (price.product as Stripe.Product).metadata;
-  
   const router = useRouter();
 
   if (!isStripeProduct(product)) {
@@ -124,7 +123,7 @@ const PricingPlan = ({ redirectUrl, price, highlight, hasTenantId, hasSubscripti
         </h1>
         <div className="mt-2 inline-flex items-center">
           <span className="text-sm font-medium text-green-600">
-            {highlight ? "✓ 14-day free trial" : "✓ No credit-card required"}
+            {highlight || includesInsensitive(CONSTANTS.PRICING.WANT_MORE_PLAN, product.name) ? "✓ 14-day free trial" : "✓ No credit-card required"}
           </span>
         </div>
       </div>
