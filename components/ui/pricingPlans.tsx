@@ -11,7 +11,7 @@ import Stripe from 'stripe';
 import PricingPlan from './pricingPlan';
 
 
-const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
+const PricingPlans = ({ pricingPlans, redirectUrl }: { pricingPlans: Stripe.Price[], redirectUrl: string }) => {
     const { data: session } = useSession();
     const hasTenantId = (session?.user as any)?.tenant_id;
     const subscription = (session?.user as any)?.subscription as any | undefined;
@@ -58,7 +58,7 @@ const PricingPlans = ({ pricingPlans }: { pricingPlans: Stripe.Price[] }) => {
 
                 {/* Pricing plans */}
                 {chosenPlans.map((price, index) => {
-                    return <PricingPlan key={index} price={price} currentSubscriptionPrice={currentPlanPrice} highlight={includesInsensitive((price.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN)} hasTenantId={hasTenantId} hasSubscription={hasSubscription} />
+                    return <PricingPlan redirectUrl={redirectUrl} key={index} price={price} currentSubscriptionPrice={currentPlanPrice} highlight={includesInsensitive((price.product as Stripe.Product).name, CONSTANTS.PRICING.HIGHLIGHTED_PLAN)} hasTenantId={hasTenantId} hasSubscription={hasSubscription} />
                 })}
 
 
