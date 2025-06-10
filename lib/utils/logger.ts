@@ -95,7 +95,7 @@ export class LoggerServices {
               this.emailerInitialized = true;
             }
 
-            await this.sendCriticalAlert(service, message, metadata);
+            await this.sendCriticalAlert(`site-${service}`, message, metadata);
           } catch (error: any) {
             console.error('Failed to send critical alert', { error, service, message, metadata });
           }
