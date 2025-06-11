@@ -8,6 +8,7 @@ import { authOptions } from "@/lib/utils/authOptions";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster"
+import DevelopmentBanner from "@/components/ui/banner"
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL!),
@@ -143,6 +144,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <SessionProvider session={session}>
+        <DevelopmentBanner />
           <Navbar />
           {children}
           <Footer />
