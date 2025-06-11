@@ -1,3 +1,4 @@
+import { CONSTANTS } from '@/lib/constants';
 import React from 'react';
 
 export default function PrivacyPolicy() {
@@ -86,10 +87,73 @@ export default function PrivacyPolicy() {
           including for the purposes of satisfying any legal, accounting, or reporting requirements.
         </p>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">7.1 Data Archival and Removal Policy</h2>
+        
+        <h3 className="text-lg font-semibold mb-3">Data Retention Periods</h3>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li><strong>Active User Data:</strong> Retained while subscription is active</li>
+          <li><strong>Inactive Accounts:</strong> Data archived after 12 months of inactivity</li>
+          <li><strong>Canceled Subscriptions:</strong> Data retained for 90 days, then archived</li>
+          <li><strong>Reservation History:</strong> Kept for 24 months for analytics and reporting</li>
+          <li><strong>Payment Records:</strong> Retained for 7 years for tax and accounting requirements</li>
+          <li><strong>Support Communications:</strong> Retained for 3 years</li>
+          <li><strong>Technical Logs:</strong> Retained for 12 months</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mb-3">Archival Process</h3>
+        <p className="mb-4">
+          When data reaches its retention limit, we follow a structured archival process:
+        </p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li>Data is moved to secure, encrypted archive storage</li>
+          <li>Access is restricted to authorized personnel only</li>
+          <li>Archived data is not used for active operations or analytics</li>
+          <li>Regular integrity checks ensure archived data remains intact</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mb-3">Data Removal</h3>
+        <p className="mb-4">
+          We permanently delete data in the following circumstances:
+        </p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li><strong>User-Requested Deletion:</strong> Within 30 days of verified request</li>
+          <li><strong>Automatic Purging:</strong> Archived data older than 7 years</li>
+          <li><strong>Legal Requirements:</strong> When required by applicable law</li>
+          <li><strong>Account Termination:</strong> All personal data deleted within 90 days unless legally required to retain</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mb-3">Data Deletion Process</h3>
+        <p className="mb-4">Our secure deletion process includes:</p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li>Multi-pass overwriting of storage media</li>
+          <li>Cryptographic key destruction for encrypted data</li>
+          <li>Verification of complete data removal</li>
+          <li>Documentation of deletion for compliance audits</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mb-3">Requesting Data Deletion</h3>
+        <p className="mb-4">
+          To request deletion of your personal data, contact us at <strong>{CONSTANTS.CONTACT_EMAIL}</strong> with:
+        </p>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li>Your email address associated with the account</li>
+          <li>Slack workspace name and ID</li>
+          <li>Specific data you want deleted (or "all personal data")</li>
+          <li>Verification of your identity</li>
+        </ul>
+        
+        <p className="mb-4">
+          <strong>Note:</strong> Some data may be retained longer if required by law, such as payment records for tax purposes 
+          or to resolve disputes. We will inform you of any such exceptions when processing your request.
+        </p>
+      </section>
+
       
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-4">8. Your Legal Rights</h2>
-        <p className="mb-4">Under certain circumstances, you have rights under data protection laws including:</p>
+        <p className="mb-4">Under certain circumstances, you have rights under data protectio n laws including:</p>
         <ul className="list-disc pl-6 mb-4 space-y-2">
           <li><strong>Access:</strong> Request access to your personal data</li>
           <li><strong>Correction:</strong> Request correction of your personal data</li>
@@ -123,7 +187,7 @@ export default function PrivacyPolicy() {
         <p className="mb-4">
           If you have any questions about this Privacy Policy, please contact us at:
         </p>
-        <p className="font-medium">info@slackreserver.com</p>
+        <p className="font-medium">{CONSTANTS.CONTACT_EMAIL}</p>
       </section>
     </div>
   );
