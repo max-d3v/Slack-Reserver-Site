@@ -62,8 +62,7 @@ export const SlackButton = ({ className, redirectUrl }: SlackButtonProps) => {
   }
 
   // URL de autorização do Slack incluindo o userId
-    const userId = (session?.user as any)?.id;
-    const authUrl = `https://slack.com/oauth/v2/authorize?scope=app_mentions%3Aread%2Ccanvases%3Aread%2Ccanvases%3Awrite%2Cchannels%3Ahistory%2Cchat%3Awrite%2Ccommands%2Cemoji%3Aread%2Ctriggers%3Aread&user_scope=&redirect_uri=${redirectUrl}%2Fapi%2Fslack-auth&client_id=8320946706706.8320960407410&state=${userId || ''}`;
+    const authUrl = `https://slack.com/oauth/v2/authorize?client_id=8320946706706.8320960407410&scope=app_mentions:read,channels:history,chat:write,commands,emoji:read,users:read&user_scope=`;
 
   return (
     <div className={`${className}`}>
