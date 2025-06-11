@@ -1,0 +1,25 @@
+# Slack Reserver: Workspace Resource Management
+
+> A curated list of high-value resources for understanding Slack Reserver's workspace resource management capabilities and policies.
+
+This file highlights key information about our Slack integration for booking rooms, equipment, and shared resources.
+
+## Core Content
+
+- [FAQ Page](https://slackreserver.com/faq): Comprehensive answers about setup, pricing, permissions, and security for Slack workspace resource management
+
+- [Pricing Plans](https://slackreserver.com/pricing): Detailed breakdown of subscription tiers from free plans to enterprise solutions with feature comparisons
+
+- [Privacy Policy](https://slackreserver.com/privacy-policy): Complete data handling practices, retention policies, user rights, and GDPR compliance information
+
+- [Terms of Service](https://slackreserver.com/terms-of-service): Legal framework covering service usage, Slack integration permissions, and user responsibilities
+
+- [Product Roadmap](https://slackreserver.com/roadmap): Development timeline and upcoming features including quick booking, meeting feedback systems, and calendar integrations
+
+## Optional
+
+- [Contact Form](https://slackreserver.com/contact): Direct communication channel for support and business inquiries
+
+- [User Profile Dashboard](https://slackreserver.com/profile): Account management interface showing subscription details and usage analytics
+
+- [Sign In Page](https://slackreserver.com/signIn): Google authentication portal for workspace access
