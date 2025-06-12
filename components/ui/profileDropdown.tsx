@@ -62,12 +62,6 @@ export const Profile = ({ session_data }: ProfileDropdownProps) => {
                             <span>Profile</span>
                         </DropdownMenuItem>
                     </Link>
-                    <Link href="/api/create-customer-portal-session" className="block">
-                        <DropdownMenuItem className="rounded-md cursor-pointer focus:bg-gray-100 hover:bg-gray-100 data-[highlighted]:bg-gray-100 transition-colors duration-200 py-1.5">
-                            <CreditCard className="mr-2 h-4 w-4" />
-                            <span>Billing</span>
-                        </DropdownMenuItem>
-                    </Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator className="bg-gray-200 my-1" />
                 <DropdownMenuItem
