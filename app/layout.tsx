@@ -144,7 +144,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <SessionProvider session={session}>
-        <DevelopmentBanner />
+        
           <Navbar />
           {children}
           <Footer />
