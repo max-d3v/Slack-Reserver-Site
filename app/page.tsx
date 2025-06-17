@@ -169,18 +169,39 @@ export default async function Home({
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-700">Key Features</h2>
 
+
+
           <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
-            <div className="md:w-1/2">
-              <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Make it yours</p>
+            <div className="md:w-1/2 md:order-1">
+              <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Reserve.</p>
               <div className="space-y-0 leading-tight mb-4">
-                <h3 className="text-2xl font-bold text-gray-700">Manage all your shared resources</h3>
-                <h3 className="text-2xl font-bold text-gray-700">in one place</h3>
+                <h3 className="text-2xl font-bold text-gray-700">Project War Room?</h3>
+                <h3 className="text-2xl font-bold text-gray-700">Important client meeting?</h3>
+                <h3 className="text-2xl font-bold text-gray-700">No time to ask which rooms are available?</h3>
               </div>
 
               <div className="text-lg text-gray-600" >
-                <p>Customize your workspace with any resources your team shares - from meeting rooms to ping pong tables and beyond. Using our resource and resource group system, you can start with essential spaces and expand as your organization grows, creating a reservation system perfectly tailored to your company's unique needs.</p>
+                <p>Our seamless reservation system handles all your booking needs. Invite team members, set custom room statuses, schedule for hours or days, and personalize with creative titles - all without leaving Slack. Simple commands, powerful results, zero confusion.</p>
               </div>
             </div>
+            <div className="md:w-1/2 w-full max-w-md mx-auto md:order-1">
+              <div className="bg-gray-200 rounded-lg overflow-hidden min-h-[280px] md:min-h-[320px] flex items-center justify-center">
+                <Image
+                  src="/images/features/home.png"
+                  width={400}
+                  height={300}
+                  alt="Picture of new reservation modal"
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <div className="flex flex-col md:flex-row items-center gap-8 mb-28">
             <div className="md:w-1/2 w-full max-w-md mx-auto">
               <div className="bg-gray-200 rounded-lg overflow-hidden min-h-[280px] md:min-h-[320px] flex items-center justify-center">
                 <Image
@@ -194,34 +215,19 @@ export default async function Home({
                 />
               </div>
             </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
-            <div className="md:w-1/2 w-full max-w-md mx-auto md:order-1">
-              <div className="bg-gray-200 rounded-lg overflow-hidden min-h-[280px] md:min-h-[320px] flex items-center justify-center">
-                <Image
-                  src="/images/features/home.png"
-                  width={400}
-                  height={300}
-                  alt="Picture of new reservation modal"
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
-            </div>
-            <div className="md:w-1/2 md:order-2">
-              <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Reserve.</p>
+            <div className="md:w-1/2">
+              <p className="font-bold text-[#4A154B] text-sm uppercase tracking-wider mb-1">Make it yours</p>
               <div className="space-y-0 leading-tight mb-4">
-                <h3 className="text-2xl font-bold text-gray-700">Project War Room?</h3>
-                <h3 className="text-2xl font-bold text-gray-700">Important client meeting?</h3>
-                <h3 className="text-2xl font-bold text-gray-700">No time to ask which rooms are available?</h3>
+                <h3 className="text-2xl font-bold text-gray-700">Manage all your shared resources</h3>
+                <h3 className="text-2xl font-bold text-gray-700">in one place</h3>
               </div>
 
               <div className="text-lg text-gray-600" >
-                <p>Our seamless reservation system handles all your booking needs. Invite team members, set custom room statuses, schedule for hours or days, and personalize with creative titles - all without leaving Slack. Simple commands, powerful results, zero confusion.</p>
+                <p>Customize your workspace with any resources your team shares - from meeting rooms to ping pong tables and beyond. Using our resource and resource group system, you can start with essential spaces and expand as your organization grows, creating a reservation system perfectly tailored to your company's unique needs.</p>
               </div>
             </div>
           </div>
+
 
           <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
             <div className="md:w-1/2">
@@ -366,7 +372,7 @@ export default async function Home({
             <h2 className="text-3xl md:text-4xl font-bold">?</h2>
           </div>
 
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tired of people forgetting reservations, avoiding slow web forms, or missing important notifications because they don't check their emails? Make room booking effortless.</p>          
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tired of people forgetting reservations, avoiding slow web forms, or missing important notifications because they don't check their emails? Make room booking effortless.</p>
           <SlackButton redirectUrl={redirectUrl} className="mb-12" />
         </div>
       </section>
