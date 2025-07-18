@@ -15,15 +15,20 @@ export default function Page() {
 
   const roadmapItems = [
     {
-      id: 1,
-      title: "Quick Book",
-      description: "One-day reservations with simplified resource selection. Search resources by name for faster booking process.",
+      title: "Permission Management",
+      description: "Advanced permission management for resources. Customizable access levels for different user roles.",
       status: "in-progress",
       timeEstimate: TIME_ESTIMATE.SHORT,
       icon: <Clock className="h-10 w-10 text-[#4A154B]" />,
     },
     {
-      id: 2,
+      title: "Quick Book",
+      description: "One-day reservations with simplified resource selection. Search resources by name for faster booking process.",
+      status: "upcoming",
+      timeEstimate: TIME_ESTIMATE.SHORT,
+      icon: <Clock className="h-10 w-10 text-[#4A154B]" />,
+    },
+    {
       title: "Meeting Feedback System",
       description: "Post-meeting feedback collection from organizers. Automatic sharing of meeting summaries with all participants.",
       status: "upcoming",
@@ -31,7 +36,6 @@ export default function Page() {
       icon: <MessageCircle className="h-10 w-10 text-[#4A154B]" />,
     },
     {
-      id: 3,
       title: "Confirm attendance",
       description: "Support for confirming participation in meetings. Automatic reminders for participants to confirm their attendance.",
       status: "upcoming",
@@ -39,7 +43,6 @@ export default function Page() {
       icon: <Check className="h-10 w-10 text-[#4A154B]" />,
     },
     {
-      id: 4,
       title: "Google Calendar Integration",
       description: "Seamless synchronization with Google Calendar. Import and export reservations between Slack Reserver and Google Calendar.",
       status: "planned",

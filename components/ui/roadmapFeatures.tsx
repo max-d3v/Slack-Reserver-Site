@@ -65,7 +65,7 @@ const Roadmap = ({ roadmapItems }: { roadmapItems: any[] }) => {
                 {/* Timeline items */}
                 <div className="space-y-16">
                     {filteredItems.map((item, index) => (
-                        <div key={item.id} className={`relative z-10`}>
+                        <div key={index} className={`relative z-10`}>
                             <div
                                 className={`flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""
                                     } items-center`}
