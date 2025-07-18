@@ -146,10 +146,10 @@ export const ContactForm = ({ flavor, sessionData, inputHighlight   }: { flavor:
             type="text"
             id="subject"
             name="subject"
-            readOnly={formData.subject ? true : false}
+            readOnly={flavor ? true : false}
             value={formData.subject}
             onChange={handleChange}
-            className={` ${formData.subject ? "bg-slate-100" : ""} w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+            className={` ${flavor ? "bg-slate-100" : ""} w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
             required
           />
         </div>
