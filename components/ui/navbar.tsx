@@ -3,8 +3,6 @@ import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { useSession } from "next-auth/react";
-import { Profile } from './profileDropdown';
 import { CONSTANTS } from '@/lib/constants';
 
 export const Navbar = () => {
@@ -12,9 +10,6 @@ export const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mouseNearTop, setMouseNearTop] = useState(false);
-
-  const { data: session, status } = useSession();
-  const isLoading = status === "loading";
 
   // navbar hider
   useEffect(() => {
@@ -83,7 +78,6 @@ export const Navbar = () => {
                 </Link>
               ))}
 
-              {session && !isLoading && <Profile session_data={session} />}
             </div>
           </div>
 
@@ -119,7 +113,6 @@ export const Navbar = () => {
                 </Link>
               ))}
 
-            {session && !isLoading && <Profile session_data={session} />}
           </div>
         </div>
       )}

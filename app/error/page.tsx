@@ -1,12 +1,19 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
 import { AlertTriangle, XCircle, Home, ArrowLeftCircle, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 
 export default function ErrorPage() {
+  return (
+    <Suspense fallback={null}>
+      <ErrorContent />
+    </Suspense>
+  )
+}
+
+function ErrorContent() {
   const searchParams = useSearchParams()
   const errorParam = searchParams.get('error')
   const [error, setError] = useState<string | null>(errorParam)

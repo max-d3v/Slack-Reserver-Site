@@ -1,10 +1,19 @@
 'use client'
+
 //THIS IS MOSTLY FOR ERRORS
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Check, X } from 'lucide-react'
 
 export default function SlackAuthSuccess() {
+  return (
+    <Suspense fallback={null}>
+      <SlackAuthResult />
+    </Suspense>
+  )
+}
+
+function SlackAuthResult() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const status = searchParams.get('status')

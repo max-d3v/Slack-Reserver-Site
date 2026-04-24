@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react';
 
 import { BillingToggle } from './billingToggle';
 import { useRouter } from 'next/navigation';
@@ -12,11 +11,9 @@ import PricingPlan from './pricingPlan';
 
 
 const PricingPlans = ({ pricingPlans, redirectUrl }: { pricingPlans: Stripe.Price[], redirectUrl: string }) => {
-    const { data: session } = useSession();
-    const hasTenantId = (session?.user as any)?.tenant_id;
-    const subscription = (session?.user as any)?.subscription as any | undefined;
-    const hasSubscription = subscription ?? false;
-    const currentPlanPrice = subscription?.price;
+    const hasTenantId = false;
+    const hasSubscription = false;
+    const currentPlanPrice = undefined as unknown as Stripe.Price;
 
 
     const [chosenPlans, setChosenPlans] = useState<Stripe.Price[]>([]);

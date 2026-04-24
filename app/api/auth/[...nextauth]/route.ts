@@ -1,6 +1,10 @@
-import NextAuth from "next-auth";
-import { authOptions } from "@/lib/utils/authOptions";
+import { NextResponse } from 'next/server';
 
-const handler = NextAuth(authOptions as any);
+const disabled = () =>
+    NextResponse.json(
+        { error: 'Slack Reserver has been discontinued. Authentication is disabled.' },
+        { status: 410 },
+    );
 
-export { handler as GET, handler as POST };
+export const GET = disabled;
+export const POST = disabled;

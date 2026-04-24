@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { inter } from '@/app/ui/fonts';
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
-import { SessionProvider } from "@/components/sessionProvider";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/utils/authOptions";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster"
@@ -116,13 +113,11 @@ const jsonLd = {
 };
 
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions as any);
-
   return (
     <html lang="en">
         <Script
@@ -143,13 +138,11 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SessionProvider session={session}>
-          <DiscontinuedBanner />
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster />
-        </SessionProvider>
+        <DiscontinuedBanner />
+        <Navbar />
+        {children}
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );
