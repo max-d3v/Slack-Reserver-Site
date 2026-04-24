@@ -4,13 +4,14 @@ import { Suspense } from "react";
 import Stripe from "stripe";
 import PricingPlans from "@/components/ui/pricingPlans";
 
+export const dynamic = "force-dynamic";
 
 export type PriceWithFeatures = Stripe.Price & {
     features: null | JsonObject;
-} 
+}
 
 const Page = async () => {
-    const stripePricingPlans = (await stripeServices.getPrices());
+    const stripePricingPlans = await stripeServices.getPrices().catch(() => [] as Stripe.Price[]);
     const filterExceptionPlan = stripePricingPlans.filter((plan) => {
         return typeof plan.product !== "string" && plan.product.id !== "prod_SRG8T7wKmRc1Ui" && plan.product.id !== "prod_SJjCcg00HJWAlo"; // Exclude free testing plan
     });

@@ -1,59 +1,58 @@
-import { PrismaClient } from '@prisma/client';
-import loggerService from '../utils/logger';
+// Database is intentionally disabled for this deployment.
+// Every model method resolves to an empty/no-op result so existing call sites
+// continue to type-check and run without a real PostgreSQL connection.
 
+const stubModel = new Proxy(
+  {},
+  {
+    get(_target, method: string) {
+      return async (...args: any[]) => {
+        switch (method) {
+          case 'findMany':
+            return [];
+          case 'count':
+            return 0;
+          case 'aggregate':
+          case 'groupBy':
+            return [];
+          case 'findUnique':
+          case 'findFirst':
+          case 'findUniqueOrThrow':
+          case 'findFirstOrThrow':
+            return null;
+          case 'create':
+          case 'update':
+          case 'upsert':
+          case 'delete':
+            return (args[0]?.data ?? args[0]?.create ?? {}) as any;
+          case 'createMany':
+          case 'updateMany':
+          case 'deleteMany':
+            return { count: 0 };
+          default:
+            return null;
+        }
+      };
+    },
+  },
+);
 
-
-// Enhanced Prisma client with comprehensive logging
-const prisma = new PrismaClient({
-    log: [
-      { emit: 'event', level: 'query' },
-      { emit: 'event', level: 'error' },
-      { emit: 'event', level: 'info' },
-      { emit: 'event', level: 'warn' },
-    ],
-  });
-
-// Add event listeners for critical logging
-prisma.$on('error', async (e) => {
-  await loggerService.critical('database-error', 
-    'Prisma database error occurred', 
-    {
-      target: e.target,
-      message: e.message,
-      timestamp: e.timestamp,
-    }
-  );
-});
-
-prisma.$on('warn', async (e) => {
-  await loggerService.warn('database-warn', 
-    'Prisma database warning', 
-    {
-      target: e.target,
-      message: e.message,
-      timestamp: e.timestamp,
-    }
-  );
-});
-
-// Log slow queries (optional)
-prisma.$on('query', async (e) => {
-  if (e.duration > 1000) { // Log queries taking more than 1 second
-    await loggerService.warn('database-slow-query', 
-      'Slow database query detected', 
-      {
-        query: e.query,
-        params: e.params,
-        duration: e.duration,
-        target: e.target,
-        timestamp: e.timestamp,
+const prisma: any = new Proxy(
+  {},
+  {
+    get(_target, prop: string) {
+      if (prop === '$queryRaw' || prop === '$executeRaw' || prop === '$queryRawUnsafe' || prop === '$executeRawUnsafe') {
+        return async () => [];
       }
-    );
-  }
-});
-
-if (process.env.NODE_ENV !== 'production') {
-  global.prisma = prisma;
-}
+      if (prop === '$on' || prop === '$use') {
+        return () => undefined;
+      }
+      if (prop === '$connect' || prop === '$disconnect' || prop === '$transaction') {
+        return async (arg?: any) => (typeof arg === 'function' ? arg(prisma) : arg);
+      }
+      return stubModel;
+    },
+  },
+);
 
 export default prisma;

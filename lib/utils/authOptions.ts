@@ -1,103 +1,48 @@
 import GoogleProvider from "next-auth/providers/google";
-import subscriptionService from "@/lib/stripe/subscriptionServices";
-import { PrismaClient } from "@prisma/client";
-import db from "@/lib/db/db";
-import { responseCookiesToRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+
+// Database-backed user storage is disabled in this deployment.
+// Sign-in still works through Google + JWT sessions; persistence is skipped.
 
 export const authOptions = {
   url: process.env.SITE_URL,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-    })
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
   ],
   callbacks: {
     async signIn({ user }: any) {
-      const { id, email, name, image } = user;
-            
-      if (!id || !email) {
-        return false;
-      }
-
-      await db.users.upsert({
-        where: { google_id: id },
-        update: {
-          name,
-          email,
-          imageUrl: image,
-        },
-        create: {
-          google_id: id,
-          name,
-          email,
-          imageUrl: image,
-          role: "user",
-        },
-      })
-      return true;
+      return Boolean(user?.id && user?.email);
     },
     async session({ session, token }: any) {
-      const dbUser = await (db.users as PrismaClient['users']).findUnique({
-        where: {
-          google_id: token.sub,
-        },
-        select: {
-          id: true,
-          role: true,
-          isAdmin: true,
-          tenant_id: true,
-          created_at: true,
-          stripe_customer_id: true,
-          tenant: {
-            select: {
-              id: true,
-              subdomain: true,
-              status: true,
-              workspace_team_id: true,
-            },
-            where: {
-              status: "active",
-            },
-          },
-        },
-      });
-
-      if (!dbUser) {
-        throw new Error("User not found");
-      }
-
-      let subscription: any = null;
-      let freePlan = false;
-      if (dbUser.stripe_customer_id) {
-        freePlan = await subscriptionService.hasFreePlan(dbUser.stripe_customer_id);
-        const foundSubscription = await subscriptionService.getActiveSubscription(dbUser.stripe_customer_id);
-        const data = foundSubscription?.items.data[0];
-        subscription = data;
-      }
-    
       session.user = {
-        ...dbUser,
-        subscription,
-        freePlan,
-        name: session.user.name, // Google name
-        email: session.user.email, // Google email
-        image: session.user.image || "", // Google image
+        id: token.sub ?? null,
+        role: "user",
+        isAdmin: false,
+        tenant_id: null,
+        tenant: null,
+        created_at: null,
+        stripe_customer_id: null,
+        subscription: null,
+        freePlan: false,
+        name: session.user?.name ?? null,
+        email: session.user?.email ?? null,
+        image: session.user?.image ?? "",
       };
-    
       return session;
     },
     async redirect({ baseUrl }: { baseUrl: string }) {
-      return `${baseUrl}/pricing`; 
-    }
+      return `${baseUrl}/pricing`;
+    },
   },
   pages: {
-    signIn: '/signIn',
-    error: '/auth-result',
+    signIn: "/signIn",
+    error: "/auth-result",
   },
   session: {
-    strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET as string,
 };

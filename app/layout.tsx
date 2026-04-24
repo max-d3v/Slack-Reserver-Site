@@ -8,10 +8,10 @@ import { authOptions } from "@/lib/utils/authOptions";
 import Footer from "@/components/ui/footer";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster"
-import DevelopmentBanner from "@/components/ui/banner"
+import DiscontinuedBanner from "@/components/ui/banner"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL!),
+  metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"),
   title: 'Slack Reserver - Book Rooms & Workspace Resource Management Directly in Slack',
   description: 'Simplify workspace management with Slack Reserver. Book meeting rooms, equipment, and resources directly in Slack. Eliminate double-bookings and automate notifications.',
   keywords: 'slack resource management, slack workspace management, slack room booking, slack reservations, shared resources slack, booking rooms slack, entirely slack reservations, workspace resources, workspace management',
@@ -144,7 +144,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <SessionProvider session={session}>
-        
+          <DiscontinuedBanner />
           <Navbar />
           {children}
           <Footer />

@@ -83,17 +83,7 @@ export const Navbar = () => {
                 </Link>
               ))}
 
-              {session && !isLoading ?
-                <Profile session_data={session} />
-                :
-                <Link
-                  href="/signIn"
-                  className="bg-[#4A154B] text-white hover:bg-[#3b113c] block px-3 py-2 rounded-md text-base font-medium text-center"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sign In
-                </Link>
-              }
+              {session && !isLoading && <Profile session_data={session} />}
             </div>
           </div>
 
@@ -129,17 +119,7 @@ export const Navbar = () => {
                 </Link>
               ))}
 
-            {session && !isLoading ?
-              <Profile session_data={session} />
-              :
-              <Link
-                href="/signIn"
-                className="bg-[#4A154B] text-white hover:bg-[#3b113c] block px-3 py-2 rounded-md text-base font-medium text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Sign In
-              </Link>
-            }
+            {session && !isLoading && <Profile session_data={session} />}
           </div>
         </div>
       )}
